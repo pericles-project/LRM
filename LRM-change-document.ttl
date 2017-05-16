@@ -1,0 +1,337 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Copyright 2017  Xerox Research Centre Europe
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-----------------------------------------------------------------------------------------------------------------------
+
+#
+# PERICLES (see http://www.pericles-project.eu )is a four-year project that aims to address the challenge of ensuring that digital content remains 
+# accessible in an environment that is subject to continual change. This can encompass not only technological change, but also changes in semantics, 
+# academic or professional practice, or society itself, which can affect the attitudes and interests of the various stakeholders that interact with the content. 
+# PERICLES will take a ‘preservation by design’ approach that involves modelling, capturing and maintaining detailed and complex information about 
+# digital content, the environment in which it exists, and the processes and policies to which it is subject.
+#
+# This ontology has been produced by the WP3 (work package 3)lead by Xerox Research Center Europe 
+# Authors:  Jean-Yves Vion-Dury
+#
+# Created in November 2016
+# last updated in April 2017 by Jean-Yves Vion-Dury
+#
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix time: <http://xrce.xerox.com/TIME#>.
+@prefix lrm: <http://xrce.xerox.com/LRM#> .
+@prefix ex: <http://xrce.xerox.com/example#>.
+@prefix version: <http://xrce.xerox.com/VERSION#> .
+@prefix real: <http://xrce.xerox.com/ReAL#> .
+
+@base  <file:///C:/Users/viondury/PERICLESEU/LRMS/Data/LRM/> .
+
+lrm:LRM-change-document	rdf:type owl:Ontology;
+    owl:imports <LRM-schema.ttl>;
+    rdfs:comment "Explore an UpdateEvent modification scenario (without versioning)"
+    .
+    
+# Illustrative LRM specialization
+ex:Document rdfs:subClassOf lrm:DigitalResource.
+
+ex:XmlDocument rdfs:subClassOf ex:Document.
+
+ex:XSD rdfs:subClassOf ex:XmlDocument.
+
+ex:xsdValidation a lrm:Service.
+
+lrm:ComputeSignature rdfs:subClassOf lrm:Message.
+
+lrm:RequestXSDValidation rdfs:subClassOf lrm:Message, lrm:Activity.
+
+ex:document 
+    rdfs:subPropertyOf lrm:parameter;
+    rdfs:domain lrm:RequestXSDValidation;
+    rdfs:range lrm:Identity
+    .    
+    
+ex:schema 
+    rdfs:subPropertyOf lrm:parameter;
+    rdfs:domain lrm:RequestXSDValidation;
+    rdfs:range lrm:Identity
+    .    
+
+ex:compliant 
+    rdfs:subPropertyOf lrm:result ;
+    rdfs:domain lrm:RequestXSDValidation;
+    rdfs:range xsd:boolean
+    .    
+
+ex:reportID
+    rdfs:subPropertyOf lrm:result ;
+    rdfs:domain lrm:RequestXSDValidation; 
+    rdfs:range lrm:Identity
+    .    
+    
+ex:reportLocation 
+    rdfs:subPropertyOf lrm:result ;
+    rdfs:domain lrm:RequestXSDValidation
+    .    
+    
+
+ex:validation a lrm:Intention.
+
+ex:XmlValidation 
+    rdfs:subClassOf lrm:ConjunctiveDependency;    
+    owl:intersectionOf (
+        [
+            rdf:type            owl:Restriction ;
+            owl:onProperty      lrm:intention ;
+            owl:hasValue       ex:validation
+        ]
+        [
+            rdf:type            owl:Restriction ;
+            owl:onProperty      lrm:precondition ;
+            owl:hasValue       lrm:xmlPC
+        ]
+        [
+            rdf:type            owl:Restriction ;
+            owl:onProperty      lrm:impact ;
+            owl:hasValue       lrm:xmlImpact
+        ]
+    )
+    .
+	
+ex:from-document 
+    rdfs:subPropertyOf lrm:from ;
+    rdfs:domain ex:XmlValidation;
+    rdfs:range ex:XmlDocument
+    .
+    
+ex:from-schema 
+    rdfs:subPropertyOf lrm:from ;
+    rdfs:domain ex:XmlValidation;
+    rdfs:range ex:XSD
+    .
+    
+ex:to-report 
+    rdfs:subPropertyOf lrm:to ;
+    rdfs:domain ex:XmlValidation;
+    rdfs:range ex:XmlDocument
+    .
+    
+ex:xmlH a lrm:EventHandler;
+    lrm:createdBy lrm:internalService;
+    lrm:on lrm:UpdateEvent;
+    lrm:do [ 
+        a lrm:HandlingAction; 
+        lrm:input-signature "EVENT"^^real:Signature; 
+        lrm:body [ 
+            real:code """
+				[
+				WAIT - lrm:subject(?EVENT,?rsc) AND 
+				WAIT - time:utc(?EVENT,?datetime) AT MOST 0.1 seconds  
+				] AND
+				+rdf:type(?rsc,lrm:changeMarker)
+				"""^^real:Code 
+            ]  
+       ]
+    .
+    
+ex:xmlPC a real:Template;
+    rdfs:comment "preconditions: one of the dependees must have changed (we must have received an event saying so)" ;
+    real:variables "SELF"^^real:Signature;
+    real:code """
+               ! lrm:from(?SELF,?subject) AND
+               ! lrm:to(?SELF,?target) AND
+		! time:preceding(?target, ?subject)
+        """^^real:Code
+    .
+    
+ex:xmlImpact a real:Template;        
+    real:variables "SELF"^^real:Signature;
+    real:code """
+                    ex:from-document(?SELF,?doc) AND
+                    lrm:identification(?doc, ?doc-id) AND
+                    ex:from-schema(?SELF,?sch) AND
+                    lrm:identification(?sch, ?sch-id) AND
+                    $c AND  
+                    + rdf:type(?c, lrm:RequestXSDValidation) AND
+                    + ex:document(?c, ?doc-id) AND
+                    + ex:schema(?c, ?sch-id) AND
+                    CALL primitive:service-call(?c) AND
+                    ex:compliant(?c, true) AND
+                    ex:report-id(?c, ?report-id) AND
+                    ex:report-location(?c, ?report-loc) AND
+                    (  
+                        ( // insert a \"lrm:to-report\" link to the validation report inside the dependency instance
+                                 lrm:to-report(?SELF,?report) AND (
+                                            [   - lrm:identification(?report, ?old-id) AND   (?old-id != ?report-id) ]  UNION
+                                            [   - lrm:location(?report, ?old-loc) AND  (?old-loc != ?report-loc) ]   UNION    
+                                            [   - time:utc(?report, ?) AND  + time:utc(?report, ?) AND]   UNION    
+                                            TRUE
+                                   )
+                           )
+                        OR  
+                        ( 
+                                $report AND  
+                                + rdf:type(?report, ex:XmlDocument) AND
+                                + lrm:identification(?report,?report-id) AND                
+                                + lrm:location(?report,?report-loc)               
+                           )
+                     )
+        """^^real:Code
+    .
+    
+        
+ex:editionTask a lrm:ExogenousActivity;
+    rdfs:comment "this task is not detailled: we just know that someone may edit documents belonging to the ecosystem; therefore, it may induce changes"
+    .
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  graph description (instantiation)
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ex:schema1 a ex:XSD;
+    lrm:identification ex:IDsch1 ;
+    lrm:location [ lrm:url <http://example/org/schemas/xhtml.xsd> ] ;
+    lrm:fingerprint [ lrm:definition "0x5F560340D345A234545"] ;
+    rdfs:comment "This is the XSD schema for validating XHTML documents"
+    .
+        
+ex:addr1 lrm:url <http://example/org/doc/resume.xml>.
+ex:def1 lrm:definition "0x4E567340C345B137745" .
+
+# ex:doc1 before change
+# ex:doc1 a ex:XmlDocument;
+    # lrm:identification ex:IDdoc1 ;
+    # lrm:location ex:addr1;
+    # lrm:fingerprint ex:def1 ;
+    # rdfs:comment "This is the document that might be edited by an external user"
+    # .
+    
+ex:validationReport01 a ex:XmlDocument;
+    lrm:identification ex:IDvrep;
+    lrm:location <http://pericles.org/ecosystem/rsc/repval001.xhtml>;
+    lrm:describedBy ex:dlt4
+    .
+    
+# NB the lrm:to predicate is not defined at the very begining, because the document has never been validated yet, and no report exists
+ex:depval a ex:XmlValidation;
+    ex:from-document ex:doc1;
+    ex:from-schema ex:schema1;
+    lrm:to-report  ex:validationReport01;
+    .
+   
+    
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Change scenario: a user edited (and consequentely changed the XHTML document stored somewhere in the ecosystem): the dependency is reevaluated
+#  and checked against the associated XML schema. as a consequance, a new validation report is executed
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+ex:modif a lrm:UpdateEvent ;
+    lrm:subject ex:doc1;
+    lrm:emittedBy ex:editionTask;
+    time:utc "2015-01-30T09:29:20Z"^^xsd:dateTimeStamp; # this stamp is inserted by the LRM endogenous activity
+    rdfs:comment "changed by a user in the ecosystem"
+    .
+    
+ex:upstamp a time:Instant;
+    time:utc "2015-01-30T:29:21Z"^^xsd:dateTimeStamp # this stamp is inserted by the LRM endogenous activity    
+    .
+    
+ex:update a lrm:UpdateEvent;
+    lrm:emittedBy lrm:restfull-LRM-Service; # this has been inserted by the LRM endogenous activity
+    time:synchronousWith ex:upstamp;
+    lrm:isConsequenceOf ex:modif; # this information is inserted by the LRM endogenous activity
+    lrm:triggered ex:updateManagement; # this information is inserted by the LRM endogenous activity
+    lrm:subject ex:doc1 ; # this information is inserted by the LRM endogenous activity, by analyzing the ex:modif event above
+    rdfs:comment "here, the internal service has to build the right link to the Exogenous descriptor (ex:doc1)"
+    .
+    
+ex:updateManagement a lrm:EndogenousActivity;
+    lrm:executedBy lrm:internalProcessor; 
+    lrm:created ex:call1, ex:validationReport01, ex:fp2, ex:dlt1, ex:dlt2;
+    lrm:transformed ex:depval, ex:doc1;
+    lrm:emitted ex:createdReport
+    .
+    
+ex:call1 a lrm:RequestXSDValidation;
+    lrm:startingTime [ time:utc "2015-01-30T09:29:21.013Z"^^xsd:dateTimeStamp ];
+    lrm:endingTime [ time:utc "2015-01-30T09:29:21.014Z"^^xsd:dateTimeStamp ];
+    lrm:document ex:IDdoc1;
+    lrm:schema ex:IDsch1;
+    lrm:compliant "true"^^xsd:boolean ;
+    lrm:report-id ex:IDvrep2;
+    lrm:report-location <http://pericles.org/ecosystem/rsc/repval002.xhtml>   
+    .
+    
+ex:fp2 lrm:definition "0x5F5637810D45A234545".
+        
+# inserted by underlying activity
+ex:dlt1 a lrm:TransformationEvent;
+    time:synchronousWith ex:update;
+    lrm:subject ex:doc1;
+    lrm:deletion [ rdf:predicate lrm:fingerprint; rdf:object ex:def1 ]  ; 
+    lrm:insertion [ rdf:predicate lrm:fingerprint; rdf:object ex:fp2 ]
+    .
+     
+ex:dlt3 a lrm:TransformationEvent;
+    time:synchronousWith ex:update;
+    lrm:subject ex:depval;
+    lrm:deletion [ rdf:predicate lrm:to; rdf:object ex:validationReport01 ]  ; 
+    lrm:insertion [ rdf:predicate lrm:to; rdf:object ex:validationReport02 ]
+    .
+ex:dlt4 a lrm:DestructionEvent;
+    time:synchronousWith ex:update;
+    lrm:subject ex:validationReport01;
+    lrm:insertion [ rdf:predicate lrm:describedBy; rdf:object ex:dlt4 ]
+    .
+
+# inserted by underlying activity
+ex:dlt2 a lrm:CreationEvent;
+    time:synchronousWith ex:update;
+    lrm:subject ex:validationReport02;
+    lrm:insertion [ rdf:predicate lrm:identification; rdf:object ex:IDvrep2 ];
+    lrm:insertion [ rdf:predicate lrm:location; rdf:object  <http://pericles.org/ecosystem/rsc/repval002.xhtml> ]
+    .
+    
+ex:doc1 a ex:XmlDocument;
+    lrm:identification ex:IDdoc1 ;
+    lrm:location ex:addr1;
+    lrm:fingerprint ex:fp2 ;
+    rdfs:comment "This is the document that might be edited by an external user"
+    .
+
+ex:validationReport02 a ex:XmlDocument;
+    lrm:identification ex:IDvrep2;
+    lrm:location <http://pericles.org/ecosystem/rsc/repval002.xhtml>
+    .
+    
+ex:depval a ex:XmlValidation;
+    lrm:from-document ex:doc1;
+    lrm:from-schema ex:schema1;
+    lrm:to-report  ex:validationReport02;
+    lrm:changed ex:dlt1, ex:dlt2, ex:dlt3, ex:dlt4 ;
+    rdfs:comment """
+        Before the change event, the dependency was like this:
+        
+        { ex:depval a ex:XmlValidation;
+                lrm:from-document ex:doc1;
+                lrm:from-schema ex:schema1;
+                lrm:to-report  ex:validationReport01
+          }
+        """
+    .
+
+    

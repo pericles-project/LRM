@@ -1,0 +1,448 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Copyright 2017  Xerox Research Centre Europe
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-----------------------------------------------------------------------------------------------------------------------
+
+#
+# PERICLES (see http://www.pericles-project.eu )is a four-year project that aims to address the challenge of ensuring that digital content remains 
+# accessible in an environment that is subject to continual change. This can encompass not only technological change, but also changes in semantics, 
+# academic or professional practice, or society itself, which can affect the attitudes and interests of the various stakeholders that interact with the content. 
+# PERICLES will take a ‘preservation by design’ approach that involves modelling, capturing and maintaining detailed and complex information about 
+# digital content, the environment in which it exists, and the processes and policies to which it is subject.
+#
+# This ontology has been produced by the WP3 (work package 3)lead by Xerox Research Center Europe 
+# Authors:  Jean-Pierre Chanod, Nikolaos Lagos, Jean-Yves Vion-Dury
+#
+# Created in November 2014
+# last updated the 31th of March 2017 by Jean-Yves Vion-Dury
+#
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix lrm: <http://xrce.xerox.com/LRM#> .
+
+# @base  <file:///C:/Users/viondury/PERICLESEU/Ontology/> .
+
+lrm:LRM-static
+    a owl:Ontology;
+	owl:versionInfo "2.0.3"    
+	.
+
+lrm:Resource a owl:Class;
+    owl:disjointUnionOf (lrm:EndogenousResource lrm:ExogenousResource) ;
+    rdfs:comment "Endogenous resources talk about the representation system, whereas Exogenous resources talk about the ecosystem"@en;
+    owl:disjointUnionOf (lrm:AbstractResource lrm:ConcreteResource) ;
+    rdfs:comment """ 
+        In our view, abstract resources have no physical extension. However, they may be delimited in time, and thus 
+        may have a temporal support; they also may be subject to changes. 
+        In our view, concrete resources have a physical and temporal extension.
+        As such, they can be located in space and time, and the nature of their physical extension may be described accordingly (e.g. mass, size, volumes, mereological organization...).
+        """@en;
+    owl:disjointUnionOf (lrm:MutableResource lrm:ImmutableResource) ;
+    rdfs:comment "Mutable resources can change"@en,
+              "Immutable resources cannot change "@en
+    .
+    
+lrm:AbstractResource rdfs:subClassOf lrm:Resource.
+lrm:ConcreteResource rdfs:subClassOf lrm:Resource.
+
+lrm:EndogenousResource rdfs:subClassOf lrm:AbstractResource.
+lrm:ExogenousResource rdfs:subClassOf lrm:Resource.
+lrm:AbstractExogenousResource rdfs:subClassOf lrm:ExogenousResource, lrm:AbstractResource.
+
+lrm:MutableResource rdfs:subClassOf lrm:Resource.
+lrm:ImmutableResource rdfs:subClassOf lrm:Resource.
+lrm:DeletedResource rdfs:subClassOf lrm:ImmutableResource.
+    
+# could be "concretizedAs" and "concretizes"
+lrm:realizedAs a owl:ObjectProperty;
+    rdfs:domain lrm:AbstractResource;
+    rdfs:range lrm:ConcreteResource;
+    rdfs:comment "This must be used to link an abstract resource to one or several concrete realizations of it"@en
+    .
+lrm:realizes owl:inverseOf lrm:realizedAs.
+
+
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#       Description class: Handles Metadata
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+lrm:Description rdfs:subClassOf lrm:EndogenousResource;
+    rdfs:comment "gives information about a resource, e.g. why it exists (intention), what it is for (specification),  ... "@en
+    .
+    
+lrm:describedBy rdf:type owl:ObjectProperty;
+    rdfs:domain lrm:Resource; 
+    rdfs:range lrm:Description
+    .
+    
+lrm:describes owl:inverseOf lrm:describedBy.
+
+lrm:definition a owl:DatatypeProperty;
+    rdfs:domain lrm:Resource;
+    rdfs:range rdfs:Literal;
+    rdfs:comment "This property allows defining formally the resource through a string"@en
+    .
+    
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Heterogeneous resources: to handle (possibly recursive) aggregated resources - useful to handle mereological models
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+lrm:AggregatedResource rdfs:subClassOf lrm:Resource;
+    rdfs:comment "Mereology (from the Greek μερος, 'part') is the theory of parthood relations: of the relations of part to whole and the relations of part to part within a whole."@en;
+    rdfs:seeAlso <http://plato.stanford.edu/entries/mereology/>
+    .
+lrm:hasPart a owl:ObjectProperty, owl:TransitiveProperty;
+    rdfs:domain lrm:AggregatedResource;
+    rdfs:range lrm:Resource
+    .
+lrm:partOf owl:inverseOf lrm:hasPart.
+
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Typology of descriptors
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+lrm:Location rdfs:subClassOf lrm:Description;	
+    rdfs:comment """
+        Location descriptor is information about retrieving the concrete  resource. 
+        """@en .
+    
+lrm:Protocol rdfs:subClassOf lrm:Description;	
+    rdfs:comment """
+        explain the method/protocol used to retrieve a concrete  resource (e.g. http, ftp, or an informal textual description). 
+        """@en .
+
+lrm:Identity rdfs:subClassOf lrm:Description;
+	rdfs:comment """
+        The identity of an Resource is uniquely defined via an instance of class lrm:Identity.
+        Although the structure of those instances are not defined at this level, it may use 
+        UUID mechanisms such as defined in RFC 4122.
+        """@en;
+    rdfs:seeAlso <http://tools.ietf.org/pdf/rfc4122>
+	.
+    
+# ===================================================================
+#       TIME MODEL : fully developped  in time-schema ontology
+# ===================================================================
+lrm:TemporalDescription rdfs:subClassOf lrm:Description;
+    rdfs:comment "Used to provide temporal knowledge about the resource"    
+    .
+lrm:TimeInterval  rdfs:subClassOf lrm:TemporalDescription.
+lrm:TimeInstant  rdfs:subClassOf lrm:TemporalDescription.
+lrm:TimeDuration  rdfs:subClassOf lrm:TemporalDescription.
+
+lrm:spanTime a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:TimeInterval
+    .
+
+lrm:creationTime a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:TimeInstant
+    .
+
+lrm:deletionTime a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:TimeInstant
+    .
+    
+lrm:durationTime a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:comment "correspond to a duration"@en;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:TimeDuration
+    .
+    
+lrm:preceding a owl:ObjectProperty, 
+	# added the 09/19/2015 JYVD (once withdrawn because causing troubles to some inference engines)
+	# owl:AsymmetricProperty,
+	owl:TransitiveProperty;
+    rdfs:comment "correspond to a strict causal ordering between any lrm:Resource instances (not time per se, but may be interpreted consistently w.r.t. interval or instant semantic)"@en;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:Resource
+    .
+    
+lrm:following a owl:ObjectProperty, 
+	# added the 09/19/2015 JYVD (might be withdrawn because causing troubles to some inference engines)
+	# owl:AsymmetricProperty,	
+	owl:TransitiveProperty;
+    rdfs:comment "correspond to a strict causal ordering between any lrm:Resource instances (not time per se, but may be interpreted consistently w.r.t. interval or instant semantic)"@en;
+    owl:inverseOf lrm:preceding;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:Resource
+    .
+    
+lrm:synchronousWith a owl:ObjectProperty, owl:SymmetricProperty, owl:TransitiveProperty;
+    rdfs:comment "correspond to a strict time equality between any lrm:Resources instances (interpreted consistently w.r.t. interval or instant semantic)"@en;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:Resource
+    .
+    
+# ===================================================================
+#       SPACE MODEL : to be developped and refined if required by applications
+# ===================================================================
+lrm:SpatialDescription rdfs:subClassOf lrm:Description;
+    rdfs:comment "Used to provide spatial knowledge about the resource"    
+    .
+    
+lrm:spaceLocation  a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:comment "correspond to a place (a point or an area in space )"@en;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:ConcreteResource;
+    rdfs:range lrm:SpatialDescription
+    .
+    
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  linking metadata to resources
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+lrm:identification a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:Identity;
+    rdfs:comment "an Identity instance uniquely identifies a resource (hence the functional property)"@en
+    .
+    
+lrm:location a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:ConcreteResource;
+    rdfs:range lrm:Location;
+    rdfs:comment "distinct resources cannot have the same location  descriptor(hence the inverse functional property)"@en
+    .
+        
+lrm:accessProtocol a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Location;
+    rdfs:range lrm:Protocol
+    .
+    
+lrm:url a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:comment "The acronym URL stands fo Uniform Resource Locator..."@en;
+    rdfs:domain lrm:Location
+    .
+    
+lrm:intention a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Resource; 
+    rdfs:range lrm:Intention ;
+    rdfs:comment "This property allows describing, formally or not, the intented usage of the resource (answer to the WHY question)"@en
+    .
+
+lrm:Intention 
+    rdfs:subClassOf lrm:Description ;
+    rdfs:comment """ Used to express the intention usage of the resource (or purpose of...)"""@en  
+    .
+    
+lrm:Specification 
+    rdfs:subClassOf lrm:Description ;
+    rdfs:comment """
+        Used to express the semantical properties. could be a formal logical language, a test-oriented prog. language, a formal or informal policy, a textual description...
+        """@en  
+    .
+    
+lrm:specifiedBy
+    a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    owl:inverseOf lrm:specifies ;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:Specification ;
+    rdfs:comment """
+        This property is used to express, formally or not, the semantical properties of the resource: it must be compatible with the invariant property attached to the resource, if any.
+        """@en
+    .
+    
+lrm:invariant 
+    a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:comment "specifies what must be always verified along the whole object life."@en;
+    rdfs:comment "also relates to the so-called \"significant properties\" used in digital preservation."@en;
+    rdfs:seeAlso <http://plato.stanford.edu/entries/identity-time/>;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:Specification
+    .
+    
+    
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#       DigitalResource class
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+lrm:DigitalResource 
+    rdfs:subClassOf lrm:ConcreteResource;
+	rdfs:comment """
+        A data structure that can be located by a dedicated descriptor, and having
+        a unique identifier. The extension of a digital resource is a bit stream that can 
+        be fetched using the location descriptor.
+        """@en;
+    rdfs:seeAlso <http://www.doi.org/handbook_2000/glossary.html>;
+	rdfs:comment 
+        """Jens[conf. Thibodeau/terminology overview (pericles internal documents)]: 
+        a technical object, processable by machines/computers (e.g. a set of files), 
+        as opposed to the physical or intellectual object
+        """@en;
+	rdfs:seeAlso <http://www.clir.org/pubs/reports/pub107/thibodeau.html>;
+	rdfs:seeAlso <http://www.doi.org/doi_handbook/Glossary.html>
+    .
+    
+lrm:extension a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:definition;
+    rdfs:domain lrm:DigitalResource;
+    rdfs:range rdfs:Literal;
+    rdfs:comment "This property allows defining formally the digital extension of a resource (its bit stream)"@en;
+    rdfs:seeAlso <http://www.w3.org/TR/Content-in-RDF10>
+    .
+    
+lrm:DigitalSignature rdfs:subClassOf lrm:Description .
+    
+lrm:fingerprint 
+    a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:comment "could be a checksum or any digital signature that uniquely represents the bitstream extension of the digital object"@en;
+    rdfs:domain lrm:DigitalResource;
+    rdfs:range lrm:DigitalSignature
+    .
+    
+lrm:uniqueIdentification
+    a owl:ObjectProperty, owl:FunctionalProperty;    
+    rdfs:subPropertyOf lrm:identification;
+    rdfs:comment "an Identity instance that uniquely designates the digital object"@en;
+    rdfs:domain lrm:DigitalResource;
+    rdfs:range  lrm:Identity
+    .
+    
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#       Dependency class
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+lrm:Dependency rdfs:subClassOf lrm:EndogenousResource ;
+    rdfs:comment """
+    A dependency, according to the LRM model, is oriented, and may relate at least one lrm:Resource instance to at 
+    least one lrm:Resource instance. One dependency instance may bind several resources together: this captures the
+    'co-dependencies' phenomenon, also named 'conjunctive dependencies', meaning that all resources must be considered 
+    simultaneously, together as a whole. Disjunctive dependencies are naturally expressed using different instances 
+    relating the same set of resources.
+    The semantics of the instances of this dependency class is conveyed by an instance of lrm:Plan. This last may give 
+    information about the intent (WHY), its specification (WHAT), and how it is satisfied (HOW see lrm:Plan, lrm:Description).
+    When 'how' is specified, it involves an Agent to perform the plan.
+    """@en
+    .
+    
+lrm:ConjunctiveDependency 
+    rdfs:subClassOf lrm:Dependency ;
+    rdfs:comment " all 'lrm:from' resources are needed by the 'lrm:to' resources for the intended usage"
+    .
+    
+lrm:DisjunctiveDependency 
+    rdfs:subClassOf lrm:Dependency;
+    rdfs:comment " only one among the 'lrm:from' resources is needed by the 'lrm:to' resources for the intended usage (can choose anyone)"
+    .
+    
+lrm:Dependency 
+    owl:disjointUnionOf ( 
+        lrm:ConjunctiveDependency 
+        lrm:DisjunctiveDependency 
+    ).
+    
+lrm:from a owl:ObjectProperty;
+    rdfs:domain lrm:Dependency; 
+    rdfs:range lrm:Resource
+    .
+    
+lrm:to rdf:type owl:ObjectProperty;
+    rdfs:domain lrm:Dependency; 
+    rdfs:range lrm:Resource
+    .
+
+       
+lrm:Plan rdfs:subClassOf lrm:Description;
+    rdfs:seeAlso <http://www.w3.org/TR/2013/REC-prov-o-20130430/#Plan>;
+    rdfs:comment """
+        Plans are specialized descriptions intended to be executed by some agent (either human or software based); this is thus a mean to 
+        give abstract or concrete operational semantics to dependencies."""@en
+    .
+    
+lrm:implementedBy a owl:ObjectProperty;
+    rdfs:comment "useful when a Plan is defined through an exogenous resource, e.g. a source file";
+    rdfs:subPropertyOf lrm:realizedAs;
+    rdfs:domain lrm:Plan;
+    rdfs:range lrm:ConcreteResource
+    .
+    
+lrm:impact 
+    rdf:type  owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:Dependency; 
+    rdfs:range lrm:Plan ;
+    rdfs:comment 
+        """Designates the lrm:Plan instance that characterizes how the change of a dependee(s) 
+        impacts the depending resource(s): what must be done if the dependency is activated"""@en
+    .
+
+lrm:precondition
+    rdf:type  owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:Dependency; 
+    rdfs:range lrm:Plan ;
+    rdfs:comment 
+        """Designates the lrm:Plan instance that characterizes the conditions for the change of dependee(s) 
+        to trigger a change propagation to depending resources."""@en
+    .
+    
+lrm:Agent rdfs:subClassOf lrm:Resource;
+    owl:disjointUnionOf ( lrm:SoftwareAgent lrm:HumanAgent lrm:Organization);
+    rdfs:comment "An agent is an entity that performs actions, i.e transformative operations over the exogenous/endogenous ecosystem"@en
+    .
+
+lrm:SoftwareAgent rdfs:subClassOf lrm:Agent.
+
+#
+#  Basic Classes for Humans ; to be derived further for domain specific needs
+#
+lrm:HumanAgent rdfs:subClassOf lrm:Agent, lrm:ConcreteResource, lrm:ExogenousResource.
+lrm:birthTime a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:creationTime;
+    rdfs:domain lrm:HumanAgent;
+    rdfs:range lrm:TimeInstant
+    .
+lrm:deathTime a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:deletionTime;
+    rdfs:domain lrm:HumanAgent
+    .
+lrm:lifeTime a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:durationTime;
+    rdfs:domain lrm:HumanAgent
+    .
+
+#
+#  Basic Classes for Organizations ; to be derived further for domain specific needs
+#
+lrm:Organization rdfs:subClassOf lrm:AggregatedResource, lrm:Agent.
+
+lrm:hasMember rdfs:subPropertyOf lrm:hasPart;
+    rdfs:domain lrm:Organization;
+    rdfs:range lrm:Agent
+    .
+
+lrm:isMemberOf  rdfs:subPropertyOf lrm:partOf;
+    owl:inverseOf lrm:hasMember
+    .
+    
+lrm:Community rdfs:subClassOf lrm:AggregatedResource.
+lrm:hasContributor rdfs:subPropertyOf lrm:hasPart;
+    rdfs:domain lrm:Community;
+    rdfs:range lrm:HumanAgent
+    .
+
+lrm:isContributorOf  rdfs:subPropertyOf lrm:partOf;
+    owl:inverseOf lrm:hasContributor
+    .
+

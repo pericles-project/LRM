@@ -1,0 +1,210 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Copyright 2017  Xerox Research Centre Europe
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-----------------------------------------------------------------------------------------------------------------------
+
+#
+# PERICLES (see http://www.pericles-project.eu )is a four-year project that aims to address the challenge of ensuring that digital content remains 
+# accessible in an environment that is subject to continual change. This can encompass not only technological change, but also changes in semantics, 
+# academic or professional practice, or society itself, which can affect the attitudes and interests of the various stakeholders that interact with the content. 
+# PERICLES will take a ‘preservation by design’ approach that involves modelling, capturing and maintaining detailed and complex information about 
+# digital content, the environment in which it exists, and the processes and policies to which it is subject.
+#
+# This ontology has been produced by the WP3 (work package 3)lead by Xerox Research Center Europe 
+# Authors:  Jean-Pierre Chanod, Nikolaos Lagos, Jean-Yves Vion-Dury
+#
+# Created in November 2014
+# last updated the 3rd May 2017 by Jean-Yves Vion-Dury, Nikolaos Lagos
+#
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix lrm: <http://xrce.xerox.com/LRM#> .
+@prefix time: <http://xrce.xerox.com/TIME#>.
+@prefix xrce: <http://www.xrce.xerox.com/>.
+@prefix tz: <http://www.w3.org/2006/timezone#> .
+@prefix tm: <http://www.w3.org/2006/time#>.
+@prefix real: <http://xrce.xerox.com/ReAL#> .
+
+@base  <https://raw.githubusercontent.com/nikolaosLagos/Linked_Resource_Model/master/> .
+	
+lrm:LRM-schema
+    a owl:Ontology ;
+	owl:versionInfo "2.0.0";
+    owl:imports 
+        <LRM-static-schema.ttl>, 
+        <LRM-dynamic-schema.ttl>,
+        <LRM-ReAL-schema.ttl>,
+        <LRM-semantic-versioning-schema.ttl>,
+        # <timezone-world.ttl>,
+        <time-schema.ttl>
+    ;
+    rdfs:comment """
+    The Linked Resource Model (LRM) aims at describing digital resources for preservation purposes. 
+    It focuses on describing the dependencies between such objects, in order to help managing the
+    evolution of the preservation ecosystem, possibly detecting inconsistency and/or weaknesses from the 
+    dependency graph or advising the curator on preventive or corrective actions. 
+    Dependencies can be very abstracts, or very concrete, like in software management systems, and their 
+    semantics is captured through domain specific ontologies derived from the root LRM ontology presented 
+    here.
+    """@en;
+	rdfs:seeAlso 
+        <http://www.pericles-project.eu>,
+        <http://www.w3.org/TR/rdf-schema/>,
+        <http://www.w3.org/TR/owl2-quick-reference/>,
+        <http://www.w3.org/TR/owl2-primer/>,
+        <http://www.w3.org/TR/owl-time>
+	.
+
+
+lrm:TemporalDescription
+    owl:equivalentClass [
+    # owl:unionOf ( time:TimeInterval time:Instant time:Duration time:Reference time:Calendar )
+    owl:unionOf ( lrm:TimeInterval lrm:TimeInstant lrm:TimeDuration lrm:TimeReference lrm:TimeCalendar )
+    ];
+    rdfs:seeAlso <time-schema.ttl>, <LRM-static-schema.ttl>, <LRM-dynamic-schema.ttl> ;
+    rdfs:comment """an LRM Resource can be decorated with time oriented metadata (time coordinates, 
+        duration,  co-occurence with other temporal entities). 
+        Our time model is designed to smoothly handle uncertainty and variable precision, while maintaining the possibility of modeling 
+        synchronous phenomenons without precision loss (e.g. events occuring at uncertain time coordinate and/or 
+        of uncertain time duration, but still known to be exactly synchronized with other events)
+        """@en
+    .
+    
+lrm:TimeInterval rdfs:subClassOf lrm:AbstractResource;   
+    owl:equivalentClass time:TimeInterval .    
+    
+lrm:TimeInstant rdfs:subClassOf lrm:AbstractResource;  
+    owl:equivalentClass time:Instant.    
+    
+lrm:TimeDuration rdfs:subClassOf lrm:AbstractResource;  
+    owl:equivalentClass time:Duration  .    
+    
+lrm:TimeReference rdfs:subClassOf lrm:AbstractResource;   
+    owl:equivalentClass time:Reference 
+    .    
+    
+lrm:TimeCalendar rdfs:subClassOf lrm:AbstractResource;   
+    owl:equivalentClass time:Calendar  .    
+
+    
+time:starting rdfs:subPropertyOf lrm:describedBy.
+time:ending rdfs:subPropertyOf lrm:describedBy.
+time:around rdfs:subPropertyOf lrm:describedBy.
+time:during rdfs:subPropertyOf lrm:describedBy.
+time:clock rdfs:subPropertyOf lrm:describedBy.
+time:calendar rdfs:subPropertyOf lrm:describedBy.
+time:inside rdfs:subPropertyOf lrm:describedBy.
+
+# time zone descriptors
+time:zone rdfs:subPropertyOf lrm:describedBy.
+time:country rdfs:subPropertyOf lrm:describedBy.
+time:state rdfs:subPropertyOf lrm:describedBy.
+time:region rdfs:subPropertyOf lrm:describedBy.
+time:city rdfs:subPropertyOf lrm:describedBy.
+
+# definition attributes
+time:temporalDefinition rdfs:subPropertyOf lrm:definition.
+
+# instant definition attributes
+time:when rdfs:subPropertyOf time:temporalDefinition.
+time:utc rdfs:subPropertyOf time:temporalDefinition.
+time:year rdfs:subPropertyOf time:temporalDefinition.
+time:month rdfs:subPropertyOf time:temporalDefinition.
+time:day rdfs:subPropertyOf time:temporalDefinition.
+time:hour rdfs:subPropertyOf time:temporalDefinition.
+time:minute rdfs:subPropertyOf time:temporalDefinition.
+time:second rdfs:subPropertyOf time:temporalDefinition.
+# duration definition attributes
+time:years rdfs:subPropertyOf time:temporalDefinition.
+time:months rdfs:subPropertyOf time:temporalDefinition.
+time:days rdfs:subPropertyOf time:temporalDefinition.
+time:hours rdfs:subPropertyOf time:temporalDefinition.
+time:minutes rdfs:subPropertyOf time:temporalDefinition.
+time:seconds rdfs:subPropertyOf time:temporalDefinition.
+time:ellapsed rdfs:subPropertyOf time:temporalDefinition.
+
+# time:span rdfs:subPropertyOf time:temporalDefinition.
+
+time:precision rdfs:subPropertyOf lrm:definition.
+time:uncertainty rdfs:subPropertyOf lrm:definition.
+time:granularity rdfs:subPropertyOf lrm:definition.
+
+tz:TimeZone rdfs:subClassOf lrm:Description.
+time:zone rdfs:subPropertyOf lrm:describedBy.
+
+tz:Country rdfs:subClassOf lrm:SpatialDescription.
+time:country rdfs:subPropertyOf lrm:describedBy.
+
+tz:City rdfs:subClassOf lrm:SpatialDescription.
+time:city rdfs:subPropertyOf lrm:describedBy.
+
+tz:Region rdfs:subClassOf lrm:SpatialDescription.
+time:region rdfs:subPropertyOf lrm:describedBy.
+
+tz:State rdfs:subClassOf lrm:SpatialDescription.
+time:state rdfs:subPropertyOf lrm:describedBy.
+
+tz:EnumeratedDaylightSavingsPolicy rdfs:subClassOf lrm:Description.  
+tz:DLSstartDate a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain tz:EnumeratedDaylightSavingsPolicy; 
+    rdfs:range xsd:date
+    .
+tz:DLSendDate a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain tz:EnumeratedDaylightSavingsPolicy;
+    rdfs:range xsd:date
+    .
+
+# lrm:Activity rdfs:subClassOf lrm:TemporalResource, time:Interval.
+# lrm:Event rdfs:subClassOf lrm:TemporalResource, time:Instant.
+
+# time:modified a owl:ObjectProperty;
+    # rdfs:domain lrm:TemporalResource;
+    # rdfs:range time:Instant
+    # .
+    
+real:Template rdfs:subClassOf lrm:Plan.
+
+#
+#  ! rdfs:subClassOf(?x,lrm:Event) AND  +rdf:type(?x, lrm:EventsClass)
+#
+lrm:Event rdf:type lrm:EventsClass.
+
+lrm:ActivityLifeEvent rdf:type lrm:EventsClass.
+lrm:ActivityResumed rdf:type lrm:EventsClass.
+lrm:ActivityStarted rdf:type lrm:EventsClass.
+lrm:ActivityStopped rdf:type lrm:EventsClass.
+lrm:ActivitySuspended rdf:type lrm:EventsClass.
+
+lrm:ChangeEvent rdf:type lrm:EventsClass.
+lrm:CreationEvent rdf:type lrm:EventsClass.
+lrm:DerivationEvent rdf:type lrm:EventsClass.
+lrm:DestructionEvent rdf:type lrm:EventsClass.
+
+lrm:FreezeEvent rdf:type lrm:EventsClass.
+lrm:TransformationEvent rdf:type lrm:EventsClass.
+
+lrm:UpdateEvent rdf:type lrm:EventsClass.
+
+lrm:RecurringEvent rdf:type lrm:EventsClass.
+
+lrm:CreateVersionEvent rdf:type lrm:EventsClass.
+lrm:CertifiedVersionEvent rdf:type lrm:EventsClass.
+lrm:MicroVersionEvent rdf:type lrm:EventsClass.
+lrm:MinorVersionEvent rdf:type lrm:EventsClass.
+lrm:MajorVersionEvent rdf:type lrm:EventsClass.

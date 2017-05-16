@@ -1,0 +1,192 @@
+<http://xrce.xerox.com/LRM#LRM-semantic-versioning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://xrce.xerox.com/LRM#LRM-semantic-versioning> <http://www.w3.org/2002/07/owl#versionInfo> "2.0.0" .
+<http://xrce.xerox.com/LRM#LRM-semantic-versioning> <http://www.w3.org/2000/01/rdf-schema#comment> "  Model semantic versioning operation using LRM dependencies"@en .
+<http://xrce.xerox.com/LRM#VersionEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Event> .
+_:node1bcihdkj0x1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#VersionCreationEvent> .
+_:node1bcihdkj0x1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdkj0x2 .
+_:node1bcihdkj0x2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#VersionQualificationEvent> .
+_:node1bcihdkj0x2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdkj0x3 .
+_:node1bcihdkj0x3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#VersionCertificationEvent> .
+_:node1bcihdkj0x3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#VersionEvent> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdkj0x1 .
+<http://xrce.xerox.com/LRM#VersionEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "All events related to the versioning management mechanisms."@en .
+<http://xrce.xerox.com/LRM#VersionCreationEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "Starts the first qualified versioning step: qualifies to 1.0.0:0/x  "@en .
+<http://xrce.xerox.com/LRM#VersionCreationEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#VersionEvent> .
+<http://xrce.xerox.com/LRM#VersionQualificationEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "Starts the first qualified versioning step: qualifies to 1.0.0:0/x  "@en .
+<http://xrce.xerox.com/LRM#VersionQualificationEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#VersionEvent> .
+<http://xrce.xerox.com/LRM#VersionCertificationEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#VersionEvent> .
+_:node1bcihdkj0x4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#MicroVersionEvent> .
+_:node1bcihdkj0x4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdkj0x5 .
+_:node1bcihdkj0x5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#MinorVersionEvent> .
+_:node1bcihdkj0x5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdkj0x6 .
+_:node1bcihdkj0x6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#MajorVersionEvent> .
+_:node1bcihdkj0x6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#VersionCertificationEvent> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdkj0x4 .
+<http://xrce.xerox.com/LRM#MicroVersionEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#VersionCertificationEvent> .
+_:node1bcihdkj0x7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:node1bcihdkj0x7 <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#version-kind> .
+_:node1bcihdkj0x7 <http://www.w3.org/2002/07/owl#hasValue> "MICRO" .
+<http://xrce.xerox.com/LRM#MicroVersionEvent> <http://www.w3.org/2002/07/owl#equivalentClass> _:node1bcihdkj0x7 .
+<http://xrce.xerox.com/LRM#MinorVersionEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#VersionCertificationEvent> .
+_:node1bcihdkj0x8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:node1bcihdkj0x8 <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#version-kind> .
+_:node1bcihdkj0x8 <http://www.w3.org/2002/07/owl#hasValue> "MINOR" .
+<http://xrce.xerox.com/LRM#MinorVersionEvent> <http://www.w3.org/2002/07/owl#equivalentClass> _:node1bcihdkj0x8 .
+<http://xrce.xerox.com/LRM#MajorVersionEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#VersionCertificationEvent> .
+_:node1bcihdkj0x9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:node1bcihdkj0x9 <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#version-kind> .
+_:node1bcihdkj0x9 <http://www.w3.org/2002/07/owl#hasValue> "MAJOR" .
+<http://xrce.xerox.com/LRM#MajorVersionEvent> <http://www.w3.org/2002/07/owl#equivalentClass> _:node1bcihdkj0x9 .
+<http://xrce.xerox.com/LRM#version-verifier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#version-verifier> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#version-verifier> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#VersionCreationEvent> .
+<http://xrce.xerox.com/LRM#version-verifier> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Agent> .
+<http://xrce.xerox.com/LRM#version-verifier> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the agent responsible for verifying the compliance of the resource with its invariant and specification (optional)"@en .
+<http://xrce.xerox.com/LRM#CertificationService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Service> .
+<http://xrce.xerox.com/LRM#CertificationRequest> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#ofResource> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#CertificationRequest> .
+<http://xrce.xerox.com/LRM#ofResource> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#byAgent> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#CertificationRequest> .
+<http://xrce.xerox.com/LRM#byAgent> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Agent> .
+_:node1bcihdkj0x10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Datatype> .
+_:node1bcihdkj0x11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "CREATION" .
+_:node1bcihdkj0x11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdkj0x12 .
+_:node1bcihdkj0x12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "MICRO" .
+_:node1bcihdkj0x12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdkj0x13 .
+_:node1bcihdkj0x13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "MINOR" .
+_:node1bcihdkj0x13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdkj0x14 .
+_:node1bcihdkj0x14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "MAJOR" .
+_:node1bcihdkj0x14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:node1bcihdkj0x10 <http://www.w3.org/2002/07/owl#oneOf> _:node1bcihdkj0x11 .
+<http://xrce.xerox.com/LRM#VersionKind> <http://www.w3.org/2002/07/owl#equivalentClass> _:node1bcihdkj0x10 .
+<http://xrce.xerox.com/LRM#versionKind> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#versionKind> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#CertificationRequest> .
+<http://xrce.xerox.com/LRM#versionKind> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#VersionKind> .
+<http://xrce.xerox.com/LRM#certificate> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#result> .
+<http://xrce.xerox.com/LRM#certificate> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#CertificationRequest> .
+<http://xrce.xerox.com/LRM#certificate> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Certificate> .
+<http://xrce.xerox.com/LRM#VersionedResource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xrce.xerox.com/LRM#VersionedResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#VersionedResource> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        The lrm:invariant  and lrm:specification predicates (if defined) will be used to assess the nature of the version transformation.        \n            micro versions : semantically equivalent (according to lrm:specification)\n            minor version: backward compatible (according to lrm:specification);\n            major version: guaranties only the lrm:invariant properties.\n        "@en .
+<http://xrce.xerox.com/LRM#Version> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Version> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ImmutableResource> .
+<http://xrce.xerox.com/LRM#Version> <http://www.w3.org/2000/01/rdf-schema#comment> "used to describe the versioning state of a versioned resource (label, counters)"@en .
+<http://xrce.xerox.com/LRM#version> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#version> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#version> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#VersionedResource> .
+<http://xrce.xerox.com/LRM#version> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#versioningDefinition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#versioningDefinition> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#definition> .
+<http://xrce.xerox.com/VERSION#versioningDefinition> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#label> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#label> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/VERSION#label> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/VERSION#versioningDefinition> .
+<http://xrce.xerox.com/VERSION#label> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#label> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#Name> .
+<http://xrce.xerox.com/VERSION#counter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#counter> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/VERSION#versioningDefinition> .
+<http://xrce.xerox.com/VERSION#counter> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#counter> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/VERSION#major> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/VERSION#counter> .
+<http://xrce.xerox.com/VERSION#major> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#major> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/VERSION#major> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#major> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/VERSION#minor> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/VERSION#counter> .
+<http://xrce.xerox.com/VERSION#minor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#minor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/VERSION#minor> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#minor> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/VERSION#micro> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/VERSION#counter> .
+<http://xrce.xerox.com/VERSION#micro> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#micro> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/VERSION#micro> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#micro> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/VERSION#variant> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/VERSION#versioningDefinition> .
+<http://xrce.xerox.com/VERSION#variant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#variant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/VERSION#variant> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#variant> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/VERSION#stamp> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/VERSION#versioningDefinition> .
+<http://xrce.xerox.com/VERSION#stamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/VERSION#stamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/VERSION#stamp> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Version> .
+<http://xrce.xerox.com/VERSION#stamp> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/LRM#VersionedDR> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#VersionedResource> .
+<http://xrce.xerox.com/LRM#VersionedDR> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#DigitalResource> .
+<http://xrce.xerox.com/LRM#Certificate> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Message> .
+<http://xrce.xerox.com/LRM#Certificate> <http://www.w3.org/2000/01/rdf-schema#comment> "a certificate describes (and certifies) the compliance of a given resource version with its specification (could be a formal proof)"@en .
+<http://xrce.xerox.com/LRM#askCertification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/LRM#askCertification> <http://www.w3.org/2000/01/rdf-schema#label> "askCertification" .
+<http://xrce.xerox.com/LRM#askCertification> <http://xrce.xerox.com/LRM#input-signature> "rsc, kind, agent"^^<http://xrce.xerox.com/ReAL#Signature> .
+<http://xrce.xerox.com/LRM#askCertification> <http://xrce.xerox.com/LRM#output-signature> "certif "^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x15 <http://xrce.xerox.com/ReAL#code> "\n                rdf:type(?ctf, lrm:CertificationService) AND\n                 $cr AND\n                +rdf:type(?cr, lrm:CertificationRequest) AND\n                +lrm:ofResource(?cr,?rsc) AND\n                +lrm:requestedService(?cr,?ctf) AND\n                +lrm:byAgent (?cr,  ?agent) AND\n                +lrm:versionKind (?cr,  ?kind) AND\n                CALL primitive:service(?cr) AND\n                NO lrm:error(?cr, ?) AND \n                lrm:certificate(?cr, ?certif)\n        "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/LRM#askCertification> <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x15 .
+<http://xrce.xerox.com/LRM#versionCreate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/LRM#versionCreate> <http://www.w3.org/2000/01/rdf-schema#label> "versionCreate" .
+<http://xrce.xerox.com/LRM#versionCreate> <http://xrce.xerox.com/LRM#input-signature> "EV, CLASS, FROM"^^<http://xrce.xerox.com/ReAL#Signature> .
+<http://xrce.xerox.com/LRM#versionCreate> <http://xrce.xerox.com/LRM#output-signature> "D,  TO"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x16 <http://xrce.xerox.com/ReAL#code> "\n                // creates a new dependency instance\n                $D AND\n                +rdf:type(?D , ?CLASS) AND\n                (\n                    ( rdf:type(?EV,lrm:VersionCertificationEvent)AND lrm:version-kind(?EV,?kind) AND +lrm:versionkind(?D, ?kind))\n                     OR  True\n                )AND\n                // creates a new version object\n                $TO AND\n                +rdf:type(?TO, lrm:Version) AND\n                +time:starting(?TO, ?EV) AND\n                \n                // connects the dependency with the previous version and the new one\n                +lrm:from(?D, ?FROM) AND\n                +lrm:to(?D, ?TO)\n            "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/LRM#versionCreate> <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x16 .
+<http://xrce.xerox.com/LRM#createVersionedResource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#EventHandler> .
+<http://xrce.xerox.com/LRM#createVersionedResource> <http://xrce.xerox.com/LRM#on> <http://xrce.xerox.com/LRM#VersionCreationEvent> .
+_:node1bcihdkj0x17 <http://xrce.xerox.com/LRM#input-signature> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x18 <http://xrce.xerox.com/ReAL#code> "\n                        lrm:subject(?EVENT, ?rsc) AND  lrm:verifier(?EVENT, ?agent) AND\n                         lrm:version-invariant(?EVENT, ?inv) AND  +version:invariant(?rsc, ?inv) AND\n                         lrm:version-specification(?EVENT, ?spec) AND  +version:specification(?rsc, ?spec) AND\n                        CALL lrm:versionCreate(?EVENT,  lrm:CreateVersionTransformation, ?rsc  >> ?d, ?V) AND\n                        CALL lrm:askCertification(?rsc, 'CREATION', ?agent >> ?certif) AND\n                        +lrm:certificate(?V, ?certif)\n                        "^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x17 <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x18 .
+<http://xrce.xerox.com/LRM#createVersionedResource> <http://xrce.xerox.com/LRM#do> _:node1bcihdkj0x17 .
+<http://xrce.xerox.com/LRM#VersioningActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#EndogenousActivity> .
+<http://xrce.xerox.com/LRM#updateDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#EventHandler> .
+<http://xrce.xerox.com/LRM#updateDescription> <http://xrce.xerox.com/LRM#on> <http://xrce.xerox.com/LRM#UpdateEvent> .
+_:node1bcihdkj0x19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#HandlingAction> .
+_:node1bcihdkj0x19 <http://xrce.xerox.com/LRM#input-signature> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x20 <http://xrce.xerox.com/ReAL#code> "\n                                lrm:subject(?EVENT, ?rsc) AND  lrm:version(?rsc, ?v1) AND \n                                $v2 AND  +rdf:type(?v2, lrm:Version) AND  \n                                CALL lrm:versionInc(?v1 >> ?v2)"^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x19 <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x20 .
+<http://xrce.xerox.com/LRM#updateDescription> <http://xrce.xerox.com/LRM#do> _:node1bcihdkj0x19 .
+<http://xrce.xerox.com/LRM#createDependency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#EventHandler> .
+<http://xrce.xerox.com/LRM#createDependency> <http://www.w3.org/2000/01/rdf-schema#comment> "registers a change either of the resource or its specification and generates a new version accordingly ; does not attempt to qualify the change"@en .
+<http://xrce.xerox.com/LRM#createDependency> <http://xrce.xerox.com/LRM#on> <http://xrce.xerox.com/LRM#CreationEvent> .
+_:node1bcihdkj0x21 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#HandlingAction> .
+_:node1bcihdkj0x21 <http://xrce.xerox.com/LRM#input-signature> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x22 <http://xrce.xerox.com/ReAL#variables> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x22 <http://xrce.xerox.com/ReAL#code> " \n                                lrm:subject(?EVENT, ?rsc) AND   ! rdf:type(?rsc, lrm:Dependency)  AND\n                                lrm:precondition(?rsc, ?PC) AND  CALL ?PC(?EVENT) AND \n                                lrm:impact(?self, ?IP) AND  CALL  ?IP(?EVENT) \n                            "^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x21 <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x22 .
+<http://xrce.xerox.com/LRM#createDependency> <http://xrce.xerox.com/LRM#do> _:node1bcihdkj0x21 .
+<http://xrce.xerox.com/LRM#updatePrecondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/ReAL#Template> .
+<http://xrce.xerox.com/LRM#updatePrecondition> <http://xrce.xerox.com/ReAL#variables> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+<http://xrce.xerox.com/LRM#updatePrecondition> <http://xrce.xerox.com/ReAL#code> "\n                // check conditions and establishes the context (?EVENT always designates the triggering event : see lrm:EventHandler)\n                lrm:subject(?EVENT, ?rsc) AND\n                ! rdf:type(?rsc, lrm:VersionedResource)\n          "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/LRM#updateImpact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/ReAL#Template> .
+<http://xrce.xerox.com/LRM#updateImpact> <http://xrce.xerox.com/ReAL#variables> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+<http://xrce.xerox.com/LRM#updateImpact> <http://xrce.xerox.com/ReAL#code> "                \n                   lrm:subject(?EVENT, ?rsc) AND\n                   ! lrm:describedBy(?rsc, ?vers) AND  \n                 (( \n                        lrm:changed-specification(?EVENT,?s) AND\n                        - version:specification(?rsc, ?) AND\n                        + version:specification(?rsc, ?s)\n                   ) UNION ( // the UNION here is inclusive: all branches will be explored whatever result they may raise\n                        lrm:changed-description(?EVENT,?delta) AND\n                        lrm:deletion (?delta, ?stm) AND  rdf:predicate(?stm, ?pred) AND rdf:object(?stm, ?obj) AND  - ?pred(?rsc,?obj)AND\n                        lrm:insertion (?delta, ?stm2) AND  rdf:predicate(?stm2, ?pred2) AND  rdf:object(?stm2, ?obj2) AND  + ?pred(?rsc,?obj2)\n                    ) ) AND\n                CALL lrm:VersionCreate(?EVENT, ?D , lrm:UpdateVersionTransformation, ?vers, ?v2) AND\n                version:variant(?vers,?i1)AND  INC(?i1, ?j1) AND +version:variant(?v2, ?j1) AND\n                version:stamp(?vers,?i2)AND  INC(?i2 , ?j2) AND +version:stamp(?v2, ?j2)\n            "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/LRM#vVersionDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#EventHandler> .
+<http://xrce.xerox.com/LRM#vVersionDescription> <http://xrce.xerox.com/LRM#on> <http://xrce.xerox.com/LRM#VersionCertificationEvent> .
+<http://xrce.xerox.com/LRM#vVersionDescription> <http://xrce.xerox.com/LRM#do> <http://xrce.xerox.com/LRM#vVersionImpact> .
+<http://xrce.xerox.com/LRM#vVersionPrecondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#Plan> .
+<http://xrce.xerox.com/LRM#vVersionPrecondition> <http://xrce.xerox.com/LRM#definition> "\n                // check conditions and establishes the context (?EVENT always designate the trigerring event : see lrm:EventHandler)\n                lrm:subject(?EVENT, ?rsc) AND\n                ! rdf:type(?rsc,lrm:VersionedResource)\n         "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/VERSION#Inc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/VERSION#Inc> <http://xrce.xerox.com/LRM#input-signature> "version1, version2"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x23 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/ReAL#Template> .
+_:node1bcihdkj0x23 <http://xrce.xerox.com/ReAL#code> "\n                        // increment both stamp and variant counters\n                        version:variant(?version1,?vari)AND INC(?vari, ?i) AND +version:variant(?version2, ?i) AND \n                        version:stamp(?version1,?stamp)AND  INC(?stamp, ?j) AND +version:variant(?version2, ?j) AND \n                        // copy old major counter into the new version instance\n                        version:major(?version1, ?major) AND +version:major(?version2, ?major) AND\n                        // copy old minor counter into the new version instance\n                        version:minor(?version1, ?minor) AND +version:minor(?version2, ?minor) AND\n                        // copy old micro counter into the new version instance\n                        version:micro(?version1, ?micro) AND +version:minor(?version2, ?micro)\n                  "^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x24 <http://xrce.xerox.com/ReAL#code> " rdf:type(?version1, lrm:Version) AND  rdf:type(?version2, lrm:Version)"^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x23 <http://xrce.xerox.com/ReAL#before> _:node1bcihdkj0x24 .
+_:node1bcihdkj0x25 <http://xrce.xerox.com/ReAL#code> "  \n                                    version:major(?version1, ?Mc1) AND  \n                                    version:minor(?version1,?mc1) AND  \n                                    version:micro(?version1 , ?uc1) AND  \n                                    version:variant(?version1, ?vc1) AND  \n                                    version:stamp(?version1,?sc1) \n                                    "^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x23 <http://xrce.xerox.com/ReAL#invariant> _:node1bcihdkj0x25 .
+_:node1bcihdkj0x26 <http://xrce.xerox.com/ReAL#code> " \n                                    NO (\n                                        version:major(?version2, ?) UNION  \n                                        version:minor(?version2,?)UNION  \n                                        version:micro(?version2,?) UNION  \n                                        version:variant(?version2,?) UNION  \n                                        version:stamp(?version2,?) \n                                    )\n                                    "^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x23 <http://xrce.xerox.com/ReAL#before> _:node1bcihdkj0x26 .
+_:node1bcihdkj0x27 <http://xrce.xerox.com/ReAL#code> "  \n                                    version:major(?version2, ?Mc1) AND  \n                                    version:minor(?version2,?mc1) AND  \n                                    version:micro(?version2 , ?uc1) AND \n                                    version:variant(?version2, ?) AND \n                                    version:stamp(?version2, ?)\n                                    "^^<http://xrce.xerox.com/ReAL#Code> .
+_:node1bcihdkj0x23 <http://xrce.xerox.com/ReAL#after> _:node1bcihdkj0x27 .
+<http://xrce.xerox.com/VERSION#Inc> <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x23 .
+<http://xrce.xerox.com/VERSION#IncMicro> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/VERSION#IncMicro> <http://xrce.xerox.com/LRM#input-signature> "version1, version2"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x28 <http://xrce.xerox.com/ReAL#code> "\n            version:micro(?version1,?mic)AND INC(?mic, ?i) AND \n            +version:micro(?version2, ?i) AND \n            // copy old major counter into the new version instance\n            version:major(?version1, ?major) AND +version:major(?version2, ?major) AND\n            // copy old minor counter into the new version instance\n            version:minor(?version1, ?minor) AND +version:minor(?version2, ?minor) AND\n            // reset variant counter to zero\n            +version:variant(?version2, 0)\n         "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/VERSION#IncMicro> <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x28 .
+<http://xrce.xerox.com/VERSION#IncMinor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/VERSION#IncMinor> <http://xrce.xerox.com/LRM#input-signature> "version1, version2"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x29 <http://xrce.xerox.com/ReAL#code> "\n            version:minor(?version1,?minor)AND INC(?minor, ?i) AND  \n            +version:minor(?version2, ?i)AND  \n            // copy old major counter into the new version instance\n            version:major(?version1, ?major) AND +version:major(?version2, ?major) AND\n            // reset micro counter to zero\n            +version:micro(?version2, 0) AND \n            // reset variant counter to zero\n            +version:variant(?version2, 0)\n        "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/VERSION#IncMinor> <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x29 .
+<http://xrce.xerox.com/VERSION#IncMajor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/VERSION#IncMajor> <http://xrce.xerox.com/LRM#input-signature> "version1, version2"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1bcihdkj0x30 <http://xrce.xerox.com/ReAL#code> "\n            version:major(?version1,?major)AND INC(?major, ?i) AND  \n            +version:major(?version2, ?i)AND  \n            // reset minor counter to zero\n            +version:minor(?version2, 0) AND \n            // reset micro counter to zero\n            +version:micro(?version2, 0) AND \n            // reset variant counter to zero\n            +version:variant(?version2, 0)\n        "^^<http://xrce.xerox.com/ReAL#Code> .
+<http://xrce.xerox.com/VERSION#IncMajor> <http://xrce.xerox.com/LRM#body> _:node1bcihdkj0x30 .
+<http://xrce.xerox.com/LRM#vVersionImpact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/ReAL#Template> .
+<http://xrce.xerox.com/LRM#vVersionImpact> <http://xrce.xerox.com/ReAL#variables> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+<http://xrce.xerox.com/LRM#vVersionImpact> <http://xrce.xerox.com/ReAL#code> "                \n                 (( \n                        lrm:changed-specification(?EVENT,?s) AND\n                        - version:specification(?rsc, ?) AND\n                        + version:specification(?rsc, ?s)\n                   ) UNION ( // the UNION here is inclusive: all branches will be explored whatever results they raise\n                        lrm:changed-description(?EVENT,?d) AND\n                        - version:description(?su, ?) AND\n                        + version:description(?su, ?d)\n                    )) AND\n                CALL lrm:VersionCreate(?EVENT,?D, lrm:CertifiedVersionTransformation,?v1,?v2)AND\n                ! lrm:verifier(?D,?agent) AND lrm:version-kind(?EVENT , ?kind) AND\n                CALL lrm:askCertification(?rsc, ?kind, ?agent, ?certificate ) AND\n                +version:verifiedBy(?D,?certificate)AND\n                (\n                    (EQ(?kind,'MICRO') AND CALL version:IncMicro(?v1,?v2)) OR\n                    (EQ(?kind,'MINOR') AND   CALL version:IncMinor(?v1,?v2) ) OR\n                    (EQ(?kind,'MAJOR') AND CALL version:IncMajor(?v1,?v2))\n                  )\n            "^^<http://xrce.xerox.com/ReAL#Code> .

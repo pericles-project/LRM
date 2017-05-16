@@ -1,0 +1,2495 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Copyright 2017  Xerox Research Centre Europe
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-----------------------------------------------------------------------------------------------------------------------
+
+#
+# PERICLES (see http://www.pericles-project.eu )is a four-year project that aims to address the challenge of ensuring that digital content remains 
+# accessible in an environment that is subject to continual change. This can encompass not only technological change, but also changes in semantics, 
+# academic or professional practice, or society itself, which can affect the attitudes and interests of the various stakeholders that interact with the content. 
+# PERICLES will take a ‘preservation by design’ approach that involves modelling, capturing and maintaining detailed and complex information about 
+# digital content, the environment in which it exists, and the processes and policies to which it is subject.
+#
+# This ontology has been produced by the WP3 (work package 3)lead by Xerox Research Center Europe 
+# Authors:  Jean-Pierre Chanod, Nikolaos Lagos, Jean-Yves Vion-Dury
+#
+# Created in November 2014
+# last updated the 31th of March 2017 by Jean-Yves Vion-Dury
+#
+
+# NB
+# This ontology was derived from
+#  Hobbs, J. R. and Pan, F. 2006. Time Ontology in OWL. (W3C Working Draft https://www.w3.org/TR/2006/WD-owl-time-20060927/)
+# Note that it is consistent with year 2006
+#
+# The OWL Time ontology is still in progress and evolved a lot since 2006: see https://www.w3.org/TR/owl-time/
+#
+# For more recent and periodically refreshed references on Time zone and Daylight saving policies, see https://www.timeanddate.com/time/zones/
+
+@prefix : <http://www.w3.org/2006/timezone-world#> .
+@prefix tzont: <http://www.w3.org/2006/timezone#> .
+@prefix iso: <http://www.daml.org/2001/09/countries/iso#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+    
+:YTZ a tzont:TimeZone ;
+	tzont:name "Yankee Time"^^xsd:string , "International Date Line West"^^xsd:string ;
+	tzont:GMToffset "-PT12H"^^xsd:duration .
+
+:XTZ a tzont:TimeZone ;
+	tzont:name "X-ray Time"^^xsd:string , "Samoa Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT11H"^^xsd:duration .
+
+:WTZ a tzont:TimeZone ;
+	tzont:name "Whiskey Time"^^xsd:string , "Hawaii-Aleutian Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT10H"^^xsd:duration .
+
+:VTZ a tzont:TimeZone ;
+	tzont:name "Victor Time"^^xsd:string , "Alaska Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT9H"^^xsd:duration .
+
+:V1TZ a tzont:TimeZone ;
+	tzont:name "V1 Time"^^xsd:string ;
+	tzont:GMToffset "-PT9.5H"^^xsd:duration .
+
+:UTZ a tzont:TimeZone ;
+	tzont:name "Uniform Time"^^xsd:string , "Pacific Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT8H"^^xsd:duration .
+
+:U1TZ a tzont:TimeZone ;
+	tzont:name "U1 Time"^^xsd:string ;
+	tzont:GMToffset "-PT8.5H"^^xsd:duration .
+
+:TTZ a tzont:TimeZone ;
+	tzont:name "Tango Time"^^xsd:string , "Mountain Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT7H"^^xsd:duration .
+
+:STZ a tzont:TimeZone ;
+	tzont:name "Sierra Time"^^xsd:string , "Central Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT6H"^^xsd:duration .
+
+:RTZ a tzont:TimeZone ;
+	tzont:name "Romeo Time"^^xsd:string , "Eastern Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT5H"^^xsd:duration .
+
+:QTZ a tzont:TimeZone ;
+	tzont:name "Quebec Time"^^xsd:string , "Atlantic Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT4H"^^xsd:duration .
+
+:PTZ a tzont:TimeZone ;
+	tzont:name "Papa Time"^^xsd:string ;
+	tzont:GMToffset "-PT3H"^^xsd:duration .
+
+:P1TZ a tzont:TimeZone ;
+	tzont:name "P1 Time"^^xsd:string , "Newfoundland Standard Time"^^xsd:string ;
+	tzont:GMToffset "-PT3.5H"^^xsd:duration .
+
+:OTZ a tzont:TimeZone ;
+	tzont:name "Oscar Time"^^xsd:string ;
+	tzont:GMToffset "-PT2H"^^xsd:duration .
+
+:NTZ a tzont:TimeZone ;
+	tzont:name "November Time"^^xsd:string ;
+	tzont:GMToffset "-PT1H"^^xsd:duration .
+
+:ZTZ a tzont:TimeZone ;
+	tzont:name "Zulu Time"^^xsd:string , "Greenwich Mean Time"^^xsd:string , "Western Europe Time"^^xsd:string , "Universal Time Coordinated"^^xsd:string ;
+	tzont:GMToffset "PT0H"^^xsd:duration .
+
+:ATZ a tzont:TimeZone ;
+	tzont:name "Alpha Time"^^xsd:string , "Central Europe Time"^^xsd:string ;
+	tzont:GMToffset "PT1H"^^xsd:duration .
+
+:BTZ a tzont:TimeZone ;
+	tzont:name "Bravo Time"^^xsd:string , "Eastern Europe Time"^^xsd:string ;
+	tzont:GMToffset "PT2H"^^xsd:duration .
+
+:CTZ a tzont:TimeZone ;
+	tzont:name "Charlie Time"^^xsd:string , "Moscow Time"^^xsd:string ;
+	tzont:GMToffset "PT3H"^^xsd:duration .
+
+:C1TZ a tzont:TimeZone ;
+	tzont:name "C1 Time"^^xsd:string ;
+	tzont:GMToffset "PT3.5H"^^xsd:duration .
+
+:DTZ a tzont:TimeZone ;
+	tzont:name "Delta Time"^^xsd:string ;
+	tzont:GMToffset "PT4H"^^xsd:duration .
+
+:D1TZ a tzont:TimeZone ;
+	tzont:name "D1 Time"^^xsd:string ;
+	tzont:GMToffset "PT4.5H"^^xsd:duration .
+
+:ETZ a tzont:TimeZone ;
+	tzont:name "Echo Time"^^xsd:string ;
+	tzont:GMToffset "PT5H"^^xsd:duration .
+
+:E1TZ a tzont:TimeZone ;
+	tzont:name "E1 Time"^^xsd:string ;
+	tzont:GMToffset "PT5.5H"^^xsd:duration .
+
+:FTZ a tzont:TimeZone ;
+	tzont:name "Foxtrot Time"^^xsd:string ;
+	tzont:GMToffset "PT6H"^^xsd:duration .
+
+:F1TZ a tzont:TimeZone ;
+	tzont:name "F1 Time"^^xsd:string ;
+	tzont:GMToffset "PT6.5H"^^xsd:duration .
+
+:GTZ a tzont:TimeZone ;
+	tzont:name "Golf Time"^^xsd:string ;
+	tzont:GMToffset "PT7H"^^xsd:duration .
+
+:HTZ a tzont:TimeZone ;
+	tzont:name "Hotel Time"^^xsd:string , "Australian Western Standard Time"^^xsd:string ;
+	tzont:GMToffset "PT8H"^^xsd:duration .
+
+:ITZ a tzont:TimeZone ;
+	tzont:name "India Time"^^xsd:string ;
+	tzont:GMToffset "PT9H"^^xsd:duration .
+
+:I1TZ a tzont:TimeZone ;
+	tzont:name "I1 Time"^^xsd:string , "Australian Central Standard Time"^^xsd:string ;
+	tzont:GMToffset "PT9.5H"^^xsd:duration .
+
+:KTZ a tzont:TimeZone ;
+	tzont:name "Kilo Time"^^xsd:string , "Australian Eastern Standard Time"^^xsd:string ;
+	tzont:GMToffset "PT10H"^^xsd:duration .
+
+:K1TZ a tzont:TimeZone ;
+	tzont:name "K1 Time"^^xsd:string ;
+	tzont:GMToffset "PT10.5H"^^xsd:duration .
+
+:LTZ a tzont:TimeZone ;
+	tzont:name "Lima Time"^^xsd:string ;
+	tzont:GMToffset "PT11H"^^xsd:duration .
+
+:L1TZ a tzont:TimeZone ;
+	tzont:name "L1 Time"^^xsd:string ;
+	tzont:GMToffset "PT11.5H"^^xsd:duration .
+
+:MTZ a tzont:TimeZone ;
+	tzont:name "Mike Time"^^xsd:string , "International Date Line East"^^xsd:string ;
+	tzont:GMToffset "PT12H"^^xsd:duration .
+
+:M1TZ a tzont:TimeZone ;
+	tzont:name "M1 Time"^^xsd:string ;
+	tzont:GMToffset "PT13H"^^xsd:duration .
+
+:M2TZ a tzont:TimeZone ;
+	tzont:name "M2 Time"^^xsd:string ;
+	tzont:GMToffset "PT14H"^^xsd:duration .
+
+:ChathamTZ a tzont:TimeZone ;
+	tzont:name "Chatham Island Time"^^xsd:string ;
+	tzont:GMToffset "PT12.75H"^^xsd:duration .
+
+:USA2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-04-02"^^xsd:date ;
+	tzont:DLSendDate "2006-10-29"^^xsd:date .
+
+:EU2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-03-26"^^xsd:date ;
+	tzont:DLSendDate "2006-10-29"^^xsd:date .
+
+:AU2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-10-29"^^xsd:date ;
+	tzont:DLSendDate "2006-04-02"^^xsd:date .
+
+:AUT2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-10-01"^^xsd:date ;
+	tzont:DLSendDate "2006-04-02"^^xsd:date .
+
+:RU2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-03-26"^^xsd:date ;
+	tzont:DLSendDate "2006-10-29"^^xsd:date .
+
+:EG2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-04-28"^^xsd:date ;
+	tzont:DLSendDate "2006-09-28"^^xsd:date .
+
+:IQ2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-04-01"^^xsd:date ;
+	tzont:DLSendDate "2006-10-01"^^xsd:date .
+
+:IL2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-03-31"^^xsd:date ;
+	tzont:DLSendDate "2006-10-01"^^xsd:date .
+
+:JO2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-03-30"^^xsd:date ;
+	tzont:DLSendDate "2006-09-29"^^xsd:date .
+
+:NA2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-09-03"^^xsd:date ;
+	tzont:DLSendDate "2006-04-02"^^xsd:date .
+
+:PK2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-04-21"^^xsd:date ;
+	tzont:DLSendDate "2006-10-20"^^xsd:date .
+
+:SY2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-03-31"^^xsd:date ;
+	tzont:DLSendDate "2006-10-29"^^xsd:date .
+
+:CL2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-10-15"^^xsd:date ;
+	tzont:DLSendDate "2006-03-12"^^xsd:date .
+
+:CLE2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-10-14"^^xsd:date ;
+	tzont:DLSendDate "2006-03-11"^^xsd:date .
+
+:NZ2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-10-01"^^xsd:date ;
+	tzont:DLSendDate "2006-03-19"^^xsd:date .
+
+:PY2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-10-15"^^xsd:date ;
+	tzont:DLSendDate "2006-03-12"^^xsd:date .
+
+:FK2006DLS a tzont:EnumeratedDaylightSavingsPolicy ;
+	tzont:DLSstartDate "2006-09-03"^^xsd:date ;
+	tzont:DLSendDate "2006-04-16"^^xsd:date .
+
+iso:VN a tzont:Country ;
+	tzont:hasTimeZone :GTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:VI a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:VG a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:VE a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:VC a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:VA a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:IT a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:IS a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:IR a tzont:Country ;
+	tzont:hasTimeZone :C1TZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :IR2006DLS .
+
+iso:IQ a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :IQ2006DLS .
+
+iso:IO a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:UZ a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:IN a tzont:Country ;
+	tzont:hasTimeZone :E1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:UY a tzont:Country ;
+	tzont:hasTimeZone :UTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:IL a tzont:Country ;
+	tzont:hasTimeZone :PTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :IL2006DLS .
+
+iso:US a tzont:Country ;
+	tzont:hasDaylightSavingsPolicy :USA2006DLS .
+
+:USGuam a tzont:State ;
+	tzont:name "Guang"^^xsd:string ;
+	tzont:hasParentRegion iso:US ;
+	tzont:hasTimeZone :LTZ .
+
+iso:IE a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:ID a tzont:Country ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:UM a tzont:Country ;
+	tzont:hasTimeZone :WTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean ;
+	tzont:exceptionalRegion :UMNavassaIsland , :UMWakeIsland .
+
+:UMNavassaIsland a tzont:Region ;
+	tzont:name "Navassa Island"^^xsd:string ;
+	tzont:hasParentRegion iso:UM ;
+	tzont:hasTimeZone :RTZ .
+
+:UMWakeIsland a tzont:Region ;
+	tzont:name "Wake Island"^^xsd:string ;
+	tzont:hasParentRegion iso:UM ;
+	tzont:hasTimeZone :XTZ .
+
+iso:UG a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:HU a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:UA a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:HT a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:HR a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:TZ a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:HN a tzont:Country ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:HM a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TW a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:HK a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TV a tzont:Country ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TT a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TR a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:TO a tzont:Country ;
+	tzont:hasTimeZone :M1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TN a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TM a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TL a tzont:Country ;
+	tzont:hasTimeZone :ITZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TK a tzont:Country ;
+	tzont:hasTimeZone :WTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TJ a tzont:Country ;
+	tzont:hasTimeZone :FTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TH a tzont:Country ;
+	tzont:hasTimeZone :GTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TG a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TF a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean ;
+	tzont:exceptionalRegion :TFIleCrozet .
+
+:TFIleCrozet a tzont:Region ;
+	tzont:name "Ile Crozet"^^xsd:string ;
+	tzont:hasParentRegion iso:TF ;
+	tzont:hasTimeZone :DTZ .
+
+iso:GY a tzont:Country ;
+	tzont:hasTimeZone :PTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TD a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GW a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:TC a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :USA2006DLS .
+
+iso:GU a tzont:Country ;
+	tzont:hasTimeZone :KTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GT a tzont:Country ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GS a tzont:Country ;
+	tzont:hasTimeZone :OTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GR a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:GQ a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GP a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SZ a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GN a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SY a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :SY2006DLS .
+
+iso:GM a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GL a tzont:Country ;
+	tzont:hasTimeZone :PTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS ;
+	tzont:exceptionalRegion :GLScoresbysundCity , :GLThuleCity .
+
+:GLScoresbysundCity a tzont:City ;
+	tzont:name "Scoresbysund City"^^xsd:string ;
+	tzont:countryOf iso:GL ;
+	tzont:hasTimeZone :NTZ .
+
+:GLThuleCity a tzont:City ;
+	tzont:name "Thule City"^^xsd:string ;
+	tzont:countryOf iso:GL ;
+	tzont:hasTimeZone :QTZ .
+
+iso:SV a tzont:Country ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GI a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:ST a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GH a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SR a tzont:Country ;
+	tzont:hasTimeZone :PTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GF a tzont:Country ;
+	tzont:hasTimeZone :PTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GE a tzont:Country ;
+	tzont:hasTimeZone :DTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :RU2006DLS .
+
+iso:GD a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SO a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SN a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GB a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:SM a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:GA a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SL a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SK a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:SJ a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SI a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SH a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SG a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SE a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:SD a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SC a tzont:Country ;
+	tzont:hasTimeZone :DTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SB a tzont:Country ;
+	tzont:hasTimeZone :LTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:SA a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:FR a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:FO a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:FM a tzont:Country ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:FMKosrae a tzont:State ;
+	tzont:name "Kosrae"^^xsd:string ;
+	tzont:hasParentRegion iso:FM ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:exceptionalRegion :FMKosraeKwajalein .
+
+:FMKosraeKwajalein a tzont:Region ;
+	tzont:name "Kwajalein"^^xsd:string ;
+	tzont:hasParentRegion :FMKosrae ;
+	tzont:hasTimeZone :YTZ .
+
+:FMPohnpei a tzont:State ;
+	tzont:name "Pohnpei"^^xsd:string ;
+	tzont:hasParentRegion iso:FM ;
+	tzont:hasTimeZone :MTZ .
+
+:FMYap a tzont:State ;
+	tzont:name "Yap"^^xsd:string ;
+	tzont:hasParentRegion iso:FM ;
+	tzont:hasTimeZone :LTZ .
+
+:FMChuuk a tzont:State ;
+	tzont:name "Chuuk"^^xsd:string ;
+	tzont:hasParentRegion iso:FM ;
+	tzont:hasTimeZone :LTZ .
+
+iso:RW a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:FK a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :FK2006DLS .
+
+iso:FJ a tzont:Country ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:RU a tzont:Country ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :RU2006DLS .
+
+iso:FI a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:RO a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:RE a tzont:Country ;
+	tzont:hasTimeZone :DTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:ET a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:ES a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS ;
+	tzont:exceptionalRegion :ESCanary .
+
+:ESCanary a tzont:State ;
+	tzont:name "Canary Islands"^^xsd:string ;
+	tzont:hasParentRegion iso:ES ;
+	tzont:hasTimeZone :ZTZ .
+
+iso:ER a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:EH a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:EG a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EG2006DLS .
+
+iso:EE a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:EC a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean ;
+	tzont:exceptionalRegion :ECGalapagos .
+
+:ECGalapagos a tzont:State ;
+	tzont:name "Galapagos"^^xsd:string ;
+	tzont:hasParentRegion iso:EC ;
+	tzont:hasTimeZone :STZ .
+
+iso:DZ a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:QA a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:DO a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:PY a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:DM a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:PW a tzont:Country ;
+	tzont:hasTimeZone :ITZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:DK a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:DJ a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:PT a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS ;
+	tzont:exceptionalRegion :PTAzores , :PTMadeira .
+
+:PTAzores a tzont:State ;
+	tzont:name "Azores"^^xsd:string ;
+	tzont:hasParentRegion iso:PT ;
+	tzont:hasTimeZone :NTZ .
+
+:PTMadeira a tzont:State ;
+	tzont:name "Madeira"^^xsd:string ;
+	tzont:hasParentRegion iso:PT ;
+	tzont:hasTimeZone :ZTZ .
+
+iso:PS a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:PR a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:DE a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:PN a tzont:Country ;
+	tzont:hasTimeZone :UTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:PM a tzont:Country ;
+	tzont:hasTimeZone :PTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:PL a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:PK a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :PK2006DLS .
+
+iso:PH a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:PG a tzont:Country ;
+	tzont:hasTimeZone :KTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CZ a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:PF a tzont:Country ;
+	tzont:hasTimeZone :WTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean ;
+	tzont:exceptionalRegion :PFGambierIsland , :PFMarquesasIsland .
+
+:PFGambierIsland a tzont:Region ;
+	tzont:name "Gambier Island"^^xsd:string ;
+	tzont:hasParentRegion iso:PF ;
+	tzont:hasTimeZone :VTZ .
+
+:PFMarquesasIsland a tzont:Region ;
+	tzont:name "Marquesas Island"^^xsd:string ;
+	tzont:hasParentRegion iso:PF ;
+	tzont:hasTimeZone :V1TZ .
+
+iso:PE a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CY a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:CX a tzont:Country ;
+	tzont:hasTimeZone :WTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CV a tzont:Country ;
+	tzont:hasTimeZone :NTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CU a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :USA2006DLS .
+
+iso:PA a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CR a tzont:Country ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CO a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CN a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CM a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CL a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :CL2006DLS ;
+	tzont:exceptionalRegion :CLEasterIsland .
+
+:CLEasterIsland a tzont:Region ;
+	tzont:name "Easter Island"^^xsd:string ;
+	tzont:hasParentRegion iso:CL ;
+	tzont:hasTimeZone :STZ ;
+	tzont:hasDaylightSavingsPolicy :CLE2006DLS .
+
+iso:CK a tzont:Country ;
+	tzont:hasTimeZone :WTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CI a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CH a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:CG a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CF a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CD a tzont:Country ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:CDBandundu a tzont:State ;
+	tzont:name "Bandundu"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :ATZ .
+
+:CDBasCongo a tzont:State ;
+	tzont:name "Bas-Congo"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :ATZ .
+
+:CDEquateur a tzont:State ;
+	tzont:name "Equateur"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :ATZ .
+
+:CDKinshasaCity a tzont:City ;
+	tzont:name "Kinshasa City"^^xsd:string ;
+	tzont:countryOf iso:CD ;
+	tzont:hasTimeZone :ATZ .
+
+:CDKasaiOccidental a tzont:State ;
+	tzont:name "Kasai-Occidental"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :BTZ .
+
+:CDKasaiOriental a tzont:State ;
+	tzont:name "Kasai-Oriental"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :BTZ .
+
+:CDKatanga a tzont:State ;
+	tzont:name "Katanga"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :BTZ .
+
+:CDManiema a tzont:State ;
+	tzont:name "Maniema"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :BTZ .
+
+:CDNordKivu a tzont:State ;
+	tzont:name "Nord-Kivu"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :BTZ .
+
+:CDOrientale a tzont:State ;
+	tzont:name "Orientale"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :BTZ .
+
+:CDSudKivu a tzont:State ;
+	tzont:name "Sud-Kivu"^^xsd:string ;
+	tzont:hasParentRegion iso:CD ;
+	tzont:hasTimeZone :BTZ .
+
+iso:CC a tzont:Country ;
+	tzont:hasTimeZone :F1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:OM a tzont:Country ;
+	tzont:hasTimeZone :DTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:CA a tzont:Country ;
+	tzont:hasDaylightSavingsPolicy :USA2006DLS .
+
+:CAAB a tzont:State ;
+	tzont:name "Alberta"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :TTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CABC a tzont:State ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :UTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:exceptionalRegion :CABCCranbrookCity , :CABCGoldenCity , :CABCInvermereCity , :CABCDawsonCreekCity , :CABCFortStJohnCity .
+
+:CABCCranbrookCity a tzont:City ;
+	tzont:name "Cranbrook City"^^xsd:string ;
+	tzont:stateOf :CABC ;
+	tzont:hasTimeZone :TTZ .
+
+:CABCGoldenCity a tzont:City ;
+	tzont:name "Golden City"^^xsd:string ;
+	tzont:stateOf :CABC ;
+	tzont:hasTimeZone :TTZ .
+
+:CABCInvermereCity a tzont:City ;
+	tzont:name "Invermere City"^^xsd:string ;
+	tzont:stateOf :CABC ;
+	tzont:hasTimeZone :TTZ .
+
+:CABCDawsonCreekCity a tzont:City ;
+	tzont:name "Dawson Creek City"^^xsd:string ;
+	tzont:stateOf :CABC ;
+	tzont:hasTimeZone :TTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:CABCFortStJohnCity a tzont:City ;
+	tzont:name "Fort St. John City"^^xsd:string ;
+	tzont:stateOf :CABC ;
+	tzont:hasTimeZone :TTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:CAMB a tzont:State ;
+	tzont:name "Manitoba"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CANB a tzont:State ;
+	tzont:name "New Brunswick"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CANF a tzont:State ;
+	tzont:name "Newfoundland"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :P1TZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CANT a tzont:State ;
+	tzont:name "Northwest Territories"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :TTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CANS a tzont:State ;
+	tzont:name "Nova Scotia"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CANU a tzont:State ;
+	tzont:name "Nunavut"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CAON a tzont:State ;
+	tzont:name "Ontario"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:exceptionalRegion :CAONBigTroutLakeCity , :CAONAtilokanCity .
+
+:CAONBigTroutLakeCity a tzont:City ;
+	tzont:name "Big Trout Lake City"^^xsd:string ;
+	tzont:stateOf :CAON ;
+	tzont:hasTimeZone :STZ .
+
+:CAONAtilokanCity a tzont:City ;
+	tzont:name "Atilokan City"^^xsd:string ;
+	tzont:stateOf :CAON ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:CAPE a tzont:State ;
+	tzont:name "Prince Edward Isl"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CAQC a tzont:State ;
+	tzont:name "Quebec"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:exceptionalRegion :CAQCQTZ .
+
+:CAQCQTZ a tzont:Region ;
+	tzont:name "Quebec QTZ Part"^^xsd:string ;
+	tzont:hasParentRegion :CAQC ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:CASK a tzont:State ;
+	tzont:name "Saskatchewan"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean ;
+	tzont:exceptionalRegion :CASKLloydminsterCity , :CASKCreightonCity , :CASKDenareBeachCity .
+
+:CASKLloydminsterCity a tzont:City ;
+	tzont:name "Lloydminster City"^^xsd:string ;
+	tzont:stateOf :CASK ;
+	tzont:hasTimeZone :TTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CASKCreightonCity a tzont:City ;
+	tzont:name "Creighton City"^^xsd:string ;
+	tzont:stateOf :CASK ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CASKDenareBeachCity a tzont:City ;
+	tzont:name "Denare Beach City"^^xsd:string ;
+	tzont:stateOf :CASK ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:CAYK a tzont:State ;
+	tzont:name "Yukon"^^xsd:string ;
+	tzont:hasParentRegion iso:CA ;
+	tzont:hasTimeZone :UTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+iso:BZ a tzont:Country ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BY a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:BW a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BV a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BT a tzont:Country ;
+	tzont:hasTimeZone :FTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BS a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :USA2006DLS .
+
+iso:BR a tzont:Country ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BO a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NZ a tzont:Country ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :NZ2006DLS ;
+	tzont:exceptionalRegion :NZChathamIsland .
+
+:NZChathamIsland a tzont:Region ;
+	tzont:name "Chatham Island"^^xsd:string ;
+	tzont:countryOf iso:NZ ;
+	tzont:hasTimeZone :ChathamTZ .
+
+iso:BN a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BM a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :USA2006DLS .
+
+iso:BJ a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NU a tzont:Country ;
+	tzont:hasTimeZone :XTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BI a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BH a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BG a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:NR a tzont:Country ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BF a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BE a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:NP a tzont:Country ;
+	tzont:hasTimeZone :E1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NO a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:BD a tzont:Country ;
+	tzont:hasTimeZone :FTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BB a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:BA a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NL a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:ZW a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NI a tzont:Country ;
+	tzont:hasTimeZone :STZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NG a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AZ a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :RU2006DLS .
+
+iso:NF a tzont:Country ;
+	tzont:hasTimeZone :L1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NE a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NC a tzont:Country ;
+	tzont:hasTimeZone :LTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AW a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:ZM a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:NA a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :NA2006DLS .
+
+iso:AU a tzont:Country ;
+	tzont:hasDaylightSavingsPolicy :AU2006DLS ;
+	tzont:exceptionalRegion :AUT .
+
+:AUNSW a tzont:State ;
+	tzont:name "New South Wales"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :KTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:exceptionalRegion :AUNSWLHI , :AUNSWBrokenHillCity .
+
+:AUNSWLHI a tzont:Region ;
+	tzont:name "Lord Howe Island"^^xsd:string ;
+	tzont:hasParentRegion :AUNSW ;
+	tzont:hasTimeZone :K1TZ .
+
+:AUNSWBrokenHillCity a tzont:City ;
+	tzont:name "Broken Hill City"^^xsd:string ;
+	tzont:stateOf :AUNSW ;
+	tzont:hasTimeZone :I1TZ .
+
+:AUQL a tzont:State ;
+	tzont:name "Queensland"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :KTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:AUSA a tzont:State ;
+	tzont:name "South Australia"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :I1TZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:AUT a tzont:State ;
+	tzont:name "Tasmania"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :KTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :AUT2006DLS .
+
+:AUV a tzont:State ;
+	tzont:name "Victoria"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :KTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:AUWA a tzont:State ;
+	tzont:name "Western Australia"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:AUACT a tzont:State ;
+	tzont:name "Australia Capital Territory"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :KTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean .
+
+:AUNT a tzont:State ;
+	tzont:name "Northern Territory"^^xsd:string ;
+	tzont:hasParentRegion iso:AU ;
+	tzont:hasTimeZone :I1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AT a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:AS a tzont:Country ;
+	tzont:hasTimeZone :XTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AR a tzont:Country ;
+	tzont:hasTimeZone :PTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AQ a tzont:Country ;
+	tzont:hasTimeZone :OTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AO a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MZ a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AN a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MY a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AM a tzont:Country ;
+	tzont:hasTimeZone :DTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :RU2006DLS .
+
+iso:MX a tzont:Country ;
+	tzont:hasTimeZone :UTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :USA2006DLS ;
+	tzont:exceptionalRegion :MXSinaloa , :MXSonora , :MXBajaCalifornia .
+
+:MXSinaloa a tzont:State ;
+	tzont:name "Sinaloa"^^xsd:string ;
+	tzont:hasParentRegion iso:MX ;
+	tzont:hasTimeZone :TTZ .
+
+:MXSonora a tzont:State ;
+	tzont:name "Sonora"^^xsd:string ;
+	tzont:hasParentRegion iso:MX ;
+	tzont:hasTimeZone :TTZ .
+
+:MXBajaCalifornia a tzont:State ;
+	tzont:name "Baja California"^^xsd:string ;
+	tzont:hasParentRegion iso:MX ;
+	tzont:hasTimeZone :UTZ .
+
+iso:AL a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:MW a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MV a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MU a tzont:Country ;
+	tzont:hasTimeZone :DTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:ZA a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AI a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MT a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MS a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AG a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MR a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AF a tzont:Country ;
+	tzont:hasTimeZone :D1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MQ a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AE a tzont:Country ;
+	tzont:hasTimeZone :DTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MP a tzont:Country ;
+	tzont:hasTimeZone :LTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:AD a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MO a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MN a tzont:Country ;
+	tzont:hasTimeZone :HTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MM a tzont:Country ;
+	tzont:hasTimeZone :F1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:ML a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MK a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:YU a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:YT a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MH a tzont:Country ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MG a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MD a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:MC a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:MA a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:YE a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:LY a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:LV a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:LU a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:LT a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :EU2006DLS .
+
+iso:LS a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:LR a tzont:Country ;
+	tzont:hasTimeZone :ZTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:LK a tzont:Country ;
+	tzont:hasTimeZone :E1TZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:LI a tzont:Country ;
+	tzont:hasTimeZone :ATZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:LC a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:LB a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :RU2006DLS .
+
+iso:LA a tzont:Country ;
+	tzont:hasTimeZone :GTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KZ a tzont:Country ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :RU2006DLS .
+
+iso:KY a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KW a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KR a tzont:Country ;
+	tzont:hasTimeZone :ITZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KP a tzont:Country ;
+	tzont:hasTimeZone :ITZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KN a tzont:Country ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KM a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KI a tzont:Country ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KH a tzont:Country ;
+	tzont:hasTimeZone :GTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:WS a tzont:Country ;
+	tzont:hasTimeZone :XTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:KG a tzont:Country ;
+	tzont:hasTimeZone :ETZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :RU2006DLS .
+
+iso:KE a tzont:Country ;
+	tzont:hasTimeZone :CTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:WF a tzont:Country ;
+	tzont:hasTimeZone :MTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:JP a tzont:Country ;
+	tzont:hasTimeZone :ITZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:JO a tzont:Country ;
+	tzont:hasTimeZone :BTZ ;
+	tzont:observesDaylightSavingsTime "true"^^xsd:boolean ;
+	tzont:hasDaylightSavingsPolicy :JO2006DLS .
+
+iso:JM a tzont:Country ;
+	tzont:hasTimeZone :RTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+iso:VU a tzont:Country ;
+	tzont:hasTimeZone :LTZ ;
+	tzont:observesDaylightSavingsTime "false"^^xsd:boolean .
+
+:BRAcre a tzont:State ;
+	tzont:name "Acre"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :RTZ .
+
+:BRAlagoas a tzont:State ;
+	tzont:name "Alagoas"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRAmapa a tzont:State ;
+	tzont:name "Amapa"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRAmazonas a tzont:State ;
+	tzont:name "Amazonas"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :QTZ ;
+	tzont:exceptionalRegion :BRAmazonasRTZ .
+
+:BRAmazonasRTZ a tzont:Region ;
+	tzont:name "Amazonas RTZ Part"^^xsd:string ;
+	tzont:hasParentRegion :BRAmazonas ;
+	tzont:hasTimeZone :RTZ .
+
+:BRBahia a tzont:State ;
+	tzont:name "Bahia"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRCeara a tzont:State ;
+	tzont:name "Ceara"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRDistritoFederal a tzont:State ;
+	tzont:name "Distrito Federal"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BREspiritoSanto a tzont:State ;
+	tzont:name "Espirito Santo"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRGoias a tzont:State ;
+	tzont:name "Goias"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRMaranhao a tzont:State ;
+	tzont:name "Maranhao"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRMatoGrosso a tzont:State ;
+	tzont:name "Mato Grosso"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :QTZ .
+
+:BRMatoGrossodoSul a tzont:State ;
+	tzont:name "Mato Grosso do Sul"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :QTZ .
+
+:BRMinasGerais a tzont:State ;
+	tzont:name "Minas Gerais"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRPara a tzont:State ;
+	tzont:name "Para"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:timeZonePart :BRParaQTZ , :BRParaPTZ .
+
+:BRParaQTZ a tzont:Region ;
+	tzont:name "Para QTZ Part"^^xsd:string ;
+	tzont:hasParentRegion :BRPara ;
+	tzont:hasTimeZone :QTZ .
+
+:BRParaPTZ a tzont:Region ;
+	tzont:name "Para PTZ Part"^^xsd:string ;
+	tzont:hasParentRegion :BRPara ;
+	tzont:hasTimeZone :PTZ .
+
+:BRParaiba a tzont:State ;
+	tzont:name "Paraiba"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRParana a tzont:State ;
+	tzont:name "Parana"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRPernambuco a tzont:State ;
+	tzont:name "Pernambuco"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRPiaui a tzont:State ;
+	tzont:name "Piaui"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRRiodeJaneiro a tzont:State ;
+	tzont:name "Rio de Janeiro"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRRioGrandedoNorte a tzont:State ;
+	tzont:name "Rio Grande do Norte"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRRioGrandedoSul a tzont:State ;
+	tzont:name "Rio Grande do Sul"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRRondonia a tzont:State ;
+	tzont:name "Rondonia"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :QTZ .
+
+:BRRoraima a tzont:State ;
+	tzont:name "Roraima"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :QTZ .
+
+:BRSantaCatarina a tzont:State ;
+	tzont:name "Santa Catarina"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRSaoPaulo a tzont:State ;
+	tzont:name "Sao Paulo"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRSergipe a tzont:State ;
+	tzont:name "Sergipe"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRTocantins a tzont:State ;
+	tzont:name "Tocantins"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :PTZ .
+
+:BRFernandoDeNoronha a tzont:Region ;
+	tzont:name "Fernando De Noronha"^^xsd:string ;
+	tzont:hasParentRegion iso:BR ;
+	tzont:hasTimeZone :OTZ .
+
+:IDAceh a tzont:State ;
+	tzont:name "Aceh"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDBali a tzont:State ;
+	tzont:name "Bali"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDBanten a tzont:State ;
+	tzont:name "Banten"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDBengkulu a tzont:State ;
+	tzont:name "Bengkulu"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDGorontalo a tzont:State ;
+	tzont:name "Gorontalo"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDJakartaRaya a tzont:State ;
+	tzont:name "Jakarta Raya"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDJambi a tzont:State ;
+	tzont:name "Jambi"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDJawaBarat a tzont:State ;
+	tzont:name "Jawa Barat"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDJawaTengah a tzont:State ;
+	tzont:name "Jawa Tengah"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDJawaTimur a tzont:State ;
+	tzont:name "Jawa Timur"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDKalimantanBarat a tzont:State ;
+	tzont:name "Kalimantan Barat"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDKalimantanSelatan a tzont:State ;
+	tzont:name "Kalimantan Selatan"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDKalimantanTengah a tzont:State ;
+	tzont:name "Kalimantan Tengah"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDKalimantanTimur a tzont:State ;
+	tzont:name "Kalimantan Timur"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDKepulauanBangkaBelitung a tzont:State ;
+	tzont:name "Kepulauan Bangka Belitung"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDLampung a tzont:State ;
+	tzont:name "Lampung"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDMaluku a tzont:State ;
+	tzont:name "Maluku"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :ITZ .
+
+:IDMalukuUtara a tzont:State ;
+	tzont:name "Maluku Utara"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :ITZ .
+
+:IDNusaTenggaraBarat a tzont:State ;
+	tzont:name "Nusa Tenggara Barat"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDNusaTenggaraTimur a tzont:State ;
+	tzont:name "Nusa Tenggara Timur"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDPapua a tzont:State ;
+	tzont:name "Papua"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :ITZ .
+
+:IDRiau a tzont:State ;
+	tzont:name "Riau"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDSulawesiSelatan a tzont:State ;
+	tzont:name "Sulawesi Selatan"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDSulawesiTengah a tzont:State ;
+	tzont:name "Sulawesi Tengah"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDSulawesiTenggara a tzont:State ;
+	tzont:name "Sulawesi Tenggara"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDSulawesiUtara a tzont:State ;
+	tzont:name "Sulawesi Utara"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :HTZ .
+
+:IDSumateraBarat a tzont:State ;
+	tzont:name "Sumatera Barat"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDSumateraSelatan a tzont:State ;
+	tzont:name "Sumatera Selatan"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDSumateraUtara a tzont:State ;
+	tzont:name "Sumatera Utara"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:IDYogyakarta a tzont:State ;
+	tzont:name "Yogyakarta"^^xsd:string ;
+	tzont:hasParentRegion iso:ID ;
+	tzont:hasTimeZone :GTZ .
+
+:KZAlmatyOblysy a tzont:State ;
+	tzont:name "Almaty Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZAlmatyQalasy a tzont:State ;
+	tzont:name "Almaty Qalasy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZAqmolaOblysy a tzont:State ;
+	tzont:name "Aqmola Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZAqtobeOblysy a tzont:State ;
+	tzont:name "Aqtobe Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :ETZ .
+
+:KZAstanaQalasy a tzont:State ;
+	tzont:name "Astana Qalasy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZAtyrauOblysy a tzont:State ;
+	tzont:name "Atyrau Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :DTZ .
+
+:KZBatysQazaqstanOblysy a tzont:State ;
+	tzont:name "Batys Qazaqstan Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :DTZ .
+
+:KZBayqongyrQalasy a tzont:State ;
+	tzont:name "Bayqongyr Qalasy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZMangghystauOblysy a tzont:State ;
+	tzont:name "Mangghystau Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :DTZ .
+
+:KZOngtustikQazaqstanOblysy a tzont:State ;
+	tzont:name "Ongtustik Qazaqstan Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZPavlodarOblysy a tzont:State ;
+	tzont:name "Pavlodar Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZQaraghandyOblysy a tzont:State ;
+	tzont:name "Qaraghandy Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZQostanayOblysy a tzont:State ;
+	tzont:name "Qostanay Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZQyzylordaOblysy a tzont:State ;
+	tzont:name "Qyzylorda Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :ETZ .
+
+:KZShyghysQazaqstanOblysy a tzont:State ;
+	tzont:name "Shyghys Qazaqstan Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZSoltustikQazaqstanOblysy a tzont:State ;
+	tzont:name "Soltustik Qazaqstan Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:KZZhambylOblysy a tzont:State ;
+	tzont:name "Zhambyl Oblysy"^^xsd:string ;
+	tzont:hasParentRegion iso:KZ ;
+	tzont:hasTimeZone :FTZ .
+
+:RUAdygeya a tzont:State ;
+	tzont:name "Adygeya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUAginskiyBuryatskiy a tzont:State ;
+	tzont:name "Aginskiy Buryatskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ITZ .
+
+:RUAltay a tzont:State ;
+	tzont:name "Altay"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUAltayskiy a tzont:State ;
+	tzont:name "Altayskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUAmurskaya a tzont:State ;
+	tzont:name "Amurskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ITZ .
+
+:RUArkhangelskaya a tzont:State ;
+	tzont:name "Arkhangel skaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUAstrakhanskaya a tzont:State ;
+	tzont:name "Astrakhanskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUBashkortostan a tzont:State ;
+	tzont:name "Bashkortostan"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUBelgorodskaya a tzont:State ;
+	tzont:name "Belgorodskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUBryanskaya a tzont:State ;
+	tzont:name "Bryanskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUBuryatiya a tzont:State ;
+	tzont:name "Buryatiya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :HTZ .
+
+:RUChechnya a tzont:State ;
+	tzont:name "Chechnya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUChelyabinskaya a tzont:State ;
+	tzont:name "Chelyabinskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUChitinskaya a tzont:State ;
+	tzont:name "Chitinskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ITZ .
+
+:RUChukotskiy a tzont:State ;
+	tzont:name "Chukotskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :MTZ .
+
+:RUChuvashiya a tzont:State ;
+	tzont:name "Chuvashiya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUDagestan a tzont:State ;
+	tzont:name "Dagestan"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUEvenkiyskiy a tzont:State ;
+	tzont:name "Evenkiyskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUIngushetiya a tzont:State ;
+	tzont:name "Ingushetiya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUIrkutskaya a tzont:State ;
+	tzont:name "Irkutskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :HTZ .
+
+:RUIvanovskaya a tzont:State ;
+	tzont:name "Ivanovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKabardinoBalkariya a tzont:State ;
+	tzont:name "Kabardino Balkariya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKaliningradskaya a tzont:State ;
+	tzont:name "Kaliningradskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKalmykiya a tzont:State ;
+	tzont:name "Kalmykiya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKaluzhskaya a tzont:State ;
+	tzont:name "Kaluzhskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKamchatskaya a tzont:State ;
+	tzont:name "Kamchatskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :MTZ .
+
+:RUKarachayevoCherkesiya a tzont:State ;
+	tzont:name "Karachayevo Cherkesiya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKareliya a tzont:State ;
+	tzont:name "Kareliya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKemerovskaya a tzont:State ;
+	tzont:name "Kemerovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUKhabarovskiy a tzont:State ;
+	tzont:name "Khabarovskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :KTZ .
+
+:RUKhakasiya a tzont:State ;
+	tzont:name "Khakasiya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUKhantyMansiyskiy a tzont:State ;
+	tzont:name "Khanty Mansiyskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUKirovskaya a tzont:State ;
+	tzont:name "Kirovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :DTZ .
+
+:RUKomi a tzont:State ;
+	tzont:name "Komi"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKoryakskiy a tzont:State ;
+	tzont:name "Koryakskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :MTZ .
+
+:RUKostromskaya a tzont:State ;
+	tzont:name "Kostromskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKrasnodarskiy a tzont:State ;
+	tzont:name "Krasnodarskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUKrasnoyarskiy a tzont:State ;
+	tzont:name "Krasnoyarskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUKurganskaya a tzont:State ;
+	tzont:name "Kurganskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUKurskaya a tzont:State ;
+	tzont:name "Kurskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RULeningradskaya a tzont:State ;
+	tzont:name "Leningradskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RULipetskaya a tzont:State ;
+	tzont:name "Lipetskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUMagadanskaya a tzont:State ;
+	tzont:name "Magadanskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :LTZ .
+
+:RUMariyEl a tzont:State ;
+	tzont:name "Mariy El"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUMordoviya a tzont:State ;
+	tzont:name "Mordoviya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUMoskovskaya a tzont:State ;
+	tzont:name "Moskovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUMoskva a tzont:State ;
+	tzont:name "Moskva"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUMurmanskaya a tzont:State ;
+	tzont:name "Murmanskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUNenetskiy a tzont:State ;
+	tzont:name "Nenetskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUNizhegorodskaya a tzont:State ;
+	tzont:name "Nizhegorodskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUNovgorodskaya a tzont:State ;
+	tzont:name "Novgorodskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUNovosibirskaya a tzont:State ;
+	tzont:name "Novosibirskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :FTZ .
+
+:RUOmskaya a tzont:State ;
+	tzont:name "Omskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :FTZ .
+
+:RUOrenburgskaya a tzont:State ;
+	tzont:name "Orenburgskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUOrlovskaya a tzont:State ;
+	tzont:name "Orlovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUPenzenskaya a tzont:State ;
+	tzont:name "Penzenskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUPermskaya a tzont:State ;
+	tzont:name "Permskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUKomiPermyatskiy a tzont:State ;
+	tzont:name "Komi Permyatskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUPrimorskiy a tzont:State ;
+	tzont:name "Primorskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :KTZ .
+
+:RUPskovskaya a tzont:State ;
+	tzont:name "Pskovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RURostovskaya a tzont:State ;
+	tzont:name "Rostovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RURyazanskaya a tzont:State ;
+	tzont:name "Ryazanskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUSakha a tzont:State ;
+	tzont:name "Sakha"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:timeZonePart :RUSakhaKTZ , :RUSakhaLTZ .
+
+:RUSakhaKTZ a tzont:Region ;
+	tzont:name "Sakha KTZ Part"^^xsd:string ;
+	tzont:hasParentRegion :RUSakha ;
+	tzont:hasTimeZone :KTZ .
+
+:RUSakhaLTZ a tzont:Region ;
+	tzont:name "Sakha LTZ Part"^^xsd:string ;
+	tzont:hasParentRegion :RUSakha ;
+	tzont:hasTimeZone :LTZ .
+
+:RUSakhalinskaya a tzont:State ;
+	tzont:name "Sakhalinskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :LTZ .
+
+:RUSamarskaya a tzont:State ;
+	tzont:name "Samarskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :DTZ .
+
+:RUSanktPeterburg a tzont:State ;
+	tzont:name "Sankt Peterburg"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUSaratovskaya a tzont:State ;
+	tzont:name "Saratovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUSevernayaOsetiyaAlaniya a tzont:State ;
+	tzont:name "Severnaya Osetiya Alaniya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUSmolenskaya a tzont:State ;
+	tzont:name "Smolenskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUStavropolskiy a tzont:State ;
+	tzont:name "Stavropol skiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUSverdlovskaya a tzont:State ;
+	tzont:name "Sverdlovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUTambovskaya a tzont:State ;
+	tzont:name "Tambovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUTatarstan a tzont:State ;
+	tzont:name "Tatarstan"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUTaymyrskiy a tzont:State ;
+	tzont:name "Taymyrskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUTomskaya a tzont:State ;
+	tzont:name "Tomskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUTulskaya a tzont:State ;
+	tzont:name "Tul skaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUTverskaya a tzont:State ;
+	tzont:name "Tverskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUTyumenskaya a tzont:State ;
+	tzont:name "Tyumenskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUTyva a tzont:State ;
+	tzont:name "Tyva"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :GTZ .
+
+:RUUdmurtiya a tzont:State ;
+	tzont:name "Udmurtiya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :DTZ .
+
+:RUUlyanovskaya a tzont:State ;
+	tzont:name "Ul yanovskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUUstOrdynskiyBuryatskiy a tzont:State ;
+	tzont:name "Ust Ordynskiy Buryatskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :HTZ .
+
+:RUVladimirskaya a tzont:State ;
+	tzont:name "Vladimirskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUVolgogradskaya a tzont:State ;
+	tzont:name "Volgogradskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUVologodskaya a tzont:State ;
+	tzont:name "Vologodskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUVoronezhskaya a tzont:State ;
+	tzont:name "Voronezhskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUYamaloNenetskiy a tzont:State ;
+	tzont:name "Yamalo Nenetskiy"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :ETZ .
+
+:RUYaroslavskaya a tzont:State ;
+	tzont:name "Yaroslavskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :CTZ .
+
+:RUYevreyskaya a tzont:State ;
+	tzont:name "Yevreyskaya"^^xsd:string ;
+	tzont:hasParentRegion iso:RU ;
+	tzont:hasTimeZone :KTZ .

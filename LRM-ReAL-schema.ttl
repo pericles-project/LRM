@@ -1,0 +1,360 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Copyright 2017  Xerox Research Centre Europe
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-----------------------------------------------------------------------------------------------------------------------
+
+#
+# PERICLES (see http://www.pericles-project.eu )is a four-year project that aims to address the challenge of ensuring that digital content remains 
+# accessible in an environment that is subject to continual change. This can encompass not only technological change, but also changes in semantics, 
+# academic or professional practice, or society itself, which can affect the attitudes and interests of the various stakeholders that interact with the content. 
+# PERICLES will take a ‘preservation by design’ approach that involves modelling, capturing and maintaining detailed and complex information about 
+# digital content, the environment in which it exists, and the processes and policies to which it is subject.
+#
+# This ontology has been produced by the WP3 (work package 3)lead by Xerox Research Center Europe 
+# Authors:  Jean-Pierre Chanod, Nikolaos Lagos, Jean-Yves Vion-Dury
+#
+# Created in November 2014
+# last updated the 31th of March 2017 by Jean-Yves Vion-Dury
+#
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix lrm: <http://xrce.xerox.com/LRM#> .
+@prefix real: <http://xrce.xerox.com/ReAL#> .
+@prefix stx: <http://xrce.xerox.com/STX#> .
+
+@base  <https://raw.githubusercontent.com/nikolaosLagos/Linked_Resource_Model/master/> .
+
+lrm:LRM-ReAL-schema	rdf:type owl:Ontology;
+	owl:versionInfo "1.0.1";
+    rdfs:label "LRM-ReAL-schema"@en;
+    rdfs:comment "used to specify the dynamic behavior to maintain the consistency of the LRM representations (thus allowing the interpretion of changes)"@en;
+	rdfs:comment "see most recent information on ReAL in PERICLES deliverable D3.4"@en;
+    rdfs:comment """     
+        ReAL semantic (informal explaination):
+        
+        Let us say that T is a triple pattern(eg  T =  rdf:type(?s, owl:Class) )
+        
+        T  alone is TRUE if one or several matching instances of T can be found directly in the store ; 
+        
+        -T same than T alone, but withdraw from the store all occurences matching T;  FALSE if no occurence of T can be found in the store,
+        
+        +T  means add T in the store (the triple pattern must be completely instanciated: all variables must be bound when the operation occurs);  is false if T is already in the store 
+        
+        ++T  is equivalent to  (+T OR TRUE) :  like +T, but does not fail if T is already in the store
+        
+        !T  is true if the triple pattern T can be solved by inference in the current context(through the underlying backward chaining mechanism)
+                      
+        brackets [A]  denotes an transactional execution of action A: 
+             if all binding of A (solution), the undertaken triple addition/deletion actions become effective in the current store; transactional actions may be embedded
+            
+         all instuctions can be articulated through order-sensitive and stream-oriented low-level logical connectors (AND, S-UNION, P-UNION, NO, OR, ONE, REPEAT):
+                AND is an ordered product connector:  
+                        (T1 AND T2) returns all bindings for b(T2) for every binding b found when evaluating T1; therefore T2 is (potentially) dependent on T1
+                        (T1 AND T2) will fail if the evaluation of T1 fails, or if all evaluations of b(T2) fails for all binding b returned by evaluating T1
+                S-UNION is an ordered inclusive-or connector:  
+                        (T1 S-UNION T2) returns all bindings for T1 and all bindings for T2; T2 is not dependent on T1 (T2 will not be affected by T1 bindings)
+			Solution from T1 are propagated before solutions from T2 (Sequential)
+                P-UNION is an unordered (parallel) inclusive-or connector
+                        (T1 P-UNION T2) returns all bindings for T1 and all bindings for T2; T2 is not dependent on T1 (T2 will not be affected by T1 bindings)
+			No particular order is defined on solutions (Parallel)
+                NO is a monadic connector:
+                        (NO T) return an empty binding if T has no solution; fails otherwise
+                OR is an ordered exclusive-or connector: 
+                        (T1 OR T2) returns all bindings for T1, or all bindings for T2 if T1 has no solution (~ T1 evaluation fails)
+                FIRST, LAST are monadic connectors:
+                        (FIRST T) return the first binding found for T ; fails if T fails
+                        (LAST T) return the last binding found for T ; fails if T fails
+                REPEAT is a monadic connector:
+                        (REPEAT T) returns an empty binding if the evaluation of T return one or more solutions (all solutions for T will be explored) ; fails if T fails            
+            
+        example:            
+        
+            rdf:type(?s, lrm:Resource)  AND   $TIMESTAMP(?c) AND   +time:modified(?s, ?c)            
+            
+        when evaluated in the store  { ex:a1 rdf:type lrm:Resource . ex:a2 rdf:type lrm:Resource .}
+        
+        will succeed and change the store into (time is only indicative):  
+            { 
+            ex:a1 rdf:type lrm:Resource; time:modified \"2016-02-26T18:15:03.000Z\" . 
+            ex:a2 rdf:type lrm:Resource; time:modified \"2016-02-26T18:15:03.001Z\" .
+            }               
+        """@en
+    
+    .
+
+stx:BTree rdfs:subClassOf rdfs:Datatype.
+stx:btree a owl:DatatypeProperty;
+    rdfs:domain rdfs:Datatype;
+    rdfs:range stx:BTree
+    .
+    
+stx:Syntax rdfs:subClassOf rdfs:Datatype.
+stx:grammar a owl:ObjectProperty;
+    rdfs:domain stx:Syntax;
+    rdfs:range stx:Grammar
+    .
+    
+stx:axiom a owl:DatatypeProperty;
+    rdfs:subPropertyOf stx:provides;
+    rdfs:domain stx:Syntax;
+    rdfs:range stx:BTree
+    .
+    
+stx:requires a owl:DatatypeProperty;
+    rdfs:comment "G stx:requires 'A'  makes use of syntactic rules with shape 'A(?)→ ... '  or, in binary shape, all rules matching  [STX [A ?] ?]"@en;
+    rdfs:domain stx:Syntax;
+    rdfs:range stx:BTree
+    .
+stx:provides a owl:DatatypeProperty;
+    rdfs:comment "G stx:provides 'A'  makes visible all syntactic rules with shape 'A(?)→ ... '  or, in binary shape, all rules matching  [STX [A ?] ?]"@en;
+    rdfs:domain stx:Syntax;
+    rdfs:range stx:BTree
+    . 
+    
+stx:example a owl:DatatypeProperty;
+    rdfs:domain stx:Syntax;
+    rdfs:range xsd:string
+    .
+    
+stx:Grammar a stx:Syntax;
+    rdfs:subClassOf rdfs:Datatype;
+    stx:btree  
+        " [STX  [G [[STX ?x ] ?y]  ]  Space [STX ?x]  Space \"\n\" [G ?y]  NIL]"^^stx:BTree,
+        " [STX [G NIL] Space NIL]"^^stx:BTree,
+        " [STX [RegS ?x]  [REGEX [ \"([^/]|(?<=\\/) )+\" ?x] ] NIL]"^^stx:BTree
+        # to be continued"
+    ;
+    stx:axiom "G(?)"^^stx:BTree;
+    stx:grammar """
+        G([[STX ?x ] ?y] )  →   Space  STX(?x) Space  '\\n'  G(?y)
+        G(NIL)  →   Space
+        STX([[LHS ?x ]  ?y] )  →    LHS(?x) Space   '→'  Space  RHS(?y)
+         LHS(?x)   →    GCall(?x)  
+         LHS(?x) →    Token(?x)  
+        GCall([APPLY [ ?nm ?x ] ] ) →   Token(?nm) '(' Space Term(?x)Space  ')' 
+         Token(?nm)  →   / [A-Za-z][A-Za-z_0-9]*/   :  ?nm
+         Term([?x ?y] )  →    '['  Space Term(?x) LTerm(?y) Space  ']'
+         LTerm([?x ?y] )  →      Space Term(?x) LTerm(?y)
+         LTerm(?x )  →      Space Term(?x)         
+         Term(?x )  →      Token(?x)
+         Term(?x )  →       /'[^']'/  : ?x
+         Term([VAR ?x] )  →      '?' Token(?x)
+         RHS([?x ?y] ) →   Item(?x)Space  RHS(?y)
+         RHS(NIL) →   
+         Item([STRING ?x] )  →    /'[^']'/  : ?x
+         Item([REGEX [?x ?y]] )  →  '/'  RegS(?x)'/'   Space  Matches(?y)
+         RegS(?x) →   / ([^\\/]|(?<=\\\\/))*/  : ?x
+         Matches([VAR ?x]) →  ':'  Space Term([VAR ?x])
+         Matches(NIL) →  
+         Space  →  /\\s+/
+         Space  →  
+        """^^stx:Grammar
+    .
+real:Code a stx:Syntax ; 
+    rdfs:subClassOf rdfs:Datatype;
+    rdfs:label "ReAL-code";
+    rdfs:comment "Resource oriented Action Language";
+    rdfs:comment "defines the syntactic structure of ReAL language"@en;
+    stx:axiom "ReAL(?)"^^stx:BTree;
+    stx:provides 
+        "Symbol(?)"^^stx:BTree, 
+        "Pattern(?)"^^stx:BTree, 
+        "Iri(?)"^^stx:BTree;
+    rdfs:comment "The following grammar is like Definite Clause Grammars (DCGs) but using a different parsing algorithm; the special token '_' stands for optional spaces and, for instance, /\\d+/  stands for a pattern matching expression whereas /\\d+/:?z  allows to get the matching expression into the z variable."@en;
+    stx:grammar """
+                    ReAL( ?x  ) →   _ RUnion(?x) _
+                    RUnion( $UNION( ?x ?y) ]  ) →    ROr(?x) _ 'UNION'  _  RUnion(?y)
+                    RUnion( $P-UNION( ?x ?y) ]  ) →    ROr(?x)  _ 'P-UNION'  _ RUnion(?y)
+                    RUnion( ?x  ) →    ROr(?x) 
+                    ROr( $OR( ?x ?y)  ) →    RAnd(?x) _  'OR' _  ROr(?y)
+                    ROr( ?x  ) →    RAnd(?x) 
+                    RAnd( $AND(?x ?y)  ) →    RBase(?x) _ 'AND' _  RAnd(?y)
+                    RAnd( ?x  ) →    RBase(?x) 
+                    RBase( $TRANSACTION(?x) ) →  '['  ReAL(?x) ']'  
+                    RBase( $SANDBOX(?x) ) →  '{'  ReAL(?x) '}'  
+                    RBase( On( ?g ?x) ) →   'ON' _ Pattern(?g) _ 'DO'  ReAL(?x)  
+                    RBase( In( ?g ?x) ) →   'IN' _ Pattern(?g) _ 'DO'  ReAL(?x)   
+                    RBase( $NO( ?x) ) →   'NO' ReAL(?x)
+                    RBase( $MAX(1, ?x) ) →   'FIRST' ReAL(?x)
+                    RBase( $LAST( ?x) ) →   'LAST'  ReAL(?x)
+					
+                    RBase( $REPEAT(? ?x) )  →   'REPEAT'  ReAL(?x)
+                    RBase( $REPEAT( ?n ?x) ) →   'REPEAT' _ Integer(?n)  eAL(?x)
+                    RBase( $REPEAT( ?count ?x) ) →   'REPEAT' _ Var(?count)  ReAL(?x)
+                    RBase( $MAX(1, $P-UNION( $REPEAT( ?, ?x)  $SELECT(?,?y) ))  )  →   'REPEAT'  ReAL(?x) 'UNTIL' _ ReAL(?y)
+
+                    RBase( $AND( ?x $PAUSE( ?duration))  )  →   'WAIT'  _ Duration(?x ?duration)
+                    RBase( $AND( ?x $PAUSE( ?duration))  )  →   'WAIT'   ReAL(?A)  'AT'  _ 'MOST'  _ Duration(?x ?duration)
+                    RBase( $AND( ?x $PAUSE( ?duration))  )  →   'WAIT'   ReAL(?A)  'AT' _ 'LEAST'  _ Duration(?x ?duration)
+					
+		    Duration(  $AND(?x $MUL(60, ?duration, ?d) ) , ?d)  →   Expr( ?x, ?duration ) _ 'minutes'
+                    Duration(  $AND( ?x $MUL(3600, ?duration, ?d) ) ,  ?d)    →   Expr( ?x, ?duration ) _ 'hours'
+                    Duration(  $AND( ?x $MUL(86400, ?duration, ?d) )  , ?d )  →   Expr( ?x, ?duration ) _ 'days'
+		
+		    Expr( ?x ?r)   →   Add(?x ?r)
+		    Add( $AND( ?x  ?y  $ADD(?r ?rr ?rrr) ) , ?rrr )  →  Sub(?x ?r) _ '+'  _ Add(?y, ?rr)  
+		    Add( ?x ?y)  →  Sub( ?x  ?y)  
+			
+		    Sub( $AND(?x  ?y $SUB(?r ?rr ?rrr))  , ?rrr )  →  Sub(?x, ?r)  _ '-' _ Mul(?y, ?rr)  
+		    Sub( ?x ?y)  →  Mul(?x ?y )  
+			
+		    Mul( $AND(?x ?y $MUL(?r ?rr ?rrr) ) , ?rrr )  →  Div(?x, ?r)  _ '*' _ Mul(?y, ?rr)  
+		    Mul( ?x  ?y)  →  Div(?x ?y)  
+			
+		    Div( $AND(?x ?y $DIV(?r ?rr ?rrr) ) , ?rrr )  →  Par(?x, ?r)  _ '/' _  Div(?y, ?rr)  
+		    Div( ?x  ?y)  →  Par(?x ?y)  
+			
+		    Par( ?x ?y)   →  '(' _ Expr(?x ?y) _ ')'
+		    Par( $MATCH(?x ?r)  ?r)  →  Item(?x) 
+			
+                    RBase( $COUNT(?num ?x)  ) →   'COUNT'  _ Iteration([EQ ?num]) ReAL(?x)
+                    RBase( $HIDE(?C, $AND( $COUNT(?C ?x)   $LT(?C ?num)) ) →   'COUNT'  _ Iteration([LT ?num]) 'TIMES' ReAL(?x)  {  $RANDOM-IRI("C", ?C) }
+                    RBase( $HIDE(?C, $AND( $COUNT(?C ?x)   $LE(?C ?num)) ) →   'COUNT'  _ Iteration([LE ?num]) 'TIMES'  ReAL(?x)  {  $RANDOM-IRI("C", ?C) }
+                    RBase( $HIDE(?C, $AND( $COUNT(?C ?x)   $LT( ?num ?C)) ) →   'COUNT'  _ Iteration([GT ?num]) 'TIMES' ReAL(?x)  {  $RANDOM-IRI("C", ?C) }
+                    RBase( $HIDE(?C, $AND( $COUNT(?C ?x)   $LE( ?num ?C)) ) →   'COUNT'  _ Iteration([GE ?num]) 'TIMES' ReAL(?x)  {  $RANDOM-IRI("C", ?C) }
+					
+                    Iteration([?q ?x] ) →   Qualifier(?q) Integer(?x)
+                    Iteration([?q ?x] ) →   Qualifier(?q) Var(?x)
+					
+                    Qualifier(EQ) →  'EXACTLY' _ 
+                    Qualifier(EQ) →  
+                    Qualifier(LE) →   Comp(LE)
+                    Qualifier(LT) →  'STRICTLY' Comp(LE)
+                    Qualifier(GE) →   Comp(GE)
+                    Qualifier(GT) →   Comp(Strict(GE))
+                    Qualifier(GE) →   Comp(GE)
+                    Qualifier(Strict(?x)) →  'STRICTLY' _ Comp(?x)
+					
+                    Comp(LE)  →  'LESS THAN' _ 
+                    Comp(GE) →  'GREATER THAN' _ 
+					
+                    RBase(?x ) →   '('  ReAL(?x) ')' 
+                    RBase( $TRUE ) →   'TRUE'  
+                    RBase( $NO($TRUE) ) →   'FALSE'  
+                    RBase(?x) →   RAction(?x) 
+					
+                    RAction( $READ( ?x) ) →   RTriple(?x) 
+                    RAction( $PUT( ?x)) →   '+' RTriple(?x) 
+                    RAction( $OR( $PUT(?x) $TRUE)) →   '++' RTriple(?x) 
+                    RAction( $GET(?x) ) →   '-' RTriple(?x) 
+                    RAction( Infer( ?x,auto) ) →   '!' RTriple(?x) 
+                    RAction( FUN(?i ?in ?out) ) →   'CALL' _ Iri(?i) '(' _ BList(?in)  _  '>>'  _ BList(?out)  _  ')' 
+                    RAction( FUN(?i ?in {}) ) →   'CALL' _ Iri(?i) _ '(' _ BList(?in)  _  ')' 
+                    RAction( $SPAWN(?x) ) →   'SPAWN' ReAL(?x) 
+					
+                    RTriple( ?p(?s, ?o) ) →  Pattern(?p) '(' Pattern(?s) Comma  Item(?o) _ ')'
+                    RTriple( ?p(?s, ?btree) ) →  Pattern(?p) '(' _ Pattern(?s)  Comma  BTree(?btree)  _ ')'
+                    RTriple( ?p (?s , ?o | ?datatype) ) →  Pattern(?p) '(' _ Pattern(?s) Comma  Item(?o) '^^'  Pattern(?datatype) ')'
+                    RTriple( ?p (?s , ?o | ?lang) )  →  Pattern(?p) '(' _ Pattern(?s)  Comma  Item(?o) '@'  Var(?lang) ')'
+                    RTriple( ?p (?s , ?o | ?lang) )  →  Pattern(?p) '(' _ Pattern(?s)  Comma  Item(?o) '@'  Symbol(?lang) ')'
+					
+                    Item(?x)  →   Pattern(?x)
+                    Item(?x)  →   Atom(?x)
+                    Pattern(?x)  →   Iri(?x)
+                    Pattern(?x)  →   Var(?x)
+                    Iri(?x) →  Symbol(?prefix)  ':'  Symbol(?suffix) {  $DOWN([IRI ?prefix ?suffix], ?x)  }
+                    Iri(?x) →  '<'  /[^\\s><]+/ : ?s '>' {  $DOWN([IRI ?s ''], ?x) }
+                    Symbol(?x) →  /[A-Za-z]\\w+/ :?symb  { $DOWN([SYMBOL ?symb], ?x) }
+                    Atom(?x) →  Symbol(?x)
+                    Atom(?x) →  String(?x)
+                    Atom(?x) →  Number(?x)        
+                    String(?x) →  '"' /[^"]*/ : ?x '"'
+                    String(?x) →  "'" /[^']*/ : ?x "'"
+                    Number(?x) →  Integer(?x)
+                    Number(?x) →  Decimal(?x)        
+                    Integer(?x)  →  /\\d+/ : ?s  { $DOWN([INTEGER ?s], ?x)}
+                    Decimal(?x)  →  /\\d+/ : ?int  '.'  /\\d+/ : ?frac  { $DOWN([DECIMAL ?int ?frac], ?x)}
+		    Comma()  →  _ ',' _
+                    BTree([?x ?y]) →  '[ ' _ BItem(?x)   _ BTreeList(?y) _  ']'  
+                    BTree([LIST ?x ]) →  '{ '  _ BList(?x) _  '}'  
+                    BTreeList([?x ?y]) →  BItem(?x)  _ BTreeList(?y)   
+                    BTreeList(?x ) →  BItem(?x)
+                    BList([?x ?y]) →  BItem(?x) Comma  BList(?y)   
+                    BList([?x ?y]) →  BItem(?x)  _ '|' _  BItem(?y)   
+                    BList([?x NIL] ) →  BItem(?x)
+                    BItem(?x) →  BTree(?x) 
+                    BItem(?x) →   Item(?x)
+        """^^stx:Grammar
+    .
+
+real:Signature a stx:Syntax ; 
+    rdfs:subClassOf rdfs:Datatype;
+    rdfs:label "ReAL-signature";
+    rdfs:comment "used to specify the signature of lrm:Action objects";
+    stx:grammar """
+          ReALSignature([LIST ?x]) →  Space  SList(?x) Space
+          SList ([?x ?y]) →  Symbol(?x) Space  ',' Space  SList(?y)  
+          SList ([?x NIL]) →  Symbol(?x)
+         Symbol(?x) →  /[A-Za-z]\\w+/ :?symb  { DOWN([SYMBOL ?symb], ?x) }
+         """;
+    stx:example "x", "x, y, z"
+    .
+    
+real:Specification a owl:Class;
+    rdfs:label "real:Specification"@en;
+    rdfs:subClassOf lrm:Specification;
+    rdfs:comment "Used to characterizes the behavior of ReAL code"@en
+    .
+    
+real:invariant a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:invariant;
+    rdfs:comment "should hold before and after the chunk of ReAL code is executed "@en;
+    rdfs:domain real:Template;
+    rdfs:range real:Specification
+    .
+    
+real:before a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:specifiedBy;
+    rdfs:comment "required to hold before the chunk of ReAL code is executed (similar to the 'before' assertion of Hoare Logic)"@en;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Hoare_logic>;
+    rdfs:domain real:Template;
+    rdfs:range real:Specification
+    .
+    
+real:after a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:specifiedBy;
+    rdfs:comment "should always hold after the chunk of ReAL code is executed, assuming that real:before (if any) holds, as well as does the invariant (similar to the 'after' assertion of Hoare Logic)"@en;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Hoare_logic>;
+    rdfs:domain real:Template;
+    rdfs:range real:Specification
+    .
+    
+real:Template a owl:Class;
+    rdfs:subClassOf lrm:Description;
+    rdfs:comment "Used to define a block of ReAL instructions. Open variables, if any may be specified using the open-variables property ."@en
+    .
+
+real:variables a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:comment "used to specify explicitly the open variables of the ReAL code template";
+    rdfs:domain real:Template;
+    rdfs:range real:Signature
+    .
+    
+real:code a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:comment "ReAL code to be used as a substitution pattern";
+    rdfs:domain real:Template;
+    rdfs:range real:Code
+    .
+
+    
+real:verifies a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:specifiedBy;
+    rdfs:domain real:Template;
+    rdfs:range real:Specification
+    .
+    
+

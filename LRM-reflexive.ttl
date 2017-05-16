@@ -1,0 +1,331 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xrce: <http://www.xrce.xerox.com/>.
+@prefix lrm: <http://xrce.xerox.com/LRM#> .
+@prefix time: <http://xrce.xerox.com/TIME#>.
+@prefix sto: <http://xrce.xerox.com/STORAGE#> .
+@prefix real: <http://xrce.xerox.com/ReAL#> .
+
+# @base  <file:///C:/Users/viondury/PERICLESEU/Ontology/> .
+
+lrm:LRM-reflexive
+    a owl:Ontology ;
+    a lrm:Context;
+	owl:versionInfo "1.0.0"    
+	.
+
+# =================================================================================================
+#   instances of general interest (illustrative)
+# =================================================================================================
+# xrce:pericleskickoff time:when "2014-12-01T00:00:00"^^xsd:dateTime .
+# xrce:ontokickoff time:around xrce:pericleskickoff.
+# xrce:ontologyDevelopment a lrm:ExogenousActivity;
+    # lrm:creationTime  xrce:ontokickoff ;
+    # lrm:created 
+        # lrm:LRM-schema, 
+        # lrm:LRM-static-schema, 
+        # lrm:LRM-dynamic-schema, 
+        # lrm:LRM-semantic-versioning-schema, 
+        # time:TIME-schema ;
+    # lrm:executedBy xrce:XeroxPericlesTeam
+    # .
+
+# xrce:XeroxPericlesTeam a lrm:Organization;
+    # lrm:hasMember xrce:ChanodJP, xrce:LagosN, xrce:Vion-DuryJY
+    # .
+
+# xrce:ChanodJP a lrm:HumanAgent;
+    # rdfs:label "Chanod, Jean-Pierre";
+    # rdfs:comment "mail: Jean-Pierre.Chanod@xrce.xerox.com ";
+    # rdfs:seeAlso <jean-pierre-chanod/198425-9-eng-GB/Jean-Pierre-Chanod_person_image_square.jpg>
+    # .
+    
+# xrce:LagosN a lrm:HumanAgent;
+    # rdfs:label "Lagos, Nikolaos";
+    # rdfs:comment "mail: Nikolaos Lagos@xrce.xerox.com ";
+    # rdfs:seeAlso <nikolaos-lagos/229670-3-eng-GB/Nikolaos-Lagos_person_image_square.jpg>
+    # .
+
+# lrm:jybirth a lrm:TimeInstant;
+    # rdfs:comment "in 1962"@en;
+    # time:year "1962"^^xsd:positiveInteger
+    # .
+
+# xrce:Vion-DuryJY a lrm:HumanAgent;
+    # rdfs:label "Vion-Dury, Jean-Yves ";
+    # lrm:birthTime lrm:jybirth;
+    # rdfs:comment "mail: Jean-Yves.Vion-Dury@xrce.xerox.com ";
+    # rdfs:seeAlso <jean-yves-vion-dury/198481-5-eng-GB/Jean-Yves-Vion-Dury_person_image_square.jpg>
+    # .
+    
+    
+# lrm:internalProcessor a lrm:SoftwareAgent, lrm:EndogenousResource;
+    # rdfs:comment "software to generates endogenous events and executes all endogenous activities required to implement LRM dynamic semantics"@en
+    # .
+# lrm:internalService a lrm:EndogenousActivity;
+    # lrm:executedBy lrm:internalProcessor
+    # .
+# lrm:genesis a lrm:ActivityStarted, lrm:EndogenousEvent;
+    # lrm:started lrm:system-bootstrap;
+    # time:when "2015-01-03T11:00:00Z"^^xsd:dateTimeStamp
+    # .
+    
+# lrm:system-bootstrap a lrm:EndogenousActivity;
+    # lrm:executedBy lrm:internalProcessor ;
+    # lrm:emitted lrm:bootstrap-done;
+    # lrm:emitted lrm:launch-server-event;
+    # lrm:spanTime [ time:seconds "120"^^xsd:decimal ];      
+    # rdfs:comment ""
+    # .
+    
+# lrm:bootstrap-done a lrm:ActivityStopped, lrm:EndogenousEvent;
+    # time:when "2015-01-03T11:02:00Z"^^xsd:dateTimeStamp
+    # .
+
+# lrm:launch-server-event a lrm:ActivityStarted, lrm:EndogenousEvent;
+    # time:when "2015-01-03T11:01:50Z"^^xsd:dateTimeStamp;
+    # lrm:started lrm:restfull-LRM-Service
+    # .
+    
+# lrm:restfull-LRM-Service a lrm:EndogenousActivity;
+    # lrm:executedBy lrm:internalProcessor
+    # .
+    
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# REFLEXIVE part   
+# see owl2 axiomatic triples: owl:Class is equivalent to rdfs:Class, as well as rdf:Property is equivalent to owl:ObjectProperty   
+# note that standard OWL reasoners are not able to use all these axioms
+
+lrm:Context rdfs:subClassOf lrm:EndogenousResource, lrm:AggregatedResource.
+
+lrm:EndogenousClass a owl:Class;
+    rdfs:subClassOf lrm:EndogenousResource
+    .
+lrm:EndogenousProperty a owl:Class;
+    rdfs:subClassOf lrm:EndogenousResource
+    .
+    
+rdfs:Class 
+    rdfs:subClassOf lrm:EndogenousClass.
+    
+rdf:Property 
+    rdfs:subClassOf lrm:EndogenousProperty.
+	
+# owl:Class 
+    # rdfs:subClassOf lrm:EndogenousClass.
+    
+# owl:ObjectProperty 
+    # rdfs:subClassOf lrm:EndogenousProperty.
+    
+# owl:DatatypeProperty 
+    # rdfs:subClassOf lrm:EndogenousProperty.
+
+# owl:AnnotationProperty
+    # rdfs:subClassOf lrm:EndogenousProperty.
+	
+# owl:OntologyProperty
+    # rdfs:subClassOf lrm:EndogenousProperty.
+	
+owl:Ontology 
+    rdfs:subClassOf lrm:EndogenousResource.
+
+lrm:EventsClass 
+    rdfs:subClassOf lrm:EndogenousClass.
+    
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# lrm:store a lrm:ExogenousResource, lrm:AggregatedResource, lrm:DigitalResource;
+    # lrm:realizes lrm:LRM-schema
+    # .
+
+# sto:LRM a lrm:ExogenousResource, lrm:AggregatedResource, lrm:AbstractResource;
+    # rdfs:label "composite LRM base files";
+    # lrm:hasPart sto:LRM-schema, 
+        # sto:LRM-static-schema, 
+        # sto:LRM-dynamic-schema, 
+        # sto:LRM-semantic-versioning-schema,
+        # sto:time-schema
+    # .
+
+# _:html11 a lrm:Protocol;
+    # rdfs:label "HTML 1.1"
+    # .
+
+# lrm:LRM-schema a lrm:EndogenousResource.
+# sto:LRM-schema a lrm:ExogenousResource, lrm:AggregatedResource, lrm:DigitalResource;
+    # rdfs:label "LRM-schema.ttl";
+    # lrm:realizes lrm:LRM-schema;
+    # lrm:location [ a lrm:Location; lrm:url <LRM-schema.ttl> ; lrm:accessProtocol _:html11];
+    # lrm:identification [ a lrm:Identity; lrm:uuid "89dbb02e-5fcb-4511-b225-c0d35cd368f6"];
+    # lrm:creationTime [ a lrm:TemporalDescription; time:around 2014 ]
+    # .
+
+# lrm:LRM-static-schema a lrm:EndogenousResource.
+# sto:LRM-static-schema a lrm:ExogenousResource, lrm:AggregatedResource, lrm:DigitalResource;
+    # rdfs:label "LRM-static-schema.ttl";
+    # lrm:location [ a lrm:Location; lrm:url <LRM-static-schema.ttl>; lrm:accessProtocol _:html11];
+    # lrm:creationTime [ time:around 2013 ]
+    # .
+
+# lrm:LRM-semantic-versioning-schema a lrm:EndogenousResource.
+# sto:LRM-semantic-versioning-schema a lrm:ExogenousResource, lrm:AggregatedResource, lrm:DigitalResource;
+    # rdfs:label "LRM-semantic-versioning-schema.ttl";
+    # lrm:location [ a lrm:Location; lrm:url <LRM-semantic-versioning-schema.ttl> ; lrm:accessProtocol _:html11];
+    # lrm:creationTime [ time:around 2014 ]
+    # .
+
+# lrm:time-schema a lrm:EndogenousResource.
+# sto:time-schema a lrm:ExogenousResource, lrm:AggregatedResource, lrm:DigitalResource;
+    # rdfs:label "time-schema.ttl";
+    # lrm:location [ a lrm:Location; lrm:url <time-schema.ttl> ; lrm:accessProtocol _:html11];
+    # lrm:creationTime [ time:around 2014 ]
+    # .
+
+# sto:ld1 a lrm:Dependency;
+    # lrm:intention lrm:hotUpdating;
+    # lrm:from lrm:LRM-schema;
+    # lrm:to  sto:LRM-schema
+    # .
+
+# sto:ld1Inv a lrm:Dependency;
+    # lrm:intention lrm:hotUpdating;
+    # lrm:from  sto:LRM-schema;
+    # lrm:to lrm:LRM-schema
+    # .
+    
+# sto:rResource a lrm:AggregatedResource, lrm:ConcreteResource;
+    # lrm:partOf sto:LRM-static-schema;
+    # lrm:realizes lrm:Resource;
+    # lrm:hasPart
+        # [ rdf:subject lrm:Resource; rdf:predicate rdf:type; rdf:object owl:Class ],
+        # [ rdf:subject lrm:Resource; rdf:predicate owl:disjointUnionOf; rdf:object ( lrm:EndogenousResource lrm:ExogenousResource) ],
+        # [ rdf:subject lrm:Resource; rdf:predicate owl:disjointUnionOf; rdf:object ( lrm:AbstractResource lrm:ConcreteResource) ],
+        # [ rdf:subject lrm:Resource; rdf:predicate owl:disjointUnionOf; rdf:object ( lrm:MutableResource lrm:ImmutableResource) ]
+    # .
+    
+# sto:rEndogenousResource a lrm:AggregatedResource, lrm:ConcreteResource;
+    # lrm:partOf sto:LRM-static-schema;
+    # lrm:realizes lrm:AbstractResource;
+    # lrm:definition "rdf:type(lrm:AbstractResource, owl:Class) AND rdfs:";
+    # lrm:hasPart [ a rdf:Statement; rdf:subject lrm:EndogenousResource; rdf:predicate rdfs:subClassOf; rdf:object lrm:AbstractResource ]
+    # .
+    
+# # the ReAL code will generate the triples below (handler: CreationEvent (LRM) )
+# # rdf:type(?onto, owl:Ontology) AND 
+# #       +rdf:type(?onto, lrm:EndogenousResource ) AND +rdf:type(?onto, lrm:AggregatedResource ) AND
+# #       rdf:type(?x, owl:Class) AND    +rdf:type(?x, lrm:EndogenousClass ) AND  +lrm:partOf(?x, ?onto)
+# #       rdf:type(?x,owl:ObjectProperty) AND   +rdf:type(?x, lrm:EndogenousProperty ) AND  +lrm:partOf(?x, ?onto)
+# #
+# lrm:LRM-static-schema a lrm:Context.
+
+# lrm:Resource a lrm:EndogenousClass;  lrm:partOf lrm:LRM-static-schema.
+    # lrm:AbstractResource a lrm:EndogenousClass;  lrm:partOf lrm:LRM-static-schema.
+        # lrm:Activity a lrm:EndogenousClass;  lrm:partOf lrm:LRM-static-schema.
+        # lrm:EndogenousResource a lrm:EndogenousClass;  lrm:partOf lrm:LRM-static-schema.
+    # lrm:Agent a lrm:EndogenousClass;  lrm:partOf lrm:LRM-static-schema.
+    # lrm:AggregatedResource a lrm:EndogenousClass;  lrm:partOf lrm:LRM-static-schema.
+    # lrm:ExogenousResource a lrm:EndogenousClass;  lrm:partOf lrm:LRM-static-schema.
+
+# lrm:definition a lrm:EndogenousProperty;
+    # lrm:partOf lrm:LRM-static-schema.
+
+# lrm:Description a lrm:EndogenousClass;
+    # lrm:partOf lrm:LRM-static-schema.
+
+# lrm:describedBy a lrm:EndogenousProperty;
+    # lrm:partOf lrm:LRM-static-schema.
+    
+# #
+# #  Reflexive Ecosystem resources
+# #
+# lrm:Text rdfs:subClassOf lrm:DigitalResource.
+
+# lrm:Encoding rdfs:subClassOf lrm:Description.
+# lrm:utf-8 a lrm:Encoding.
+# lrm:utf-16 a lrm:Encoding.
+# lrm:utf-32 a lrm:Encoding.
+# lrm:zip a lrm:Encoding.
+
+# lrm:encoding  rdfs:subPropertyOf lrm:describedBy;
+    # rdfs:domain lrm:DigitalResource; 
+    # rdfs:range lrm:Encoding
+    # .
+# lrm:MimeType rdfs:subClassOf lrm:Description.
+
+# lrm:mime-type rdfs:subPropertyOf lrm:describedBy;
+    # rdfs:domain lrm:DigitalResource; 
+    # rdfs:range lrm:MimeType
+    # .
+    
+# lrm:SoftwareTool rdfs:subClassOf lrm:DigitalResource.
+# lrm:Converter rdfs:subClassOf lrm:SoftwareTool.
+
+# lrm:ConvertingDependency rdfs:subClassOf lrm:ConjunctiveDependency.    
+    
+# lrm:through rdfs:subPropertyOf lrm:from;
+    # rdfs:domain lrm:ConvertingDependency;
+    # rdfs:range lrm:Action
+    # .
+    
+# @prefix file: <http://xrce.xerox.com/FILE#>. 
+
+# lrm:turtle-NT-Convert a lrm:Action;
+    # lrm:input-signature "?input"^^real:Signature;
+    # lrm:output-signature "?output"^^real:Signature;
+    # lrm:body [ a real:Template; real:code "TBD"^^real:Code ]
+    # .
+
+# _:f1 a lrm:Text;
+    # rdfs:label "LRM-schema.ttl";
+    # lrm:encoding lrm:utf-8;
+    # lrm:mime-type [ lrm:definition "text/ttl" ];
+    # lrm:identification [ lrm:definition "uuid:3456-45256-4322-78951" ];
+    # lrm:specification [ 
+        # lrm:definition "This is the frontal element of all LRM ontologies."@en 
+        # ];
+    # lrm:intention [ 
+        # lrm:definition 
+            # "Should be imported by domain-specific ontologies or model instances."@en, 
+            # "Used to bootstrap the PERICLES system"@en             
+        # ];
+    # lrm:location [ lrm:url <LRM-schema.ttl> ]
+    # .
+    
+# _:f12 a lrm:Text;
+    # rdfs:label "LRM-schema.nt";
+    # lrm:mime-type [ lrm:definition "text/nt"];
+    # lrm:encoding lrm:utf-8;
+    # lrm:identification [ lrm:definition "uuid:45256-3456-4322-78951" ];
+    # lrm:location [ lrm:url <LRM-schema.nt> ]
+    # .
+    
+# _:fd1 a lrm:ConvertingDependency;
+    # lrm:from _:f1;
+    # lrm:through lrm:turtle-NT-Convert;
+    # lrm:to _:f12;
+    # .
+        
+# _:f2 a lrm:Text;
+    # rdfs:label "LRM-static-schema.ttl";
+    # lrm:mime-type [ lrm:definition "text/ttl"];
+    # lrm:encoding lrm:utf-8;
+    # lrm:identification [ lrm:definition "uuid:4322-45256-3456-78951" ];
+    # lrm:location [ lrm:url <LRM-static-schema.ttl> ]
+    # .
+    
+# _:f22 a lrm:Text;
+    # rdfs:label "LRM-static-schema.nt";
+    # lrm:mime-type [ lrm:definition "text/nt"];
+    # lrm:encoding lrm:utf-8;
+    # lrm:identification [ lrm:url <LRM-static-schema.nt> ]
+    # .
+# _:fd2 a lrm:ConvertingDependency;
+    # lrm:from _:f2;
+    # lrm:through lrm:turtle-NT-Convert;
+    # lrm:to _:f22;
+    # .
+    
+    

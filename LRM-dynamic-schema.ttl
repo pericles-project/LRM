@@ -1,0 +1,579 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Copyright 2017  Xerox Research Centre Europe
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-----------------------------------------------------------------------------------------------------------------------
+
+#
+# PERICLES (see http://www.pericles-project.eu )is a four-year project that aims to address the challenge of ensuring that digital content remains 
+# accessible in an environment that is subject to continual change. This can encompass not only technological change, but also changes in semantics, 
+# academic or professional practice, or society itself, which can affect the attitudes and interests of the various stakeholders that interact with the content. 
+# PERICLES will take a ‘preservation by design’ approach that involves modelling, capturing and maintaining detailed and complex information about 
+# digital content, the environment in which it exists, and the processes and policies to which it is subject.
+#
+# This ontology has been produced by the WP3 (work package 3)lead by Xerox Research Center Europe 
+# Authors:  Jean-Pierre Chanod, Nikolaos Lagos, Jean-Yves Vion-Dury
+#
+# Created in November 2014
+# last updated the 31th of March 2017 by Jean-Yves Vion-Dury
+#
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix lrm: <http://xrce.xerox.com/LRM#> .
+@prefix time: <http://xrce.xerox.com/TIME#>.
+@prefix real: <http://xrce.xerox.com/ReAL#> .
+
+@base  <https://raw.githubusercontent.com/nikolaosLagos/Linked_Resource_Model/master/> .
+
+lrm:LRM-dynamic	rdf:type owl:Ontology;
+	owl:versionInfo "2.0.1";
+    rdfs:comment """
+    The Dynamic Linked Resource Model (DLRM) aims at describing digital resources for preservation purposes. 
+    Dependencies allow to describe the logical interconnexions between resources, and therefore express knowledge regarding the condition and impact
+    of a change inside the ecosystem. This knowledge can be directly applied to perform automated updating actions (change propagation according to
+    the various semantic of dependency) or can help analyzing the ecosystem model to detect inconsistencies and/or weaknesses to advise the curator 
+    on preventive or corrective actions. It also can be used to simulate changes inside the ecosytem and explore the potential consequences (with the help 
+    of logical inferences based on the ontological informations).
+    """@en
+    .
+
+
+# =================================================================================================
+#                                                   CHANGE EVENT MODEL    
+# =================================================================================================
+
+lrm:Event rdfs:subClassOf lrm:EndogenousResource, lrm:TimeInstant; 
+    owl:disjointUnionOf (lrm:EndogenousEvent lrm:ExogenousEvent);
+    rdfs:comment "EndogenousEvent instances talk about Endogenous resources, whereas ExogenousEvent instances talk about Exogenous resources. Note that both are (Abstract) Endogenous resources."@en
+    .
+
+lrm:byAgent a owl:ObjectProperty;
+    rdfs:domain lrm:Event;
+    rdfs:range lrm:Agent;
+    rdfs:comment "An event is triggered by an activity, which is performed by an agent (therefore, an event is causally related to an acting entity)"@en
+    .
+
+lrm:ActivityLifeEvent 
+    rdfs:subClassOf lrm:Event;
+    owl:disjointUnionOf (
+        lrm:ActivityStarted 
+        lrm:ActivityStopped
+        lrm:ActivitySuspended
+        lrm:ActivityResumed
+    )    
+    .
+lrm:ActivityStarted 
+    rdfs:subClassOf lrm:ActivityLifeEvent.
+    
+lrm:ActivityStopped 
+    rdfs:subClassOf lrm:ActivityLifeEvent.
+    
+lrm:ActivitySuspended 
+    rdfs:subClassOf lrm:ActivityLifeEvent.
+    
+lrm:ActivityResumed 
+    rdfs:subClassOf lrm:ActivityLifeEvent.
+
+#
+# Communication with endogenous/exogenous activities
+#
+lrm:Message 
+    rdfs:subClassOf lrm:Description;
+    rdfs:comment "used to send or receive information from services"
+    .
+    
+lrm:parameter a owl:DatatypeProperty;
+	rdfs:comment "used to define the content of a particular message";
+    rdfs:subPropertyOf lrm:definition;
+    rdfs:domain lrm:Message
+    .
+#
+# Service 
+#    
+lrm:Service rdfs:subClassOf lrm:Description;
+    rdfs:comment "describes a service: name, function, inputs/outputs,.... (yet do be defined)"@en;
+    owl:disjointUnionOf ( lrm:ExogenousService lrm:EndogenousService) 
+    .
+    
+lrm:ExogenousService rdfs:subClassOf lrm:Service.
+    
+lrm:EndogenousService rdfs:subClassOf lrm:Service.
+
+lrm:ServiceInvocation 
+    rdfs:subClassOf lrm:EndogenousActivity.
+
+lrm:requestedService a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:ServiceInvocation;
+    rdfs:range lrm:Service
+    .    
+    
+lrm:input a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:ServiceInvocation;
+    rdfs:range lrm:Message
+    .    
+lrm:output a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    owl:propertyDisjointWith lrm:input;
+    rdfs:domain lrm:ServiceInvocation;
+    rdfs:range lrm:Message
+    .    
+lrm:result a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:output;
+    rdfs:domain lrm:ServiceInvocation;
+    rdfs:range lrm:Message
+    .        
+lrm:error a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:output;
+    owl:propertyDisjointWith lrm:result;
+    rdfs:domain lrm:ServiceInvocation;
+    rdfs:range lrm:Message
+    .    
+lrm:warning a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:output;
+    owl:propertyDisjointWith  lrm:result, lrm:error;
+    rdfs:domain lrm:ServiceInvocation;
+    rdfs:range lrm:Message
+    .    
+
+lrm:timeout a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:ServiceInvocation;
+    rdfs:range lrm:TimeDuration
+    .    
+
+#
+# Periodic event
+#    
+lrm:RecurringEvent 
+    rdfs:subClassOf lrm:Event;
+    rdfs:comment "used to model periodic events(max number of occurences may be bounded)"
+    .
+    
+lrm:periodicity a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:RecurringEvent;
+    rdfs:range lrm:PeriodicEventDescription
+    .
+    
+lrm:PeriodicEventDescription 
+    rdfs:subClassOf lrm:Description.
+
+lrm:period a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:PeriodicEventDescription;
+    rdfs:range lrm:TimeDuration
+    .
+    
+lrm:maxCount a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:PeriodicEventDescription;
+    rdfs:range xsd:positiveInteger
+    .
+    
+    
+lrm:ChangeEvent 
+    rdfs:subClassOf lrm:Event, lrm:ChangeDescription;
+    rdfs:comment 
+        "This specific class of event deals with changes: these particular time instant have a significance with respect to modifications of modeled resources (be they endogenous or exogenous)"@en,
+        "used to trigger actions required in order to maintain the internal consistency of LRM instances"@en,
+        "also used to remember actions undertaken in order to maintain the internal consistency of LRM instances (provenance)"@en
+
+    .
+        
+lrm:EndogenousChange 
+    rdfs:subClassOf lrm:ChangeEvent, lrm:EndogenousEvent;
+    rdfs:comment "Event generated by the underlying system to track and process internal changes"@en
+    .
+    
+lrm:ExogenousChange 
+    rdfs:subClassOf lrm:ChangeEvent, lrm:ExogenousEvent;
+    # owl:disjointWith lrm:EndogenousChange ;
+    rdfs:comment "Event generated through explicit requests to signal changes that occured in the external world"@en
+    .
+    
+lrm:subject a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describes;
+    rdfs:domain lrm:ChangeEvent;
+    rdfs:range lrm:Resource;
+    rdfs:comment "Defines the resource(s)that changed"@en
+    .
+
+lrm:CreationEvent 
+    rdfs:subClassOf lrm:ChangeEvent;
+    rdfs:comment "A new resource has been created; the lrm:subject designates the class of the created resource"@en;
+    rdf:type owl:Restriction;
+    owl:onProperty lrm:subject;
+    owl:someValuesFrom lrm:EndogenousClass
+    .
+    
+lrm:FreezeEvent 
+    rdfs:subClassOf lrm:ChangeEvent;
+    rdfs:comment "A resource has been frozen: only meta-descriptors can evolve"@en
+    .
+    
+lrm:UnfreezeEvent 
+    rdfs:subClassOf lrm:ChangeEvent;
+    owl:disjointWith lrm:FreezeEvent, lrm:CreationEvent;
+    rdfs:comment "A resource has been unfrozen: it can evolve again"@en
+    .
+    
+lrm:DestructionEvent 
+    rdfs:subClassOf lrm:ChangeEvent;
+    owl:disjointWith lrm:FreezeEvent, lrm:CreationEvent, lrm:UnfreezeEvent;
+    rdfs:comment "A resource has been deleted"@en
+    .
+    
+lrm:TransformationEvent 
+    rdfs:subClassOf lrm:ChangeEvent;
+    rdfs:comment 
+        "A resource is transformed in the ecosystem, meaning that the resource changed, keeping the same identity"@en,
+        "NB: the nature of this transformation can be detailled through subclassing."@en
+    .
+    
+lrm:DerivationEvent
+    rdfs:subClassOf lrm:CreationEvent,lrm:TransformationEvent;
+    rdfs:comment "A new resource is created, on the basis of other known existing resource(s); e.g. a copy operation, a merge, ... "@en
+    .
+    
+lrm:UpdateEvent 
+    rdfs:subClassOf lrm:TransformationEvent;
+    rdfs:comment "The resource is updated (e.g. its digital extension changed)"@en
+    .
+
+lrm:changeMarker rdf:type lrm:ChangeEvent;
+    rdfs:comment "Allows marking a resources as changed"@en
+    .   
+    
+    
+lrm:derivedFrom a owl:ObjectProperty;
+    rdfs:domain lrm:DerivationEvent;
+    rdfs:range lrm:Resource;
+    rdfs:comment "used in addition to the lrm:subject property to indicate which other resources are involved in the derivation process"@en
+    .
+
+lrm:ChangeDescription 
+    rdfs:subClassOf lrm:Description;
+    rdfs:comment "Used to describe the differences between two resources"@en
+    .
+    
+lrm:changedBy a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:Resource;
+    rdfs:range lrm:ChangeDescription;
+    rdfs:comment "used in addition to the lrm:subject property to indicate which other resources are involved in the derivation process"@en
+    .
+
+lrm:RDF-Delta
+    rdfs:subClassOf lrm:ChangeDescription;
+    rdfs:comment "Used to describe the differences between two RDF 'star-shaped' subgraphs (i.e having a common subject) "@en
+    .
+    
+rdf:Statement rdfs:subClassOf lrm:Description.
+# lrm:Statement rdfs:subClassOf  rdf:Statement, lrm:Description.
+    
+rdf:predicate a owl:ObjectProperty;
+    rdfs:domain rdf:Statement;
+    rdfs:range rdf:Property
+    .
+    
+rdf:object a owl:ObjectProperty;
+    rdfs:domain rdf:Statement;
+    rdfs:range owl:Thing
+    .
+    
+lrm:deletion a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:RDF-Delta;
+    rdfs:range rdf:Statement;
+    rdfs:comment "Defines which triples of the resource have been deleted (the rdf:subject predicate is defined by the lrm:subject one) "@en
+    .
+    
+lrm:insertion a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:RDF-Delta;
+    rdfs:range rdf:Statement;
+    rdfs:comment "Defines which triples of the resource have been inserted (the rdf:subject predicate is defined by the lrm:subject one) "@en
+    .
+
+lrm:String-Delta 
+    rdfs:subClassOf lrm:ChangeDescription;
+    rdfs:comment "Used to describe the differences between two resources"@en
+    .
+    
+lrm:modifiedBy a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:DigitalResource;
+    rdfs:range lrm:String-Delta;
+    rdfs:comment "used in addition to the lrm:subject property to indicate which other resources are involved in the derivation process"@en
+    .
+    
+lrm:stringInsertion a owl:ObjectProperty;
+    rdfs:domain lrm:String-Delta;
+    rdfs:range lrm:StringOperation;
+    rdfs:comment "should be used only if the target resource has an explicit definition  through the lrm:definition predicate "@en;
+    rdfs:seeAlso lrm:definition , <LRM-static-schema.ttl>
+    .
+	
+lrm:stringDeletion a owl:ObjectProperty;
+    rdfs:domain lrm:String-Delta;
+    rdfs:range lrm:StringOperation;
+    rdfs:comment "should be used only if the target resource has an explicit definition through the lrm:definition predicate "@en;
+    rdfs:comment "in order to be reversible, the deleted string chunk must be explicit (through the lrm:chunkString property)"@en;
+    rdfs:seeAlso lrm:definition , <LRM-static-schema.ttl>
+    .
+	
+lrm:stringMove a owl:ObjectProperty;
+    rdfs:domain lrm:String-Delta;
+    rdfs:range lrm:StringOperation;
+    rdfs:comment "should be used only if the target resource has an explicit definition through the lrm:definition predicate "@en;
+    rdfs:seeAlso lrm:definition , <LRM-static-schema.ttl>
+    .
+    
+lrm:stringCopy a owl:ObjectProperty;
+    rdfs:domain lrm:String-Delta;
+    rdfs:range lrm:StringOperation;
+    rdfs:comment "should be used only if the target resource has an explicit definition  through the lrm:definition predicate "@en;
+    rdfs:seeAlso lrm:definition , <LRM-static-schema.ttl>
+    .
+
+lrm:StringOperation 
+    rdfs:subClassOf lrm:Description
+    .
+    
+lrm:originPosition a owl:DatatypeProperty;
+    rdfs:comment "the origin offset in the string (0 refers to the start of the string)"@en;
+    rdfs:domain lrm:StringOperation;
+    rdfs:range xsd:nonNegativeInteger
+    .
+    
+lrm:destinationPosition a owl:DatatypeProperty;
+    rdfs:comment "the target offset in the string (0 refers to the start of the string)"@en;
+    rdfs:domain lrm:StringOperation;
+    rdfs:range xsd:nonNegativeInteger
+    .
+    
+lrm:chunkString a owl:DatatypeProperty;
+    rdfs:comment "the substring that have been inserted, deleted, moved or copied"@en;
+    rdfs:domain lrm:StringOperation;
+    rdfs:range rdfs:Literal
+    .
+    
+
+lrm:Action 
+    rdfs:subClassOf lrm:Plan;
+    owl:disjointWith lrm:EventHandler;
+    rdfs:comment "allows defining modular constructs"
+    .
+      
+lrm:input-signature a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:comment 
+        "defines the variables that must be bound when calling the action (order is significant) "@en
+        ;
+    rdfs:domain lrm:Action;
+    rdfs:range real:Signature
+    .
+    
+lrm:output-signature a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:comment 
+        "defines the variables that will be bound after calling the action (and if the action is successful ; order is significant) "@en
+        ;
+    rdfs:domain lrm:Action;
+    rdfs:range real:Signature
+    .
+    
+lrm:body a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:comment 
+        "defines the content of the module (uses the formal parameters defined in the signature)"@en,
+        "the chunck will be statically analyzed, and all expansion will be realized when possible"@en,
+        "the open variables are translated after unification with signature"@en
+        ;
+    rdfs:domain lrm:Action;
+    rdfs:range real:Template
+    .
+
+lrm:HandlingAction 
+    rdfs:subClassOf lrm:Action;
+    rdfs:comment "allows defining actions which signature are dedicated to event handling (receive the instanciated event IRI as input parameter)";
+    owl:intersectionOf (
+        [ 
+		rdf:type owl:Restriction;
+		owl:onProperty lrm:input-signature;
+		owl:qualifiedCardinality 1;
+		owl:onDataRange real:Signature;
+		owl:hasValue "EVENT"^^real:Signature
+		]
+        [ 
+		rdf:type owl:Restriction;
+		owl:onProperty lrm:body;
+		owl:minQualifiedCardinality 1;
+		owl:onClass real:Template;
+		]
+		)
+    .
+
+lrm:EventHandler rdfs:subClassOf lrm:Plan;
+    owl:intersectionOf (
+        [ 
+        rdf:type owl:Restriction;
+        owl:onProperty lrm:on;
+        owl:minQualifiedCardinality 1;
+        owl:onClass lrm:EventsClass
+        ]
+        [ 
+        rdf:type owl:Restriction;
+        owl:onProperty lrm:do;
+        owl:minQualifiedCardinality 1;
+        owl:onClass lrm:HandlingAction
+        ]
+      )
+    .
+    
+lrm:on a owl:ObjectProperty; 
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:EventHandler;
+    # rdfs:range lrm:Event
+    rdfs:range lrm:EventsClass
+    .
+    
+lrm:do a owl:ObjectProperty; 
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:EventHandler;
+    rdfs:range lrm:HandlingAction
+    .
+    
+# =================================================================================================
+#                                                   ACTIVITY MODEL    (with provenance related information)
+# =================================================================================================
+lrm:Activity rdfs:subClassOf lrm:AbstractResource;
+    owl:disjointUnionOf ( lrm:EndogenousActivity  lrm:ExogenousActivity) ;
+    rdfs:comment 
+        """
+An activity is defined as the effect of the actions performed by some agent(s);  as such, it is a blackbox that can be observed and acharacterized through its relationship with the flow of events  that influenced it, and also through the resources it used.
+Two particularly distinguished event classes mark the active/inactive status of an activity: begining and termination through lrm:ActivityStarted  and lrm:ActivityStopped, as well as the suspension and resuming via lrm:ActivitySuspended and  lrm:ActivityResumed.
+An activity may involve other activities: this can be captured by a specific usage of the lrm:used predicate  that also applies to any kind of resources.
+An activity can be described through a Plan description (as in PROV)at various level of detail depending on the domain-specific needs.
+The resources created, modified or deleted by an activity can be known on the basis of the corresponding events it generated.
+Note also that an activity can be either internal, i.e handled by the endogenous infrastructure to manage dynamicity, or external, i.e. occuring in the ecosystem
+                """@en
+    .
+lrm:EndogenousActivity rdfs:subClassOf lrm:Activity, lrm:EndogenousResource.
+
+# JYVD (14 Dec. 2015) modification proposed in order to make LRMS API more consistent (does not change the logical structure of classes)
+lrm:ExogenousActivity rdfs:subClassOf lrm:Activity, lrm:AbstractExogenousResource.
+    
+lrm:executedBy a owl:ObjectProperty;
+    rdfs:domain lrm:Activity;
+    rdfs:range lrm:Agent;
+    rdfs:comment "Relates the activity to the agent(s) that execute it"@en
+    .
+    
+lrm:executes owl:inverseOf lrm:executedBy.
+
+lrm:triggeredBy a owl:ObjectProperty;
+    rdfs:domain lrm:Activity;
+    rdfs:range lrm:Event;
+    rdfs:comment "Relates the activity to event(s) that triggered it"@en
+    .
+lrm:triggers a owl:ObjectProperty;
+    owl:inverseOf lrm:triggeredBy
+    .    
+
+lrm:used a owl:ObjectProperty;
+    rdfs:domain lrm:Activity;
+    rdfs:range lrm:Resource;
+    rdfs:comment "Indicates which resources  have been used by the activity"@en  ;  
+    owl:inverseOf lrm:usedBy
+    .
+
+lrm:created a owl:ObjectProperty;
+    rdfs:domain lrm:Activity;
+    rdfs:range lrm:Resource;
+    rdfs:comment "Indicates which resources have been created by the activity"@en;        
+    owl:inverseOf lrm:createdBy 
+    .
+
+lrm:deleted a owl:ObjectProperty;
+    rdfs:domain lrm:Activity;
+    rdfs:range lrm:Resource;
+    rdfs:comment "Indicates which resources have been deleted by the activity"@en ;      
+    owl:inverseOf lrm:deletedBy
+    .
+    
+lrm:transformed a owl:ObjectProperty;
+    rdfs:domain lrm:Activity;
+    rdfs:range lrm:Resource;
+    rdfs:comment "Indicates which resources have been modified by the activity"@en ;       
+    owl:inverseOf lrm:transformedBy
+    .
+        
+lrm:usedPlan a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf lrm:used;
+    rdfs:range lrm:Plan;
+    rdfs:comment "Indicates which plan is executed by the activity"@en    
+    .
+    
+lrm:emitted a owl:ObjectProperty;
+    rdfs:domain lrm:Activity ;
+    rdfs:range lrm:Event;
+    owl:inverseOf lrm:emittedBy;
+    rdfs:comment "Indicates which events were directly produced by the subject activity "@en
+    .
+    
+lrm:received a owl:ObjectProperty;
+    rdfs:domain lrm:Activity ;
+    rdfs:range lrm:Event;
+    owl:inverseOf lrm:receivedBy;
+    rdfs:comment "Indicates which events were directly received by the subject activity "@en
+    .
+    
+lrm:activity  a owl:ObjectProperty;
+    rdfs:domain lrm:ActivityLifeEvent;
+    rdfs:range lrm:Activity;
+    rdfs:comment "Indicates which activities is the subject of this activity-life dedicated event "@en
+    .
+    
+lrm:started rdfs:subPropertyOf lrm:activity;
+    rdfs:domain lrm:ActivityStarted;
+    owl:inverseOf lrm:startedBy;
+    rdfs:comment "Indicates which activities were directly triggered by the appearance of the subject event "@en
+    .    
+    
+lrm:resumed rdfs:subPropertyOf lrm:activity;
+    rdfs:domain lrm:ActivityResumed;
+    owl:inverseOf lrm:resumedBy;
+    rdfs:comment "Indicates which activities were directly resumed by the appearance of the subject event "@en
+    .    
+    
+lrm:suspended rdfs:subPropertyOf lrm:activity;
+    rdfs:domain lrm:ActivitySuspended;
+    owl:inverseOf lrm:suspendedBy;
+    rdfs:comment "Indicates which activities were directly suspended by the appearance of the subject event "@en
+    .
+    
+lrm:stopped rdfs:subPropertyOf lrm:activity;
+    rdfs:domain lrm:ActivityStopped;
+    owl:inverseOf lrm:stoppedBy;
+    rdfs:comment "Indicates which activities were directly stopped by the appearance of the subject event "@en
+    .
+    
+lrm:isConsequenceOf a owl:ObjectProperty, owl:TransitiveProperty ;
+    rdfs:domain lrm:Event;
+    rdfs:range lrm:Event;
+    rdfs:comment "Indicates causal relationships between events"@en
+    .    
+
+

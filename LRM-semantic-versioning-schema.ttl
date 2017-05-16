@@ -1,0 +1,477 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Copyright 2017  Xerox Research Centre Europe
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-----------------------------------------------------------------------------------------------------------------------
+
+#
+# PERICLES (see http://www.pericles-project.eu )is a four-year project that aims to address the challenge of ensuring that digital content remains 
+# accessible in an environment that is subject to continual change. This can encompass not only technological change, but also changes in semantics, 
+# academic or professional practice, or society itself, which can affect the attitudes and interests of the various stakeholders that interact with the content. 
+# PERICLES will take a ‘preservation by design’ approach that involves modelling, capturing and maintaining detailed and complex information about 
+# digital content, the environment in which it exists, and the processes and policies to which it is subject.
+#
+# This ontology has been produced by the WP3 (work package 3)lead by Xerox Research Center Europe 
+# Authors:  Jean-Pierre Chanod, Nikolaos Lagos, Jean-Yves Vion-Dury
+#
+# Created in November 2014
+# last updated the 31th of March 2017 by Jean-Yves Vion-Dury
+#
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix lrm: <http://xrce.xerox.com/LRM#> .
+@prefix version: <http://xrce.xerox.com/VERSION#> .
+@prefix real: <http://xrce.xerox.com/ReAL#> .
+
+# @base  <file:///C:/Users/viondury/PERICLESEU/Ontology/> .
+
+lrm:LRM-semantic-versioning
+    rdf:type owl:Ontology;
+	owl:versionInfo "2.0.0";
+    rdfs:comment """  Model semantic versioning operation using LRM dependencies"""@en.
+
+# =================================================================================================
+#                                                   VERSIONING MODEL    
+# =================================================================================================
+lrm:VersionEvent 
+    rdfs:subClassOf lrm:Event;
+    owl:disjointUnionOf ( lrm:VersionCreationEvent lrm:VersionQualificationEvent lrm:VersionCertificationEvent ) ;
+    rdfs:comment "All events related to the versioning management mechanisms."@en
+    .
+
+lrm:VersionCreationEvent 
+    rdfs:comment "Starts the first qualified versioning step: qualifies to 1.0.0:0/x  "@en;
+    rdfs:subClassOf lrm:VersionEvent
+    .
+    
+lrm:VersionQualificationEvent 
+    rdfs:comment "Starts the first qualified versioning step: qualifies to 1.0.0:0/x  "@en;
+    rdfs:subClassOf lrm:VersionEvent
+    .
+    
+# lrm:UpdateVersionEvent rdfs:subClassOf lrm:VersionEvent, lrm:UpdateEvent.
+lrm:VersionCertificationEvent 
+    rdfs:subClassOf lrm:VersionEvent;
+    owl:disjointUnionOf ( lrm:MicroVersionEvent lrm:MinorVersionEvent lrm:MajorVersionEvent)
+    .
+
+lrm:MicroVersionEvent 
+    rdfs:subClassOf lrm:VersionCertificationEvent ;
+    owl:equivalentClass [ 
+        rdf:type owl:Restriction;
+        owl:onProperty lrm:version-kind;
+        owl:hasValue "MICRO"
+        ]
+    .
+lrm:MinorVersionEvent 
+    rdfs:subClassOf lrm:VersionCertificationEvent ;
+    owl:equivalentClass [ 
+        rdf:type owl:Restriction;
+        owl:onProperty lrm:version-kind;
+        owl:hasValue "MINOR"
+        ]
+    .
+    
+lrm:MajorVersionEvent 
+    rdfs:subClassOf lrm:VersionCertificationEvent ;
+    owl:equivalentClass [ 
+        rdf:type owl:Restriction;
+        owl:onProperty lrm:version-kind;
+        owl:hasValue "MAJOR"
+        ]
+    .
+
+lrm:version-verifier a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:VersionCreationEvent;
+    rdfs:range lrm:Agent;
+    rdfs:comment "defines the agent responsible for verifying the compliance of the resource with its invariant and specification (optional)"@en
+    .
+    
+# certification related events
+lrm:CertificationService 
+    rdfs:subClassOf lrm:Service.
+
+lrm:CertificationRequest 
+    rdfs:subClassOf lrm:ServiceInvocation
+    .
+    
+lrm:ofResource 
+    # rdfs:subPropertyOf lrm:parameter;
+    rdfs:domain   lrm:CertificationRequest ;
+    rdfs:range   lrm:Resource    
+    .
+    
+lrm:byAgent 
+    # rdfs:subPropertyOf lrm:parameter;
+    rdfs:domain   lrm:CertificationRequest ;
+    rdfs:range   lrm:Agent    
+    .
+    
+lrm:VersionKind 
+    owl:equivalentClass [
+        rdf:type rdfs:Datatype;
+        owl:oneOf ( "CREATION" "MICRO" "MINOR" "MAJOR" ) 
+    ]
+    .
+    
+lrm:versionKind a owl:DatatypeProperty;
+    # rdfs:subPropertyOf lrm:parameter;
+    rdfs:domain   lrm:CertificationRequest ;
+    rdfs:range   lrm:VersionKind
+    .
+    
+lrm:certificate 
+    rdfs:subPropertyOf lrm:result;
+    rdfs:domain   lrm:CertificationRequest ;
+    rdfs:range   lrm:Certificate    
+    .
+
+lrm:VersionedResource a owl:Class;
+    rdfs:subClassOf lrm:Resource;
+    rdfs:comment """
+        The lrm:invariant  and lrm:specification predicates (if defined) will be used to assess the nature of the version transformation.        
+            micro versions : semantically equivalent (according to lrm:specification)
+            minor version: backward compatible (according to lrm:specification);
+            major version: guaranties only the lrm:invariant properties.
+        """@en
+    .
+
+    
+lrm:Version 
+    rdfs:subClassOf lrm:Description, lrm:ImmutableResource;
+    rdfs:comment "used to describe the versioning state of a versioned resource (label, counters)"@en
+    .
+
+lrm:version a owl:ObjectProperty;
+    rdfs:subPropertyOf lrm:describedBy;
+    rdfs:domain lrm:VersionedResource;
+    rdfs:range lrm:Version
+    .
+    
+version:versioningDefinition a owl:DatatypeProperty;
+    rdfs:subPropertyOf lrm:definition;
+    rdfs:domain lrm:Version
+    .
+        
+version:label a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf version:versioningDefinition;
+    rdfs:domain lrm:Version;
+    rdfs:range xsd:Name
+    .
+    
+version:counter a owl:DatatypeProperty;
+    rdfs:subPropertyOf version:versioningDefinition;
+    rdfs:domain lrm:Version;
+    rdfs:range xsd:nonNegativeInteger
+    .
+
+version:major rdfs:subPropertyOf version:counter;
+    a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:Version;
+    rdfs:range xsd:nonNegativeInteger
+    .
+
+version:minor rdfs:subPropertyOf version:counter;
+    a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:Version;
+    rdfs:range xsd:nonNegativeInteger
+    .
+
+version:micro rdfs:subPropertyOf version:counter;
+    a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:Version;
+    rdfs:range xsd:nonNegativeInteger
+    .
+    
+version:variant
+    rdfs:subPropertyOf version:versioningDefinition;
+    a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:Version;
+    rdfs:range xsd:nonNegativeInteger
+    .
+    
+version:stamp
+    rdfs:subPropertyOf version:versioningDefinition;
+    a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:domain lrm:Version;
+    rdfs:range xsd:nonNegativeInteger
+    .
+        
+        
+lrm:VersionedDR 
+    rdfs:subClassOf lrm:VersionedResource, lrm:DigitalResource.
+
+lrm:Certificate 
+    rdfs:subClassOf lrm:Message;
+    rdfs:comment "a certificate describes (and certifies) the compliance of a given resource version with its specification (could be a formal proof)"@en
+    .
+
+lrm:askCertification a lrm:Action;
+    rdfs:label "askCertification";
+    lrm:input-signature "rsc, kind, agent"^^real:Signature;
+    lrm:output-signature "certif "^^real:Signature;
+    lrm:body [ real:code """
+                rdf:type(?ctf, lrm:CertificationService) AND
+                 $cr AND
+                +rdf:type(?cr, lrm:CertificationRequest) AND
+                +lrm:ofResource(?cr,?rsc) AND
+                +lrm:requestedService(?cr,?ctf) AND
+                +lrm:byAgent (?cr,  ?agent) AND
+                +lrm:versionKind (?cr,  ?kind) AND
+                CALL primitive:service(?cr) AND
+                NO lrm:error(?cr, ?) AND 
+                lrm:certificate(?cr, ?certif)
+        """^^real:Code ]
+    .
+    
+lrm:versionCreate a lrm:Action;
+    rdfs:label "versionCreate";
+    lrm:input-signature "EV, CLASS, FROM"^^real:Signature;
+    lrm:output-signature "D,  TO"^^real:Signature;
+    lrm:body [ real:code """
+                // creates a new dependency instance
+                $D AND
+                +rdf:type(?D , ?CLASS) AND
+                (
+                    ( rdf:type(?EV,lrm:VersionCertificationEvent)AND lrm:version-kind(?EV,?kind) AND +lrm:versionkind(?D, ?kind))
+                     OR  True
+                )AND
+                // creates a new version object
+                $TO AND
+                +rdf:type(?TO, lrm:Version) AND
+                +time:starting(?TO, ?EV) AND
+                
+                // connects the dependency with the previous version and the new one
+                +lrm:from(?D, ?FROM) AND
+                +lrm:to(?D, ?TO)
+            """^^real:Code
+    ]
+    .
+    
+    
+lrm:createVersionedResource a lrm:EventHandler;
+    lrm:on lrm:VersionCreationEvent;
+    lrm:do [
+        lrm:input-signature "EVENT"^^real:Signature;
+        lrm:body [ real:code """
+                        lrm:subject(?EVENT, ?rsc) AND  lrm:verifier(?EVENT, ?agent) AND
+                         lrm:version-invariant(?EVENT, ?inv) AND  +version:invariant(?rsc, ?inv) AND
+                         lrm:version-specification(?EVENT, ?spec) AND  +version:specification(?rsc, ?spec) AND
+                        CALL lrm:versionCreate(?EVENT,  lrm:CreateVersionTransformation, ?rsc  >> ?d, ?V) AND
+                        CALL lrm:askCertification(?rsc, 'CREATION', ?agent >> ?certif) AND
+                        +lrm:certificate(?V, ?certif)
+                        """^^real:Code ]
+        ]
+    .
+    
+lrm:VersioningActivity 
+    rdfs:subClassOf lrm:EndogenousActivity
+    .
+    
+    
+lrm:updateDescription a lrm:EventHandler;
+    lrm:on lrm:UpdateEvent;
+    lrm:do  [ 
+		a lrm:HandlingAction;
+        lrm:input-signature "EVENT"^^real:Signature;
+        lrm:body [ 
+            real:code """
+                                lrm:subject(?EVENT, ?rsc) AND  lrm:version(?rsc, ?v1) AND 
+                                $v2 AND  +rdf:type(?v2, lrm:Version) AND  
+                                CALL lrm:versionInc(?v1 >> ?v2)"""^^real:Code 
+            ]
+        ]
+    .
+
+
+lrm:createDependency a lrm:EventHandler;
+    rdfs:comment "registers a change either of the resource or its specification and generates a new version accordingly ; does not attempt to qualify the change"@en;
+    lrm:on lrm:CreationEvent;
+    lrm:do [
+		a lrm:HandlingAction;
+        lrm:input-signature "EVENT"^^real:Signature;
+        lrm:body [
+            real:variables "EVENT"^^real:Signature;
+            real:code """ 
+                                lrm:subject(?EVENT, ?rsc) AND   ! rdf:type(?rsc, lrm:Dependency)  AND
+                                lrm:precondition(?rsc, ?PC) AND  CALL ?PC(?EVENT) AND 
+                                lrm:impact(?self, ?IP) AND  CALL  ?IP(?EVENT) 
+                            """^^real:Code
+            ]
+        ]
+    .
+    
+lrm:updatePrecondition a real:Template;
+    real:variables "EVENT"^^real:Signature;
+    real:code """
+                // check conditions and establishes the context (?EVENT always designates the triggering event : see lrm:EventHandler)
+                lrm:subject(?EVENT, ?rsc) AND
+                ! rdf:type(?rsc, lrm:VersionedResource)
+          """^^real:Code
+    .
+        
+lrm:updateImpact a real:Template;
+    real:variables "EVENT"^^real:Signature;
+    real:code """                
+                   lrm:subject(?EVENT, ?rsc) AND
+                   ! lrm:describedBy(?rsc, ?vers) AND  
+                 (( 
+                        lrm:changed-specification(?EVENT,?s) AND
+                        - version:specification(?rsc, ?) AND
+                        + version:specification(?rsc, ?s)
+                   ) UNION ( // the UNION here is inclusive: all branches will be explored whatever result they may raise
+                        lrm:changed-description(?EVENT,?delta) AND
+                        lrm:deletion (?delta, ?stm) AND  rdf:predicate(?stm, ?pred) AND rdf:object(?stm, ?obj) AND  - ?pred(?rsc,?obj)AND
+                        lrm:insertion (?delta, ?stm2) AND  rdf:predicate(?stm2, ?pred2) AND  rdf:object(?stm2, ?obj2) AND  + ?pred(?rsc,?obj2)
+                    ) ) AND
+                CALL lrm:VersionCreate(?EVENT, ?D , lrm:UpdateVersionTransformation, ?vers, ?v2) AND
+                version:variant(?vers,?i1)AND  INC(?i1, ?j1) AND +version:variant(?v2, ?j1) AND
+                version:stamp(?vers,?i2)AND  INC(?i2 , ?j2) AND +version:stamp(?v2, ?j2)
+            """^^real:Code
+    .
+    
+    
+    
+lrm:vVersionDescription a lrm:EventHandler;
+    lrm:on lrm:VersionCertificationEvent;
+    lrm:do lrm:vVersionImpact
+    .
+    
+lrm:vVersionPrecondition a lrm:Plan;
+    lrm:definition """
+                // check conditions and establishes the context (?EVENT always designate the trigerring event : see lrm:EventHandler)
+                lrm:subject(?EVENT, ?rsc) AND
+                ! rdf:type(?rsc,lrm:VersionedResource)
+         """^^real:Code
+    .
+
+version:Inc a lrm:Action;
+    lrm:input-signature "version1, version2"^^real:Signature;
+    lrm:body [ 
+        rdf:type real:Template;
+        real:code """
+                        // increment both stamp and variant counters
+                        version:variant(?version1,?vari)AND INC(?vari, ?i) AND +version:variant(?version2, ?i) AND 
+                        version:stamp(?version1,?stamp)AND  INC(?stamp, ?j) AND +version:variant(?version2, ?j) AND 
+                        // copy old major counter into the new version instance
+                        version:major(?version1, ?major) AND +version:major(?version2, ?major) AND
+                        // copy old minor counter into the new version instance
+                        version:minor(?version1, ?minor) AND +version:minor(?version2, ?minor) AND
+                        // copy old micro counter into the new version instance
+                        version:micro(?version1, ?micro) AND +version:minor(?version2, ?micro)
+                  """^^real:Code ;
+        # experimental logical characterization:
+        real:before [ real:code " rdf:type(?version1, lrm:Version) AND  rdf:type(?version2, lrm:Version)"^^real:Code ];
+        real:invariant [ 
+            real:code """  
+                                    version:major(?version1, ?Mc1) AND  
+                                    version:minor(?version1,?mc1) AND  
+                                    version:micro(?version1 , ?uc1) AND  
+                                    version:variant(?version1, ?vc1) AND  
+                                    version:stamp(?version1,?sc1) 
+                                    """^^real:Code 
+        ];
+        real:before [ 
+            real:code """ 
+                                    NO (
+                                        version:major(?version2, ?) UNION  
+                                        version:minor(?version2,?)UNION  
+                                        version:micro(?version2,?) UNION  
+                                        version:variant(?version2,?) UNION  
+                                        version:stamp(?version2,?) 
+                                    )
+                                    """^^real:Code
+        ];
+        real:after [ 
+            real:code """  
+                                    version:major(?version2, ?Mc1) AND  
+                                    version:minor(?version2,?mc1) AND  
+                                    version:micro(?version2 , ?uc1) AND 
+                                    version:variant(?version2, ?) AND 
+                                    version:stamp(?version2, ?)
+                                    """^^real:Code
+        ]
+    ] 
+    .
+    
+version:IncMicro a lrm:Action;
+    lrm:input-signature "version1, version2"^^real:Signature;
+    lrm:body [ real:code """
+            version:micro(?version1,?mic)AND INC(?mic, ?i) AND 
+            +version:micro(?version2, ?i) AND 
+            // copy old major counter into the new version instance
+            version:major(?version1, ?major) AND +version:major(?version2, ?major) AND
+            // copy old minor counter into the new version instance
+            version:minor(?version1, ?minor) AND +version:minor(?version2, ?minor) AND
+            // reset variant counter to zero
+            +version:variant(?version2, 0)
+         """^^real:Code ]
+    .
+
+version:IncMinor a lrm:Action;
+    lrm:input-signature "version1, version2"^^real:Signature;
+    lrm:body [ real:code """
+            version:minor(?version1,?minor)AND INC(?minor, ?i) AND  
+            +version:minor(?version2, ?i)AND  
+            // copy old major counter into the new version instance
+            version:major(?version1, ?major) AND +version:major(?version2, ?major) AND
+            // reset micro counter to zero
+            +version:micro(?version2, 0) AND 
+            // reset variant counter to zero
+            +version:variant(?version2, 0)
+        """^^real:Code ]
+    .
+
+version:IncMajor a lrm:Action;
+    lrm:input-signature "version1, version2"^^real:Signature;
+    lrm:body [ real:code """
+            version:major(?version1,?major)AND INC(?major, ?i) AND  
+            +version:major(?version2, ?i)AND  
+            // reset minor counter to zero
+            +version:minor(?version2, 0) AND 
+            // reset micro counter to zero
+            +version:micro(?version2, 0) AND 
+            // reset variant counter to zero
+            +version:variant(?version2, 0)
+        """^^real:Code ]
+    .
+
+lrm:vVersionImpact a real:Template;
+    real:variables "EVENT"^^real:Signature;
+    real:code """                
+                 (( 
+                        lrm:changed-specification(?EVENT,?s) AND
+                        - version:specification(?rsc, ?) AND
+                        + version:specification(?rsc, ?s)
+                   ) UNION ( // the UNION here is inclusive: all branches will be explored whatever results they raise
+                        lrm:changed-description(?EVENT,?d) AND
+                        - version:description(?su, ?) AND
+                        + version:description(?su, ?d)
+                    )) AND
+                CALL lrm:VersionCreate(?EVENT,?D, lrm:CertifiedVersionTransformation,?v1,?v2)AND
+                ! lrm:verifier(?D,?agent) AND lrm:version-kind(?EVENT , ?kind) AND
+                CALL lrm:askCertification(?rsc, ?kind, ?agent, ?certificate ) AND
+                +version:verifiedBy(?D,?certificate)AND
+                (
+                    (EQ(?kind,'MICRO') AND CALL version:IncMicro(?v1,?v2)) OR
+                    (EQ(?kind,'MINOR') AND   CALL version:IncMinor(?v1,?v2) ) OR
+                    (EQ(?kind,'MAJOR') AND CALL version:IncMajor(?v1,?v2))
+                  )
+            """^^real:Code
+    .
+
+        

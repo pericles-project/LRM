@@ -1,0 +1,352 @@
+<http://xrce.xerox.com/LRM#LRM-dynamic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://xrce.xerox.com/LRM#LRM-dynamic> <http://www.w3.org/2002/07/owl#versionInfo> "2.0.1" .
+<http://xrce.xerox.com/LRM#LRM-dynamic> <http://www.w3.org/2000/01/rdf-schema#comment> "\n    The Dynamic Linked Resource Model (DLRM) aims at describing digital resources for preservation purposes. \n    Dependencies allow to describe the logical interconnexions between resources, and therefore express knowledge regarding the condition and impact\n    of a change inside the ecosystem. This knowledge can be directly applied to perform automated updating actions (change propagation according to\n    the various semantic of dependency) or can help analyzing the ecosystem model to detect inconsistencies and/or weaknesses to advise the curator \n    on preventive or corrective actions. It also can be used to simulate changes inside the ecosytem and explore the potential consequences (with the help \n    of logical inferences based on the ontological informations).\n    "@en .
+<http://xrce.xerox.com/LRM#Event> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#EndogenousResource> .
+<http://xrce.xerox.com/LRM#Event> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#TimeInstant> .
+_:node1be35cidpx1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#EndogenousEvent> .
+_:node1be35cidpx1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx2 .
+_:node1be35cidpx2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ExogenousEvent> .
+_:node1be35cidpx2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Event> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1be35cidpx1 .
+<http://xrce.xerox.com/LRM#Event> <http://www.w3.org/2000/01/rdf-schema#comment> "EndogenousEvent instances talk about Endogenous resources, whereas ExogenousEvent instances talk about Exogenous resources. Note that both are (Abstract) Endogenous resources."@en .
+<http://xrce.xerox.com/LRM#byAgent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#byAgent> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#byAgent> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Agent> .
+<http://xrce.xerox.com/LRM#byAgent> <http://www.w3.org/2000/01/rdf-schema#comment> "An event is triggered by an activity, which is performed by an agent (therefore, an event is causally related to an acting entity)"@en .
+<http://xrce.xerox.com/LRM#ActivityLifeEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Event> .
+_:node1be35cidpx3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ActivityStarted> .
+_:node1be35cidpx3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx4 .
+_:node1be35cidpx4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ActivityStopped> .
+_:node1be35cidpx4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx5 .
+_:node1be35cidpx5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ActivitySuspended> .
+_:node1be35cidpx5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx6 .
+_:node1be35cidpx6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ActivityResumed> .
+_:node1be35cidpx6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#ActivityLifeEvent> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1be35cidpx3 .
+<http://xrce.xerox.com/LRM#ActivityStarted> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ActivityLifeEvent> .
+<http://xrce.xerox.com/LRM#ActivityStopped> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ActivityLifeEvent> .
+<http://xrce.xerox.com/LRM#ActivitySuspended> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ActivityLifeEvent> .
+<http://xrce.xerox.com/LRM#ActivityResumed> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ActivityLifeEvent> .
+<http://xrce.xerox.com/LRM#Message> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Message> <http://www.w3.org/2000/01/rdf-schema#comment> "used to send or receive information from services" .
+<http://xrce.xerox.com/LRM#parameter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#parameter> <http://www.w3.org/2000/01/rdf-schema#comment> "used to define the content of a particular message" .
+<http://xrce.xerox.com/LRM#parameter> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#definition> .
+<http://xrce.xerox.com/LRM#parameter> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Message> .
+<http://xrce.xerox.com/LRM#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Service> <http://www.w3.org/2000/01/rdf-schema#comment> "describes a service: name, function, inputs/outputs,.... (yet do be defined)"@en .
+_:node1be35cidpx7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ExogenousService> .
+_:node1be35cidpx7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx8 .
+_:node1be35cidpx8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#EndogenousService> .
+_:node1be35cidpx8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Service> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1be35cidpx7 .
+<http://xrce.xerox.com/LRM#ExogenousService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Service> .
+<http://xrce.xerox.com/LRM#EndogenousService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Service> .
+<http://xrce.xerox.com/LRM#ServiceInvocation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#EndogenousActivity> .
+<http://xrce.xerox.com/LRM#requestedService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#requestedService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#requestedService> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#requestedService> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#requestedService> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Service> .
+<http://xrce.xerox.com/LRM#input> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#input> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#input> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#input> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Message> .
+<http://xrce.xerox.com/LRM#output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#output> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#output> <http://www.w3.org/2002/07/owl#propertyDisjointWith> <http://xrce.xerox.com/LRM#input> .
+<http://xrce.xerox.com/LRM#output> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#output> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Message> .
+<http://xrce.xerox.com/LRM#result> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#result> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#output> .
+<http://xrce.xerox.com/LRM#result> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#result> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Message> .
+<http://xrce.xerox.com/LRM#error> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#error> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#output> .
+<http://xrce.xerox.com/LRM#error> <http://www.w3.org/2002/07/owl#propertyDisjointWith> <http://xrce.xerox.com/LRM#result> .
+<http://xrce.xerox.com/LRM#error> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#error> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Message> .
+<http://xrce.xerox.com/LRM#warning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#warning> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#output> .
+<http://xrce.xerox.com/LRM#warning> <http://www.w3.org/2002/07/owl#propertyDisjointWith> <http://xrce.xerox.com/LRM#result> .
+<http://xrce.xerox.com/LRM#warning> <http://www.w3.org/2002/07/owl#propertyDisjointWith> <http://xrce.xerox.com/LRM#error> .
+<http://xrce.xerox.com/LRM#warning> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#warning> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Message> .
+<http://xrce.xerox.com/LRM#timeout> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#timeout> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#timeout> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#timeout> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ServiceInvocation> .
+<http://xrce.xerox.com/LRM#timeout> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#TimeDuration> .
+<http://xrce.xerox.com/LRM#RecurringEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#RecurringEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "used to model periodic events(max number of occurences may be bounded)" .
+<http://xrce.xerox.com/LRM#periodicity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#periodicity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#periodicity> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#periodicity> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#RecurringEvent> .
+<http://xrce.xerox.com/LRM#periodicity> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#PeriodicEventDescription> .
+<http://xrce.xerox.com/LRM#PeriodicEventDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#period> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#period> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#period> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#PeriodicEventDescription> .
+<http://xrce.xerox.com/LRM#period> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#TimeDuration> .
+<http://xrce.xerox.com/LRM#maxCount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#maxCount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#maxCount> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#PeriodicEventDescription> .
+<http://xrce.xerox.com/LRM#maxCount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://xrce.xerox.com/LRM#ChangeEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#ChangeEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeDescription> .
+<http://xrce.xerox.com/LRM#ChangeEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "This specific class of event deals with changes: these particular time instant have a significance with respect to modifications of modeled resources (be they endogenous or exogenous)"@en .
+<http://xrce.xerox.com/LRM#ChangeEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "used to trigger actions required in order to maintain the internal consistency of LRM instances"@en .
+<http://xrce.xerox.com/LRM#ChangeEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "also used to remember actions undertaken in order to maintain the internal consistency of LRM instances (provenance)"@en .
+<http://xrce.xerox.com/LRM#EndogenousChange> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#EndogenousChange> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#EndogenousEvent> .
+<http://xrce.xerox.com/LRM#EndogenousChange> <http://www.w3.org/2000/01/rdf-schema#comment> "Event generated by the underlying system to track and process internal changes"@en .
+<http://xrce.xerox.com/LRM#ExogenousChange> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#ExogenousChange> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ExogenousEvent> .
+<http://xrce.xerox.com/LRM#ExogenousChange> <http://www.w3.org/2000/01/rdf-schema#comment> "Event generated through explicit requests to signal changes that occured in the external world"@en .
+<http://xrce.xerox.com/LRM#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#subject> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describes> .
+<http://xrce.xerox.com/LRM#subject> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#subject> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#subject> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines the resource(s)that changed"@en .
+<http://xrce.xerox.com/LRM#CreationEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#CreationEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A new resource has been created; the lrm:subject designates the class of the created resource"@en .
+<http://xrce.xerox.com/LRM#CreationEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://xrce.xerox.com/LRM#CreationEvent> <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#subject> .
+<http://xrce.xerox.com/LRM#CreationEvent> <http://www.w3.org/2002/07/owl#someValuesFrom> <http://xrce.xerox.com/LRM#EndogenousClass> .
+<http://xrce.xerox.com/LRM#FreezeEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#FreezeEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A resource has been frozen: only meta-descriptors can evolve"@en .
+<http://xrce.xerox.com/LRM#UnfreezeEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#UnfreezeEvent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/LRM#FreezeEvent> .
+<http://xrce.xerox.com/LRM#UnfreezeEvent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/LRM#CreationEvent> .
+<http://xrce.xerox.com/LRM#UnfreezeEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A resource has been unfrozen: it can evolve again"@en .
+<http://xrce.xerox.com/LRM#DestructionEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#DestructionEvent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/LRM#FreezeEvent> .
+<http://xrce.xerox.com/LRM#DestructionEvent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/LRM#CreationEvent> .
+<http://xrce.xerox.com/LRM#DestructionEvent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/LRM#UnfreezeEvent> .
+<http://xrce.xerox.com/LRM#DestructionEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A resource has been deleted"@en .
+<http://xrce.xerox.com/LRM#TransformationEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#TransformationEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A resource is transformed in the ecosystem, meaning that the resource changed, keeping the same identity"@en .
+<http://xrce.xerox.com/LRM#TransformationEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "NB: the nature of this transformation can be detailled through subclassing."@en .
+<http://xrce.xerox.com/LRM#DerivationEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#CreationEvent> .
+<http://xrce.xerox.com/LRM#DerivationEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#TransformationEvent> .
+<http://xrce.xerox.com/LRM#DerivationEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A new resource is created, on the basis of other known existing resource(s); e.g. a copy operation, a merge, ... "@en .
+<http://xrce.xerox.com/LRM#UpdateEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#TransformationEvent> .
+<http://xrce.xerox.com/LRM#UpdateEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "The resource is updated (e.g. its digital extension changed)"@en .
+<http://xrce.xerox.com/LRM#changeMarker> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/LRM#ChangeEvent> .
+<http://xrce.xerox.com/LRM#changeMarker> <http://www.w3.org/2000/01/rdf-schema#comment> "Allows marking a resources as changed"@en .
+<http://xrce.xerox.com/LRM#derivedFrom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#derivedFrom> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#DerivationEvent> .
+<http://xrce.xerox.com/LRM#derivedFrom> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#derivedFrom> <http://www.w3.org/2000/01/rdf-schema#comment> "used in addition to the lrm:subject property to indicate which other resources are involved in the derivation process"@en .
+<http://xrce.xerox.com/LRM#ChangeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#ChangeDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Used to describe the differences between two resources"@en .
+<http://xrce.xerox.com/LRM#changedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#changedBy> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#changedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#changedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#ChangeDescription> .
+<http://xrce.xerox.com/LRM#changedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "used in addition to the lrm:subject property to indicate which other resources are involved in the derivation process"@en .
+<http://xrce.xerox.com/LRM#RDF-Delta> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeDescription> .
+<http://xrce.xerox.com/LRM#RDF-Delta> <http://www.w3.org/2000/01/rdf-schema#comment> "Used to describe the differences between two RDF 'star-shaped' subgraphs (i.e having a common subject) "@en .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2002/07/owl#Thing> .
+<http://xrce.xerox.com/LRM#deletion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#deletion> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#deletion> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#RDF-Delta> .
+<http://xrce.xerox.com/LRM#deletion> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> .
+<http://xrce.xerox.com/LRM#deletion> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines which triples of the resource have been deleted (the rdf:subject predicate is defined by the lrm:subject one) "@en .
+<http://xrce.xerox.com/LRM#insertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#insertion> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#insertion> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#RDF-Delta> .
+<http://xrce.xerox.com/LRM#insertion> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> .
+<http://xrce.xerox.com/LRM#insertion> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines which triples of the resource have been inserted (the rdf:subject predicate is defined by the lrm:subject one) "@en .
+<http://xrce.xerox.com/LRM#String-Delta> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ChangeDescription> .
+<http://xrce.xerox.com/LRM#String-Delta> <http://www.w3.org/2000/01/rdf-schema#comment> "Used to describe the differences between two resources"@en .
+<http://xrce.xerox.com/LRM#modifiedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#modifiedBy> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#modifiedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#DigitalResource> .
+<http://xrce.xerox.com/LRM#modifiedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#String-Delta> .
+<http://xrce.xerox.com/LRM#modifiedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "used in addition to the lrm:subject property to indicate which other resources are involved in the derivation process"@en .
+<http://xrce.xerox.com/LRM#stringInsertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#stringInsertion> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#String-Delta> .
+<http://xrce.xerox.com/LRM#stringInsertion> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#StringOperation> .
+<http://xrce.xerox.com/LRM#stringInsertion> <http://www.w3.org/2000/01/rdf-schema#comment> "should be used only if the target resource has an explicit definition  through the lrm:definition predicate "@en .
+<http://xrce.xerox.com/LRM#stringInsertion> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://xrce.xerox.com/LRM#definition> .
+<http://xrce.xerox.com/LRM#stringInsertion> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <file://./Data/LRM-static-schema.ttl> .
+<http://xrce.xerox.com/LRM#stringDeletion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#stringDeletion> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#String-Delta> .
+<http://xrce.xerox.com/LRM#stringDeletion> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#StringOperation> .
+<http://xrce.xerox.com/LRM#stringDeletion> <http://www.w3.org/2000/01/rdf-schema#comment> "should be used only if the target resource has an explicit definition through the lrm:definition predicate "@en .
+<http://xrce.xerox.com/LRM#stringDeletion> <http://www.w3.org/2000/01/rdf-schema#comment> "in order to be reversible, the deleted string chunk must be explicit (through the lrm:chunkString property)"@en .
+<http://xrce.xerox.com/LRM#stringDeletion> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://xrce.xerox.com/LRM#definition> .
+<http://xrce.xerox.com/LRM#stringDeletion> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <file://./Data/LRM-static-schema.ttl> .
+<http://xrce.xerox.com/LRM#stringMove> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#stringMove> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#String-Delta> .
+<http://xrce.xerox.com/LRM#stringMove> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#StringOperation> .
+<http://xrce.xerox.com/LRM#stringMove> <http://www.w3.org/2000/01/rdf-schema#comment> "should be used only if the target resource has an explicit definition through the lrm:definition predicate "@en .
+<http://xrce.xerox.com/LRM#stringMove> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://xrce.xerox.com/LRM#definition> .
+<http://xrce.xerox.com/LRM#stringMove> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <file://./Data/LRM-static-schema.ttl> .
+<http://xrce.xerox.com/LRM#stringCopy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#stringCopy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#String-Delta> .
+<http://xrce.xerox.com/LRM#stringCopy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#StringOperation> .
+<http://xrce.xerox.com/LRM#stringCopy> <http://www.w3.org/2000/01/rdf-schema#comment> "should be used only if the target resource has an explicit definition  through the lrm:definition predicate "@en .
+<http://xrce.xerox.com/LRM#stringCopy> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://xrce.xerox.com/LRM#definition> .
+<http://xrce.xerox.com/LRM#stringCopy> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <file://./Data/LRM-static-schema.ttl> .
+<http://xrce.xerox.com/LRM#StringOperation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#originPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#originPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "the origin offset in the string (0 refers to the start of the string)"@en .
+<http://xrce.xerox.com/LRM#originPosition> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#StringOperation> .
+<http://xrce.xerox.com/LRM#originPosition> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/LRM#destinationPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#destinationPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "the target offset in the string (0 refers to the start of the string)"@en .
+<http://xrce.xerox.com/LRM#destinationPosition> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#StringOperation> .
+<http://xrce.xerox.com/LRM#destinationPosition> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<http://xrce.xerox.com/LRM#chunkString> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#chunkString> <http://www.w3.org/2000/01/rdf-schema#comment> "the substring that have been inserted, deleted, moved or copied"@en .
+<http://xrce.xerox.com/LRM#chunkString> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#StringOperation> .
+<http://xrce.xerox.com/LRM#chunkString> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
+<http://xrce.xerox.com/LRM#Action> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Plan> .
+<http://xrce.xerox.com/LRM#Action> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/LRM#EventHandler> .
+<http://xrce.xerox.com/LRM#Action> <http://www.w3.org/2000/01/rdf-schema#comment> "allows defining modular constructs" .
+<http://xrce.xerox.com/LRM#input-signature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#input-signature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#input-signature> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the variables that must be bound when calling the action (order is significant) "@en .
+<http://xrce.xerox.com/LRM#input-signature> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/LRM#input-signature> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/ReAL#Signature> .
+<http://xrce.xerox.com/LRM#output-signature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#output-signature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#output-signature> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the variables that will be bound after calling the action (and if the action is successful ; order is significant) "@en .
+<http://xrce.xerox.com/LRM#output-signature> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/LRM#output-signature> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/ReAL#Signature> .
+<http://xrce.xerox.com/LRM#body> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#body> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#body> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the content of the module (uses the formal parameters defined in the signature)"@en .
+<http://xrce.xerox.com/LRM#body> <http://www.w3.org/2000/01/rdf-schema#comment> "the chunck will be statically analyzed, and all expansion will be realized when possible"@en .
+<http://xrce.xerox.com/LRM#body> <http://www.w3.org/2000/01/rdf-schema#comment> "the open variables are translated after unification with signature"@en .
+<http://xrce.xerox.com/LRM#body> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/LRM#body> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/ReAL#Template> .
+<http://xrce.xerox.com/LRM#HandlingAction> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Action> .
+<http://xrce.xerox.com/LRM#HandlingAction> <http://www.w3.org/2000/01/rdf-schema#comment> "allows defining actions which signature are dedicated to event handling (receive the instanciated event IRI as input parameter)" .
+_:node1be35cidpx10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:node1be35cidpx10 <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#input-signature> .
+_:node1be35cidpx10 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:node1be35cidpx10 <http://www.w3.org/2002/07/owl#onDataRange> <http://xrce.xerox.com/ReAL#Signature> .
+_:node1be35cidpx10 <http://www.w3.org/2002/07/owl#hasValue> "EVENT"^^<http://xrce.xerox.com/ReAL#Signature> .
+_:node1be35cidpx9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node1be35cidpx10 .
+_:node1be35cidpx9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx11 .
+_:node1be35cidpx12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:node1be35cidpx12 <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#body> .
+_:node1be35cidpx12 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:node1be35cidpx12 <http://www.w3.org/2002/07/owl#onClass> <http://xrce.xerox.com/ReAL#Template> .
+_:node1be35cidpx11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node1be35cidpx12 .
+_:node1be35cidpx11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#HandlingAction> <http://www.w3.org/2002/07/owl#intersectionOf> _:node1be35cidpx9 .
+<http://xrce.xerox.com/LRM#EventHandler> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Plan> .
+_:node1be35cidpx14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:node1be35cidpx14 <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#on> .
+_:node1be35cidpx14 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:node1be35cidpx14 <http://www.w3.org/2002/07/owl#onClass> <http://xrce.xerox.com/LRM#EventsClass> .
+_:node1be35cidpx13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node1be35cidpx14 .
+_:node1be35cidpx13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx15 .
+_:node1be35cidpx16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:node1be35cidpx16 <http://www.w3.org/2002/07/owl#onProperty> <http://xrce.xerox.com/LRM#do> .
+_:node1be35cidpx16 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:node1be35cidpx16 <http://www.w3.org/2002/07/owl#onClass> <http://xrce.xerox.com/LRM#HandlingAction> .
+_:node1be35cidpx15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node1be35cidpx16 .
+_:node1be35cidpx15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#EventHandler> <http://www.w3.org/2002/07/owl#intersectionOf> _:node1be35cidpx13 .
+<http://xrce.xerox.com/LRM#on> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#on> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#on> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#EventHandler> .
+<http://xrce.xerox.com/LRM#on> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#EventsClass> .
+<http://xrce.xerox.com/LRM#do> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#do> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#do> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#EventHandler> .
+<http://xrce.xerox.com/LRM#do> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#HandlingAction> .
+<http://xrce.xerox.com/LRM#Activity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#AbstractResource> .
+_:node1be35cidpx17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#EndogenousActivity> .
+_:node1be35cidpx17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1be35cidpx18 .
+_:node1be35cidpx18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ExogenousActivity> .
+_:node1be35cidpx18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Activity> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1be35cidpx17 .
+<http://xrce.xerox.com/LRM#Activity> <http://www.w3.org/2000/01/rdf-schema#comment> "\nAn activity is defined as the effect of the actions performed by some agent(s);  as such, it is a blackbox that can be observed and acharacterized through its relationship with the flow of events  that influenced it, and also through the resources it used.\nTwo particularly distinguished event classes mark the active/inactive status of an activity: begining and termination through lrm:ActivityStarted  and lrm:ActivityStopped, as well as the suspension and resuming via lrm:ActivitySuspended and  lrm:ActivityResumed.\nAn activity may involve other activities: this can be captured by a specific usage of the lrm:used predicate  that also applies to any kind of resources.\nAn activity can be described through a Plan description (as in PROV)at various level of detail depending on the domain-specific needs.\nThe resources created, modified or deleted by an activity can be known on the basis of the corresponding events it generated.\nNote also that an activity can be either internal, i.e handled by the endogenous infrastructure to manage dynamicity, or external, i.e. occuring in the ecosystem\n                "@en .
+<http://xrce.xerox.com/LRM#EndogenousActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#EndogenousActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#EndogenousResource> .
+<http://xrce.xerox.com/LRM#ExogenousActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#ExogenousActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#AbstractExogenousResource> .
+<http://xrce.xerox.com/LRM#executedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#executedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#executedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Agent> .
+<http://xrce.xerox.com/LRM#executedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "Relates the activity to the agent(s) that execute it"@en .
+<http://xrce.xerox.com/LRM#executes> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#executedBy> .
+<http://xrce.xerox.com/LRM#triggeredBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#triggeredBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#triggeredBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#triggeredBy> <http://www.w3.org/2000/01/rdf-schema#comment> "Relates the activity to event(s) that triggered it"@en .
+<http://xrce.xerox.com/LRM#triggers> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#triggers> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#triggeredBy> .
+<http://xrce.xerox.com/LRM#used> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#used> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#used> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#used> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which resources  have been used by the activity"@en .
+<http://xrce.xerox.com/LRM#used> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#usedBy> .
+<http://xrce.xerox.com/LRM#created> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#created> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#created> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#created> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which resources have been created by the activity"@en .
+<http://xrce.xerox.com/LRM#created> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#createdBy> .
+<http://xrce.xerox.com/LRM#deleted> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#deleted> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#deleted> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#deleted> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which resources have been deleted by the activity"@en .
+<http://xrce.xerox.com/LRM#deleted> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#deletedBy> .
+<http://xrce.xerox.com/LRM#transformed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#transformed> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#transformed> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#transformed> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which resources have been modified by the activity"@en .
+<http://xrce.xerox.com/LRM#transformed> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#transformedBy> .
+<http://xrce.xerox.com/LRM#usedPlan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#usedPlan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#usedPlan> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#used> .
+<http://xrce.xerox.com/LRM#usedPlan> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Plan> .
+<http://xrce.xerox.com/LRM#usedPlan> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which plan is executed by the activity"@en .
+<http://xrce.xerox.com/LRM#emitted> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#emitted> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#emitted> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#emitted> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#emittedBy> .
+<http://xrce.xerox.com/LRM#emitted> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which events were directly produced by the subject activity "@en .
+<http://xrce.xerox.com/LRM#received> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#received> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#received> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#received> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#receivedBy> .
+<http://xrce.xerox.com/LRM#received> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which events were directly received by the subject activity "@en .
+<http://xrce.xerox.com/LRM#activity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#activity> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ActivityLifeEvent> .
+<http://xrce.xerox.com/LRM#activity> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Activity> .
+<http://xrce.xerox.com/LRM#activity> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which activities is the subject of this activity-life dedicated event "@en .
+<http://xrce.xerox.com/LRM#started> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#activity> .
+<http://xrce.xerox.com/LRM#started> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ActivityStarted> .
+<http://xrce.xerox.com/LRM#started> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#startedBy> .
+<http://xrce.xerox.com/LRM#started> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which activities were directly triggered by the appearance of the subject event "@en .
+<http://xrce.xerox.com/LRM#resumed> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#activity> .
+<http://xrce.xerox.com/LRM#resumed> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ActivityResumed> .
+<http://xrce.xerox.com/LRM#resumed> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#resumedBy> .
+<http://xrce.xerox.com/LRM#resumed> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which activities were directly resumed by the appearance of the subject event "@en .
+<http://xrce.xerox.com/LRM#suspended> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#activity> .
+<http://xrce.xerox.com/LRM#suspended> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ActivitySuspended> .
+<http://xrce.xerox.com/LRM#suspended> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#suspendedBy> .
+<http://xrce.xerox.com/LRM#suspended> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which activities were directly suspended by the appearance of the subject event "@en .
+<http://xrce.xerox.com/LRM#stopped> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#activity> .
+<http://xrce.xerox.com/LRM#stopped> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ActivityStopped> .
+<http://xrce.xerox.com/LRM#stopped> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#stoppedBy> .
+<http://xrce.xerox.com/LRM#stopped> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates which activities were directly stopped by the appearance of the subject event "@en .
+<http://xrce.xerox.com/LRM#isConsequenceOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#isConsequenceOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/LRM#isConsequenceOf> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#isConsequenceOf> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Event> .
+<http://xrce.xerox.com/LRM#isConsequenceOf> <http://www.w3.org/2000/01/rdf-schema#comment> "Indicates causal relationships between events"@en .

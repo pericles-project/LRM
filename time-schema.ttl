@@ -1,0 +1,503 @@
+#---
+# time ontology
+#---
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix allen: <http://xrce.xerox.com/ALLEN#>.
+@prefix time: <http://xrce.xerox.com/TIME#>.
+@prefix tz: <http://www.w3.org/2006/timezone#> .
+@base  <https://raw.githubusercontent.com/nikolaosLagos/Linked_Resource_Model/master/> .
+
+time:TIME-schema
+    a owl:Ontology ;
+    rdfs:comment "Adresses flexible time management with variable precision and uncertainty of higher-order"@en;
+    rdfs:seeAlso <http://www.w3.org/TR/xpath-functions/#durations-dates-times>,
+             <http://en.wikipedia.org/wiki/Allen's_interval_algebra>,
+			 <https://www.w3.org/TR/owl-time/>
+    .
+
+# time:TemporalDefinition 
+    # rdfs:label "time:TemporalDefinition";
+    # owl:unionOf ( time:Instant time:Interval time:Duration ).
+    
+time:TemporalMeasurement 
+    owl:unionOf ( time:Instant time:Duration ).
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#   Interval
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+time:Interval a owl:Class;
+    owl:disjointUnionOf (time:TimeInterval time:Uncertainty)
+    .
+
+time:TimeInterval a owl:Class;
+    rdfs:comment "Represent an interval of time having a non null duration"@en;
+    rdfs:comment 
+        "A time interval can be fully specified by a starting and ending Instant, or by a starting instant and a duration"@en,
+        "Its duration cannot be null, so that an Interval cannot be an instant, and the starting instant always occurs strictly before the ending instant."@en,
+        "A time interval can also be partially defined. In that case, missing information is understood as unknown, and might be inferred from context, e.g. through allen relations if any"@en    .
+    
+time:Uncertainty a owl:Class;
+    rdfs:comment "Represent an uncertainty interval (where the target value has to be located with a probability of one)"@en.
+        
+
+time:starting a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:comment "defines the starting instant of the subject interval"@en;
+    rdfs:domain time:Interval;
+    # rdfs:range time:TemporalDefinition
+    rdfs:range time:Instant
+    .
+
+time:ending a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:comment "defines the ending instant of the subject interval"@en;
+    rdfs:domain time:Interval;
+    # rdfs:range time:TemporalDefinition
+    rdfs:range time:Instant
+    .
+
+time:around a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain time:Interval;
+    rdfs:range time:Instant ;   
+    rdfs:comment "defines the center of the interval (also useful when combined with time:during property)"@en
+    .
+    
+time:during a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:comment "defines the duration of the interval"@en;
+    rdfs:domain time:Interval;
+    rdfs:range time:Duration
+    .
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#   Instant
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+time:Instant a owl:Class;
+    owl:disjointWith time:Interval;
+    rdfs:comment "defines a time instant as a coordinate in time space; embeds mechanisms to express and handle uncertainty"@en
+    .
+
+time:clock a owl:ObjectProperty, owl:FunctionalProperty ;    
+    rdfs:comment "defines a time reference from which the Instant is measured"@en;
+    rdfs:domain time:TemporalMeasurement;
+    rdfs:range time:Reference
+    .
+    
+time:calendar a owl:ObjectProperty, owl:FunctionalProperty ;    
+    rdfs:domain time:TemporalMeasurement;
+    rdfs:range time:Calendar
+    .
+    
+
+time:when a owl:DatatypeProperty;
+    rdfs:comment "defines the UTC coordinate of the instant through the xsd:dateTime datatype"@en;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:dateTime
+    .
+    
+time:utc a owl:DatatypeProperty;
+    rdfs:subPropertyOf time:when;
+    rdfs:comment "defines the UTC coordinate of the instant in a precise way through the xsd:dateTimeStamp datatype (must explicitely include the time zone information)"@en;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:dateTimeStamp
+    .
+    
+time:coordinate a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:comment "defines an instant through a conventional reference"@en;
+    rdfs:domain time:Instant ;
+    rdfs:range owl:real
+    .
+    
+time:civilian a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:comment "defines an instant through a civilian convention (hence must be interpreted w.r.t. a given calendar such as gregorian, chinese,...)"@en;
+    rdfs:domain time:Instant ;
+    rdfs:range rdfs:Literal
+    .
+    
+time:inside a owl:ObjectProperty;
+    rdfs:comment "used to specify uncertain instants or durations"@en;
+    rdfs:domain time:Instant ;
+    rdfs:range time:Uncertainty
+    .
+    
+time:year a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:integer
+    .
+    
+time:month a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:positiveInteger
+    .
+    
+time:day a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:positiveInteger
+    .
+    
+time:hour a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:positiveInteger
+    .
+    
+time:minute a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:positiveInteger
+    .
+    
+time:second a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Instant ;
+    rdfs:range xsd:decimal
+    .
+    
+            
+time:synchronousWith a owl:ObjectProperty;
+    rdfs:comment "expresses that two semantically distinct instants occurs synchronously"@en;
+    rdfs:domain time:Instant;
+    rdfs:range time:Instant
+    .        
+
+    
+time:preceding a owl:ObjectProperty, owl:IrreflexiveProperty;
+    owl:inverseOf time:following; 
+    rdfs:comment "(A time:preceding B) means that A strictly occured before B"@en;
+    rdfs:domain time:Instant ;
+    rdfs:range time:Instant 
+    .
+            
+        
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#   Calendar
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+time:Calendar a owl:Class;
+    rdfs:comment "used to characterize the civilian time";
+    rdfs:comment "to be developped further"@en;
+    rdfs:seeAlso <http://dl.acm.org/citation.cfm?id=1060847> ;
+    rdfs:comment """
+        CaTTS: Calendar types and constraints for Web applications
+        François Bry, Frank-André Ries, Stephanie Spranger
+        Proceedings of the 14th international conference on World Wide Web        
+        ACM, 2005
+        """
+    .
+    
+time:julian a time:Calendar.
+time:gregorian a time:Calendar.
+time:hebrew a time:Calendar.
+time:chinese a time:Calendar.
+time:islamic a time:Calendar.
+    
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#   time Reference
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+time:Reference a owl:Class;
+    rdfs:comment "used to characterize the time reference associated with the time coordinates (typically a clock)"@en;
+    rdfs:comment """
+Our everyday life follows the alternation of day and night, and seasons of year, and then the initial conception of time was based on the motion of sun. Nevertheless, as science and technology evolved, more precise uniform and well-defined time scales were needed.
+Several time references are currently adopted, based on the different periodic processes associated, such as earth rotation, celestial mechanics or transitions between energetic levels in atomic oscillators.
+        """@en;
+    rdfs:seeAlso <http://www.navipedia.net/index.php/Time_References>
+    .
+
+time:CosmicBased rdfs:subClassOf time:Reference.    
+
+time:AtomicBased 
+    rdfs:subClassOf time:Reference;
+    owl:disjointWith time:CosmicBased
+    .    
+    
+time:DiscontinuousAtomicBased 
+    rdfs:comment "implements discrete time shifting operations (typically leap seconds)in order to keep the clock synchronized with cosmic parameters (typically earth rotation)"@en;
+    rdfs:subClassOf time:AtomicBased
+    .
+    
+time:ContinuousAtomicBased 
+    rdfs:subClassOf time:AtomicBased;
+    owl:disjointWith time:DiscontinuousAtomicBased
+    .
+
+time:EarthRotation rdfs:subClassOf time:CosmicBased.    
+
+time:SolarTime rdfs:subClassOf time:CosmicBased;
+    rdfs:seeAlso <http://www.navipedia.net/index.php/Solar_Time>
+    .
+    
+time:ET
+    rdfs:label "ET";
+    rdfs:label "Ephemeris Time"@en;
+    rdf:type time:SolarTime;
+    rdfs:comment "The Ephemeris Time (ET) was adopted in 1952 as the (conceptually uniform) time of Newtonian Mechanics. It was defined in terms of the earth's revolution orbit around the sun, and it was introduced to be free from the effects of irregularity in the unpredictable polar motion and the earth rotation rate."@en;
+    rdfs:seeAlso <http://www.navipedia.net/index.php/Earth_Revolution_Time>
+    .
+    
+    
+time:UT rdfs:subClassOf  time:EarthRotation.
+
+time:UT0 rdf:type time:UT;
+    rdfs:label "UT0"
+    .
+
+time:UT1 rdf:type time:UT;
+    rdfs:label "UT1"
+    .
+
+time:UT2 rdf:type time:UT;
+    rdfs:label "UT2"
+    .
+
+rdfs:acronym rdfs:subPropertyOf rdfs:label.
+rdfs:standsFor rdfs:subPropertyOf rdfs:comment.
+    
+time:UTC rdf:type time:DiscontinuousAtomicBased;
+    rdfs:acronym "UTC"@en;
+    rdfs:standsFor "Universal Time Coordinated"@en;
+    rdfs:comment """
+UTC is the compromise between TAI and UT1. In fact UTC, as an atomic time, is as uniform as the TAI scale can be, but it is always kept closer than 0.9 seconds with respect to UT1, in order to follow earth's rotation variations. This is accomplished by adding (or subtracting) a certain number of Leap Seconds to TAI. This number, which is refreshed periodically, is provided by the IERS (International Earth Rotation Service).
+This time is very important since all currently used time signals are synchronised with UTC.
+Official Time is the one used by all nations of the world. It usually differs by an integer number of hours or half an hours with regard to UTC. This difference is given by time zones and the proper adjustments in summer and winter.        
+
+Atomic Time - Navipedia [WWW Document], n.d. URL http://www.navipedia.net/index.php/Atomic_Time (accessed 6.25.15).
+    """@en;
+    rdfs:seeAlso <http://www.navipedia.net/index.php/Atomic_Time>
+    .
+
+time:TAI rdf:type time:AtomicBased;
+    rdfs:label "TAI";
+    rdfs:comment """
+TAI stands for International Atomic Time and was established as a reference time by the Bureau International de l'Heure. Its initial epoch was matched to the 0h0m0s of UT2 scale of January 1st, 1958, so the difference between TAI and UT2 was 0 in this epoch.
+The TAI second duration was defined in 1967 as the same as the ET second, according to the following sentence: The TAI second is the duration of 9 192 631 770 periods of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the Cesium 133 atom.
+It is realized from several high-precision atomic clocks held at standards institutes in various countries, it is, therefore, a statistical time. There is an elaborate process of continuous intercomparison, leading to a weighted average of all the clocks involved.
+
+Atomic Time - Navipedia [WWW Document], n.d. URL http://www.navipedia.net/index.php/Atomic_Time (accessed 6.25.15).
+    """@en;
+    rdfs:seeAlso <http://www.navipedia.net/index.php/Atomic_Time>
+    .
+
+time:SiderealTime rdfs:subClassOf time:EarthRotation;
+    rdfs:comment "The reference is the Vernal Equinox, or the Aries point, which is defined as the intersection between the equator and the ecliptic plane [footnotes 1]. Two types of Aries point can be considered depending on which equator plane is considered (i.e, the mean equator or the true equator): the Mean Aries point or the True Aries point."@en;
+    rdfs:seeAlso <http://www.navipedia.net/index.php/Sidereal_Time>
+    .
+    
+time:LAST rdf:type time:SiderealTime;
+    rdfs:label "LAST";
+    rdfs:comment " the hour angle of true Aries point, from local meridian."@en;
+    rdfs:label "Local Apparent Sidereal Time"@en
+    .
+time:GAST rdf:type time:SiderealTime;
+    rdfs:comment " the hour angle of true Aries point, from Greenwich meridian."@en;
+    rdfs:label "GAST";
+    rdfs:label "Greenwich Apparent Sidereal Time"@en
+    .
+time:LMST rdf:type time:SiderealTime;
+    rdfs:comment " the same that LAST with the mean equinox."@en;
+    rdfs:label "LMST";
+    rdfs:label "Local Mean Sidereal Time"@en
+    .
+time:GMST rdf:type time:SiderealTime;
+    rdfs:comment " the same that GAST with the mean equinox."@en;
+    rdfs:label "GMST";
+    rdfs:label "Greenwich Mean Sidereal Time"@en
+    .
+
+time:granularity a owl:DatatypeProperty;
+    rdfs:comment "assume a discrete time measure and defines the tick value of the clock (i.e the time delta between two consecutive clock increments)"@en;
+    rdfs:domain time:Reference;
+    rdfs:range xsd:double
+    .
+time:precision a owl:DatatypeProperty;
+    rdfs:comment """Precision is the closeness of agreement between independent measurements of a quantity under the same conditions. It is a measure of how well a measurement can be made without reference to a theoretical or true value. The number of divisions on the scale of the measuring device generally affects the consistency of repeated measurements and, therefore, the precision.  Since precision is not based on a true value there is no bias or systematic error in the value, but instead it depends only on the distribution of random errors.  The precision of a measurement is usually indicated by the uncertainty or fractional relative uncertainty of a value.
+    
+        [1] Uncertainty Terminology [WWW Document], n.d. URL https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm (accessed 7.10.15).
+    """@en;    
+    rdfs:seeAlso <https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm> ;
+    rdfs:domain time:Reference;
+    rdfs:range xsd:double
+    .
+    
+time:uncertainty a owl:DatatypeProperty;
+    rdfs:comment """Uncertainty is the component of a reported value that characterizes the range of values within which the true value is asserted to lie.  An uncertainty estimate should address error from all possible effects (both systematic and random) and, therefore, usually is the most appropriate means of expressing the accuracy of results.  This is consistent with ISO guidelines.  However, in many measurement situations the systematic error is not address and only random error is included in the uncertainty measurement.  When only random error is included in the uncertainty estimate, it is a reflection of the precision of the measurement.     
+    
+        [1] Uncertainty Terminology [WWW Document], n.d. URL https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm (accessed 7.10.15).
+        """@en;
+    rdfs:seeAlso <https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm> ;
+    rdfs:domain time:Reference;
+    rdfs:range xsd:double
+    .
+    
+time:zone a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:comment "defines a geographical/political area where a particular shift time policy is applied (w.r.t. to universal time or GMT)"@en;
+    rdfs:domain time:Reference;
+    rdfs:range tz:TimeZone
+    .
+    
+time:country a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain time:Reference;
+    rdfs:range tz:Country
+    .
+time:state a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain time:Reference;
+    rdfs:range tz:State
+    .
+time:region a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain time:Reference;
+    rdfs:range tz:Region
+    .
+time:city a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:domain time:Reference;
+    rdfs:range tz:City
+    .
+    
+    
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#   Duration
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+time:Duration a owl:Class;
+    owl:disjointWith time:Instant, time:Interval
+    .
+# the following properties may apply both to Instant and Duration    
+time:years a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Duration;
+    rdfs:range xsd:double
+    .
+    
+time:months a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Duration;
+    rdfs:range xsd:double
+    .
+    
+time:days a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Duration;
+    rdfs:range xsd:double
+    .
+    
+time:hours a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Duration;
+    rdfs:range xsd:double
+    .
+    
+time:minutes a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Duration;
+    rdfs:range xsd:double
+    .
+    
+time:seconds a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:comment "capture ellapsed time (duration value) in seconds"@en;
+    rdfs:domain time:Duration;
+    rdfs:range owl:real
+    # rdfs:range xsd:double
+    .
+
+
+time:ellapsed a owl:DatatypeProperty, owl:FunctionalProperty ;    
+    rdfs:domain time:Duration;
+    rdfs:range xsd:duration;
+    rdfs:comment "time extension using XSD duration datatype"@en
+    .
+    
+time:min-duration a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Duration;
+    rdfs:range time:Duration;
+    rdfs:comment "express uncertainty: minimal duration (the actual duration is strictly greater than this one)"@en
+    .
+    
+time:max-duration a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain time:Duration;
+    rdfs:range time:Duration;
+    rdfs:comment "express uncertainty: maximal duration (the actual duration is strictly lesser than this one)"@en
+    .
+    
+#--- Allen intervals ---
+    
+# Allen's interval algebra http://en.wikipedia.org/wiki/Allen's_interval_algebra
+allen:algebra 
+    rdfs:seeAlso <http://en.wikipedia.org/wiki/Allen's_interval_algebra>;
+    rdfs:comment
+    """ Allen's interval algebra (Allen, 1983) is based on the notion of relations between pairs of
+    intervals. An interval x is represented as a tuple (x- , x+)of time instants (like reals) with x- < x+,
+    denoting the left and right endpoints of the interval, respectively, and relations between intervals 
+    are composed as disjunctions of 13 basic interval relations.
+    """@en
+    .
+
+# Problems with owl:Reflexive and owl:Symmetric as well as owl:Asymmetric reported by reasoners Pellet, Fact++, HermiT    
+# allen:equals a owl:ObjectProperty, owl:TransitiveProperty, owl:ReflexiveProperty, owl:SymmetricProperty; 
+allen:equals a owl:ObjectProperty, owl:TransitiveProperty, owl:SymmetricProperty; 
+	rdfs:domain time:Interval; 
+	rdfs:range time:Interval;
+	rdfs:comment """ A equals B
+	A:	|----------|
+	B:	|----------|
+	""".
+        
+allen:meets a owl:ObjectProperty, owl:AsymmetricProperty, owl:IrreflexiveProperty;
+	rdfs:domain time:Interval; 
+	rdfs:range time:Interval;
+    owl:inverseOf allen:met-by;
+	rdfs:comment """  A meets B
+	A:	|------|
+	B:	        |------|
+	""".
+    
+
+# allen:before a owl:ObjectProperty, owl:AsymmetricProperty, owl:IrreflexiveProperty, owl:TransitiveProperty; 
+allen:before a owl:ObjectProperty, owl:TransitiveProperty; 
+	rdfs:domain time:Interval; 
+	rdfs:range time:Interval;
+    owl:inverseOf allen:after;
+	rdfs:comment """ A before B
+	A:	|------|
+	B:	               |------|
+	"""
+    .
+
+
+# allen:starts a owl:ObjectProperty, owl:SymmetricProperty, owl:ReflexiveProperty, owl:TransitiveProperty; 
+allen:starts a owl:ObjectProperty, owl:SymmetricProperty, owl:TransitiveProperty; 
+	rdfs:domain time:Interval; 
+	rdfs:range time:Interval;
+    owl:inverseOf allen:started-by;
+	rdfs:comment """ A starts B
+	A:	|------|
+	B:	|-----------|
+	""".
+    
+
+allen:overlaps a owl:ObjectProperty, owl:AsymmetricProperty, owl:IrreflexiveProperty;
+    rdfs:label "allen:overlaps";
+	rdfs:domain time:Interval; 
+	rdfs:range time:Interval;
+    owl:inverseOf allen:overlapped-by;
+	rdfs:comment """ A overlaps B
+	A: 	|------|
+	B:           |------|
+	""".
+    
+
+# allen:finishes a owl:ObjectProperty, owl:SymmetricProperty, owl:ReflexiveProperty, owl:TransitiveProperty; 
+allen:finishes a owl:ObjectProperty, owl:SymmetricProperty, owl:TransitiveProperty; 
+    rdfs:label "allen:finishes";
+	rdfs:domain time:Interval; 
+	rdfs:range time:Interval;
+    owl:inverseOf allen:finished-by;
+	rdfs:comment """ A finishes B
+	A:	    |------|
+	B:	|----------|
+	""".
+    
+
+# allen:during a owl:ObjectProperty, owl:AsymmetricProperty, owl:IrreflexiveProperty, owl:TransitiveProperty; 
+allen:during a owl:ObjectProperty, owl:TransitiveProperty; 
+    rdfs:label "allen:during";
+	rdfs:domain time:Interval; 
+	rdfs:range time:Interval;
+    owl:inverseOf allen:includes;
+	rdfs:comment """ A during B
+         (B- < A-  and  A+ < B+)
+	A:	     |------|
+	B:	|--------------|
+	""".
+    
+

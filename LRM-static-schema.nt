@@ -1,0 +1,253 @@
+<http://xrce.xerox.com/LRM#LRM-static> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://xrce.xerox.com/LRM#LRM-static> <http://www.w3.org/2002/07/owl#versionInfo> "2.0.3" .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:node1bcihdk7ax1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#EndogenousResource> .
+_:node1bcihdk7ax1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdk7ax2 .
+_:node1bcihdk7ax2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ExogenousResource> .
+_:node1bcihdk7ax2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdk7ax1 .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/2000/01/rdf-schema#comment> "Endogenous resources talk about the representation system, whereas Exogenous resources talk about the ecosystem"@en .
+_:node1bcihdk7ax3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#AbstractResource> .
+_:node1bcihdk7ax3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdk7ax4 .
+_:node1bcihdk7ax4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ConcreteResource> .
+_:node1bcihdk7ax4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdk7ax3 .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/2000/01/rdf-schema#comment> " \n        In our view, abstract resources have no physical extension. However, they may be delimited in time, and thus \n        may have a temporal support; they also may be subject to changes. \n        In our view, concrete resources have a physical and temporal extension.\n        As such, they can be located in space and time, and the nature of their physical extension may be described accordingly (e.g. mass, size, volumes, mereological organization...).\n        "@en .
+_:node1bcihdk7ax5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#MutableResource> .
+_:node1bcihdk7ax5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdk7ax6 .
+_:node1bcihdk7ax6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ImmutableResource> .
+_:node1bcihdk7ax6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdk7ax5 .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/2000/01/rdf-schema#comment> "Mutable resources can change"@en .
+<http://xrce.xerox.com/LRM#Resource> <http://www.w3.org/2000/01/rdf-schema#comment> "Immutable resources cannot change "@en .
+<http://xrce.xerox.com/LRM#AbstractResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#ConcreteResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#EndogenousResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#AbstractResource> .
+<http://xrce.xerox.com/LRM#ExogenousResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#AbstractExogenousResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ExogenousResource> .
+<http://xrce.xerox.com/LRM#AbstractExogenousResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#AbstractResource> .
+<http://xrce.xerox.com/LRM#MutableResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#ImmutableResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#DeletedResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ImmutableResource> .
+<http://xrce.xerox.com/LRM#realizedAs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#realizedAs> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#AbstractResource> .
+<http://xrce.xerox.com/LRM#realizedAs> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#ConcreteResource> .
+<http://xrce.xerox.com/LRM#realizedAs> <http://www.w3.org/2000/01/rdf-schema#comment> "This must be used to link an abstract resource to one or several concrete realizations of it"@en .
+<http://xrce.xerox.com/LRM#realizes> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#realizedAs> .
+<http://xrce.xerox.com/LRM#Description> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#EndogenousResource> .
+<http://xrce.xerox.com/LRM#Description> <http://www.w3.org/2000/01/rdf-schema#comment> "gives information about a resource, e.g. why it exists (intention), what it is for (specification),  ... "@en .
+<http://xrce.xerox.com/LRM#describedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#describedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#describedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#describes> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#definition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#definition> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#definition> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
+<http://xrce.xerox.com/LRM#definition> <http://www.w3.org/2000/01/rdf-schema#comment> "This property allows defining formally the resource through a string"@en .
+<http://xrce.xerox.com/LRM#AggregatedResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#AggregatedResource> <http://www.w3.org/2000/01/rdf-schema#comment> "Mereology (from the Greek \u03BC\u03B5\u03C1\u03BF\u03C2, 'part') is the theory of parthood relations: of the relations of part to whole and the relations of part to part within a whole."@en .
+<http://xrce.xerox.com/LRM#AggregatedResource> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://plato.stanford.edu/entries/mereology/> .
+<http://xrce.xerox.com/LRM#hasPart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#hasPart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/LRM#hasPart> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#AggregatedResource> .
+<http://xrce.xerox.com/LRM#hasPart> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#partOf> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#hasPart> .
+<http://xrce.xerox.com/LRM#Location> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Location> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        Location descriptor is information about retrieving the concrete  resource. \n        "@en .
+<http://xrce.xerox.com/LRM#Protocol> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Protocol> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        explain the method/protocol used to retrieve a concrete  resource (e.g. http, ftp, or an informal textual description). \n        "@en .
+<http://xrce.xerox.com/LRM#Identity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Identity> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        The identity of an Resource is uniquely defined via an instance of class lrm:Identity.\n        Although the structure of those instances are not defined at this level, it may use \n        UUID mechanisms such as defined in RFC 4122.\n        "@en .
+<http://xrce.xerox.com/LRM#Identity> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://tools.ietf.org/pdf/rfc4122> .
+<http://xrce.xerox.com/LRM#TemporalDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#TemporalDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Used to provide temporal knowledge about the resource" .
+<http://xrce.xerox.com/LRM#TimeInterval> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#TemporalDescription> .
+<http://xrce.xerox.com/LRM#TimeInstant> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#TemporalDescription> .
+<http://xrce.xerox.com/LRM#TimeDuration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#TemporalDescription> .
+<http://xrce.xerox.com/LRM#spanTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#spanTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#spanTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#spanTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#spanTime> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#TimeInterval> .
+<http://xrce.xerox.com/LRM#creationTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#creationTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#creationTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#creationTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#creationTime> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#TimeInstant> .
+<http://xrce.xerox.com/LRM#deletionTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#deletionTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#deletionTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#deletionTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#deletionTime> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#TimeInstant> .
+<http://xrce.xerox.com/LRM#durationTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#durationTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#durationTime> <http://www.w3.org/2000/01/rdf-schema#comment> "correspond to a duration"@en .
+<http://xrce.xerox.com/LRM#durationTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#durationTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#durationTime> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#TimeDuration> .
+<http://xrce.xerox.com/LRM#preceding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#preceding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/LRM#preceding> <http://www.w3.org/2000/01/rdf-schema#comment> "correspond to a strict causal ordering between any lrm:Resource instances (not time per se, but may be interpreted consistently w.r.t. interval or instant semantic)"@en .
+<http://xrce.xerox.com/LRM#preceding> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#preceding> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#following> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#following> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/LRM#following> <http://www.w3.org/2000/01/rdf-schema#comment> "correspond to a strict causal ordering between any lrm:Resource instances (not time per se, but may be interpreted consistently w.r.t. interval or instant semantic)"@en .
+<http://xrce.xerox.com/LRM#following> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#preceding> .
+<http://xrce.xerox.com/LRM#following> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#following> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#synchronousWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#synchronousWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#SymmetricProperty> .
+<http://xrce.xerox.com/LRM#synchronousWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/LRM#synchronousWith> <http://www.w3.org/2000/01/rdf-schema#comment> "correspond to a strict time equality between any lrm:Resources instances (interpreted consistently w.r.t. interval or instant semantic)"@en .
+<http://xrce.xerox.com/LRM#synchronousWith> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#synchronousWith> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#SpatialDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#SpatialDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Used to provide spatial knowledge about the resource" .
+<http://xrce.xerox.com/LRM#spaceLocation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#spaceLocation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#spaceLocation> <http://www.w3.org/2000/01/rdf-schema#comment> "correspond to a place (a point or an area in space )"@en .
+<http://xrce.xerox.com/LRM#spaceLocation> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#spaceLocation> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ConcreteResource> .
+<http://xrce.xerox.com/LRM#spaceLocation> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#SpatialDescription> .
+<http://xrce.xerox.com/LRM#identification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#identification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#identification> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#identification> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#identification> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Identity> .
+<http://xrce.xerox.com/LRM#identification> <http://www.w3.org/2000/01/rdf-schema#comment> "an Identity instance uniquely identifies a resource (hence the functional property)"@en .
+<http://xrce.xerox.com/LRM#location> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#location> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#location> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#ConcreteResource> .
+<http://xrce.xerox.com/LRM#location> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Location> .
+<http://xrce.xerox.com/LRM#location> <http://www.w3.org/2000/01/rdf-schema#comment> "distinct resources cannot have the same location  descriptor(hence the inverse functional property)"@en .
+<http://xrce.xerox.com/LRM#accessProtocol> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#accessProtocol> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#accessProtocol> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Location> .
+<http://xrce.xerox.com/LRM#accessProtocol> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Protocol> .
+<http://xrce.xerox.com/LRM#url> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#url> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#url> <http://www.w3.org/2000/01/rdf-schema#comment> "The acronym URL stands fo Uniform Resource Locator..."@en .
+<http://xrce.xerox.com/LRM#url> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Location> .
+<http://xrce.xerox.com/LRM#intention> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#intention> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#intention> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#intention> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#intention> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Intention> .
+<http://xrce.xerox.com/LRM#intention> <http://www.w3.org/2000/01/rdf-schema#comment> "This property allows describing, formally or not, the intented usage of the resource (answer to the WHY question)"@en .
+<http://xrce.xerox.com/LRM#Intention> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Intention> <http://www.w3.org/2000/01/rdf-schema#comment> " Used to express the intention usage of the resource (or purpose of...)"@en .
+<http://xrce.xerox.com/LRM#Specification> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Specification> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        Used to express the semantical properties. could be a formal logical language, a test-oriented prog. language, a formal or informal policy, a textual description...\n        "@en .
+<http://xrce.xerox.com/LRM#specifiedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#specifiedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#specifiedBy> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#specifiedBy> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#specifies> .
+<http://xrce.xerox.com/LRM#specifiedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#specifiedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Specification> .
+<http://xrce.xerox.com/LRM#specifiedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        This property is used to express, formally or not, the semantical properties of the resource: it must be compatible with the invariant property attached to the resource, if any.\n        "@en .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/2000/01/rdf-schema#comment> "specifies what must be always verified along the whole object life."@en .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/2000/01/rdf-schema#comment> "also relates to the so-called \"significant properties\" used in digital preservation."@en .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://plato.stanford.edu/entries/identity-time/> .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#invariant> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Specification> .
+<http://xrce.xerox.com/LRM#DigitalResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ConcreteResource> .
+<http://xrce.xerox.com/LRM#DigitalResource> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        A data structure that can be located by a dedicated descriptor, and having\n        a unique identifier. The extension of a digital resource is a bit stream that can \n        be fetched using the location descriptor.\n        "@en .
+<http://xrce.xerox.com/LRM#DigitalResource> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.doi.org/handbook_2000/glossary.html> .
+<http://xrce.xerox.com/LRM#DigitalResource> <http://www.w3.org/2000/01/rdf-schema#comment> "Jens[conf. Thibodeau/terminology overview (pericles internal documents)]: \n        a technical object, processable by machines/computers (e.g. a set of files), \n        as opposed to the physical or intellectual object\n        "@en .
+<http://xrce.xerox.com/LRM#DigitalResource> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.clir.org/pubs/reports/pub107/thibodeau.html> .
+<http://xrce.xerox.com/LRM#DigitalResource> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.doi.org/doi_handbook/Glossary.html> .
+<http://xrce.xerox.com/LRM#extension> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/LRM#extension> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#extension> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#definition> .
+<http://xrce.xerox.com/LRM#extension> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#DigitalResource> .
+<http://xrce.xerox.com/LRM#extension> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
+<http://xrce.xerox.com/LRM#extension> <http://www.w3.org/2000/01/rdf-schema#comment> "This property allows defining formally the digital extension of a resource (its bit stream)"@en .
+<http://xrce.xerox.com/LRM#extension> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/TR/Content-in-RDF10> .
+<http://xrce.xerox.com/LRM#DigitalSignature> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#fingerprint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#fingerprint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#fingerprint> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#describedBy> .
+<http://xrce.xerox.com/LRM#fingerprint> <http://www.w3.org/2000/01/rdf-schema#comment> "could be a checksum or any digital signature that uniquely represents the bitstream extension of the digital object"@en .
+<http://xrce.xerox.com/LRM#fingerprint> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#DigitalResource> .
+<http://xrce.xerox.com/LRM#fingerprint> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#DigitalSignature> .
+<http://xrce.xerox.com/LRM#uniqueIdentification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#uniqueIdentification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#uniqueIdentification> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#identification> .
+<http://xrce.xerox.com/LRM#uniqueIdentification> <http://www.w3.org/2000/01/rdf-schema#comment> "an Identity instance that uniquely designates the digital object"@en .
+<http://xrce.xerox.com/LRM#uniqueIdentification> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#DigitalResource> .
+<http://xrce.xerox.com/LRM#uniqueIdentification> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Identity> .
+<http://xrce.xerox.com/LRM#Dependency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#EndogenousResource> .
+<http://xrce.xerox.com/LRM#Dependency> <http://www.w3.org/2000/01/rdf-schema#comment> "\n    A dependency, according to the LRM model, is oriented, and may relate at least one lrm:Resource instance to at \n    least one lrm:Resource instance. One dependency instance may bind several resources together: this captures the\n    'co-dependencies' phenomenon, also named 'conjunctive dependencies', meaning that all resources must be considered \n    simultaneously, together as a whole. Disjunctive dependencies are naturally expressed using different instances \n    relating the same set of resources.\n    The semantics of the instances of this dependency class is conveyed by an instance of lrm:Plan. This last may give \n    information about the intent (WHY), its specification (WHAT), and how it is satisfied (HOW see lrm:Plan, lrm:Description).\n    When 'how' is specified, it involves an Agent to perform the plan.\n    "@en .
+<http://xrce.xerox.com/LRM#ConjunctiveDependency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Dependency> .
+<http://xrce.xerox.com/LRM#ConjunctiveDependency> <http://www.w3.org/2000/01/rdf-schema#comment> " all 'lrm:from' resources are needed by the 'lrm:to' resources for the intended usage" .
+<http://xrce.xerox.com/LRM#DisjunctiveDependency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Dependency> .
+<http://xrce.xerox.com/LRM#DisjunctiveDependency> <http://www.w3.org/2000/01/rdf-schema#comment> " only one among the 'lrm:from' resources is needed by the 'lrm:to' resources for the intended usage (can choose anyone)" .
+_:node1bcihdk7ax7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#ConjunctiveDependency> .
+_:node1bcihdk7ax7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdk7ax8 .
+_:node1bcihdk7ax8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#DisjunctiveDependency> .
+_:node1bcihdk7ax8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Dependency> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdk7ax7 .
+<http://xrce.xerox.com/LRM#from> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#from> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Dependency> .
+<http://xrce.xerox.com/LRM#from> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#to> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#to> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Dependency> .
+<http://xrce.xerox.com/LRM#to> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Resource> .
+<http://xrce.xerox.com/LRM#Plan> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Description> .
+<http://xrce.xerox.com/LRM#Plan> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/TR/2013/REC-prov-o-20130430/#Plan> .
+<http://xrce.xerox.com/LRM#Plan> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        Plans are specialized descriptions intended to be executed by some agent (either human or software based); this is thus a mean to \n        give abstract or concrete operational semantics to dependencies."@en .
+<http://xrce.xerox.com/LRM#implementedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#implementedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "useful when a Plan is defined through an exogenous resource, e.g. a source file" .
+<http://xrce.xerox.com/LRM#implementedBy> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#realizedAs> .
+<http://xrce.xerox.com/LRM#implementedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Plan> .
+<http://xrce.xerox.com/LRM#implementedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#ConcreteResource> .
+<http://xrce.xerox.com/LRM#impact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#impact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#impact> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Dependency> .
+<http://xrce.xerox.com/LRM#impact> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Plan> .
+<http://xrce.xerox.com/LRM#impact> <http://www.w3.org/2000/01/rdf-schema#comment> "Designates the lrm:Plan instance that characterizes how the change of a dependee(s) \n        impacts the depending resource(s): what must be done if the dependency is activated"@en .
+<http://xrce.xerox.com/LRM#precondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#precondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/LRM#precondition> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Dependency> .
+<http://xrce.xerox.com/LRM#precondition> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Plan> .
+<http://xrce.xerox.com/LRM#precondition> <http://www.w3.org/2000/01/rdf-schema#comment> "Designates the lrm:Plan instance that characterizes the conditions for the change of dependee(s) \n        to trigger a change propagation to depending resources."@en .
+<http://xrce.xerox.com/LRM#Agent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Resource> .
+_:node1bcihdk7ax9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#SoftwareAgent> .
+_:node1bcihdk7ax9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdk7ax10 .
+_:node1bcihdk7ax10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#HumanAgent> .
+_:node1bcihdk7ax10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdk7ax11 .
+_:node1bcihdk7ax11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/LRM#Organization> .
+_:node1bcihdk7ax11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/LRM#Agent> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdk7ax9 .
+<http://xrce.xerox.com/LRM#Agent> <http://www.w3.org/2000/01/rdf-schema#comment> "An agent is an entity that performs actions, i.e transformative operations over the exogenous/endogenous ecosystem"@en .
+<http://xrce.xerox.com/LRM#SoftwareAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Agent> .
+<http://xrce.xerox.com/LRM#HumanAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Agent> .
+<http://xrce.xerox.com/LRM#HumanAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ConcreteResource> .
+<http://xrce.xerox.com/LRM#HumanAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#ExogenousResource> .
+<http://xrce.xerox.com/LRM#birthTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#birthTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#creationTime> .
+<http://xrce.xerox.com/LRM#birthTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#HumanAgent> .
+<http://xrce.xerox.com/LRM#birthTime> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#TimeInstant> .
+<http://xrce.xerox.com/LRM#deathTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#deathTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#deletionTime> .
+<http://xrce.xerox.com/LRM#deathTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#HumanAgent> .
+<http://xrce.xerox.com/LRM#lifeTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/LRM#lifeTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#durationTime> .
+<http://xrce.xerox.com/LRM#lifeTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#HumanAgent> .
+<http://xrce.xerox.com/LRM#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#AggregatedResource> .
+<http://xrce.xerox.com/LRM#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#Agent> .
+<http://xrce.xerox.com/LRM#hasMember> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#hasPart> .
+<http://xrce.xerox.com/LRM#hasMember> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Organization> .
+<http://xrce.xerox.com/LRM#hasMember> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#Agent> .
+<http://xrce.xerox.com/LRM#isMemberOf> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#partOf> .
+<http://xrce.xerox.com/LRM#isMemberOf> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#hasMember> .
+<http://xrce.xerox.com/LRM#Community> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/LRM#AggregatedResource> .
+<http://xrce.xerox.com/LRM#hasContributor> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#hasPart> .
+<http://xrce.xerox.com/LRM#hasContributor> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/LRM#Community> .
+<http://xrce.xerox.com/LRM#hasContributor> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/LRM#HumanAgent> .
+<http://xrce.xerox.com/LRM#isContributorOf> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/LRM#partOf> .
+<http://xrce.xerox.com/LRM#isContributorOf> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/LRM#hasContributor> .

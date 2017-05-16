@@ -1,0 +1,307 @@
+<http://xrce.xerox.com/TIME#TIME-schema> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://xrce.xerox.com/TIME#TIME-schema> <http://www.w3.org/2000/01/rdf-schema#comment> "Adresses flexible time management with variable precision and uncertainty of higher-order"@en .
+<http://xrce.xerox.com/TIME#TIME-schema> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/TR/xpath-functions/#durations-dates-times> .
+<http://xrce.xerox.com/TIME#TIME-schema> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://en.wikipedia.org/wiki/Allen's_interval_algebra> .
+<http://xrce.xerox.com/TIME#TIME-schema> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.w3.org/TR/owl-time/> .
+_:node1bcihdku0x1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/TIME#Instant> .
+_:node1bcihdku0x1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdku0x2 .
+_:node1bcihdku0x2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/TIME#Duration> .
+_:node1bcihdku0x2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/TIME#TemporalMeasurement> <http://www.w3.org/2002/07/owl#unionOf> _:node1bcihdku0x1 .
+<http://xrce.xerox.com/TIME#Interval> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:node1bcihdku0x3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/TIME#TimeInterval> .
+_:node1bcihdku0x3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node1bcihdku0x4 .
+_:node1bcihdku0x4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://xrce.xerox.com/TIME#Uncertainty> .
+_:node1bcihdku0x4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://xrce.xerox.com/TIME#Interval> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:node1bcihdku0x3 .
+<http://xrce.xerox.com/TIME#TimeInterval> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xrce.xerox.com/TIME#TimeInterval> <http://www.w3.org/2000/01/rdf-schema#comment> "Represent an interval of time having a non null duration"@en .
+<http://xrce.xerox.com/TIME#TimeInterval> <http://www.w3.org/2000/01/rdf-schema#comment> "A time interval can be fully specified by a starting and ending Instant, or by a starting instant and a duration"@en .
+<http://xrce.xerox.com/TIME#TimeInterval> <http://www.w3.org/2000/01/rdf-schema#comment> "Its duration cannot be null, so that an Interval cannot be an instant, and the starting instant always occurs strictly before the ending instant."@en .
+<http://xrce.xerox.com/TIME#TimeInterval> <http://www.w3.org/2000/01/rdf-schema#comment> "A time interval can also be partially defined. In that case, missing information is understood as unknown, and might be inferred from context, e.g. through allen relations if any"@en .
+<http://xrce.xerox.com/TIME#Uncertainty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xrce.xerox.com/TIME#Uncertainty> <http://www.w3.org/2000/01/rdf-schema#comment> "Represent an uncertainty interval (where the target value has to be located with a probability of one)"@en .
+<http://xrce.xerox.com/TIME#starting> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#starting> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#starting> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the starting instant of the subject interval"@en .
+<http://xrce.xerox.com/TIME#starting> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/TIME#starting> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#ending> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#ending> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#ending> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the ending instant of the subject interval"@en .
+<http://xrce.xerox.com/TIME#ending> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/TIME#ending> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#around> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#around> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#around> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/TIME#around> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#around> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the center of the interval (also useful when combined with time:during property)"@en .
+<http://xrce.xerox.com/TIME#during> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#during> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#during> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the duration of the interval"@en .
+<http://xrce.xerox.com/TIME#during> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/TIME#during> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#Instant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xrce.xerox.com/TIME#Instant> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/TIME#Instant> <http://www.w3.org/2000/01/rdf-schema#comment> "defines a time instant as a coordinate in time space; embeds mechanisms to express and handle uncertainty"@en .
+<http://xrce.xerox.com/TIME#clock> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#clock> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#clock> <http://www.w3.org/2000/01/rdf-schema#comment> "defines a time reference from which the Instant is measured"@en .
+<http://xrce.xerox.com/TIME#clock> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#TemporalMeasurement> .
+<http://xrce.xerox.com/TIME#clock> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#calendar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#calendar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#calendar> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#TemporalMeasurement> .
+<http://xrce.xerox.com/TIME#calendar> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Calendar> .
+<http://xrce.xerox.com/TIME#when> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#when> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the UTC coordinate of the instant through the xsd:dateTime datatype"@en .
+<http://xrce.xerox.com/TIME#when> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#when> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://xrce.xerox.com/TIME#utc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#utc> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xrce.xerox.com/TIME#when> .
+<http://xrce.xerox.com/TIME#utc> <http://www.w3.org/2000/01/rdf-schema#comment> "defines the UTC coordinate of the instant in a precise way through the xsd:dateTimeStamp datatype (must explicitely include the time zone information)"@en .
+<http://xrce.xerox.com/TIME#utc> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#utc> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTimeStamp> .
+<http://xrce.xerox.com/TIME#coordinate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#coordinate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#coordinate> <http://www.w3.org/2000/01/rdf-schema#comment> "defines an instant through a conventional reference"@en .
+<http://xrce.xerox.com/TIME#coordinate> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#coordinate> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2002/07/owl#real> .
+<http://xrce.xerox.com/TIME#civilian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#civilian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#civilian> <http://www.w3.org/2000/01/rdf-schema#comment> "defines an instant through a civilian convention (hence must be interpreted w.r.t. a given calendar such as gregorian, chinese,...)"@en .
+<http://xrce.xerox.com/TIME#civilian> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#civilian> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
+<http://xrce.xerox.com/TIME#inside> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#inside> <http://www.w3.org/2000/01/rdf-schema#comment> "used to specify uncertain instants or durations"@en .
+<http://xrce.xerox.com/TIME#inside> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#inside> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Uncertainty> .
+<http://xrce.xerox.com/TIME#year> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#year> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#year> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#year> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#integer> .
+<http://xrce.xerox.com/TIME#month> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#month> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#month> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#month> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://xrce.xerox.com/TIME#day> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#day> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#day> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#day> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://xrce.xerox.com/TIME#hour> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#hour> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#hour> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#hour> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://xrce.xerox.com/TIME#minute> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#minute> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#minute> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#minute> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://xrce.xerox.com/TIME#second> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#second> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#second> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#second> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://xrce.xerox.com/TIME#synchronousWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#synchronousWith> <http://www.w3.org/2000/01/rdf-schema#comment> "expresses that two semantically distinct instants occurs synchronously"@en .
+<http://xrce.xerox.com/TIME#synchronousWith> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#synchronousWith> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#preceding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#preceding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#IrreflexiveProperty> .
+<http://xrce.xerox.com/TIME#preceding> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/TIME#following> .
+<http://xrce.xerox.com/TIME#preceding> <http://www.w3.org/2000/01/rdf-schema#comment> "(A time:preceding B) means that A strictly occured before B"@en .
+<http://xrce.xerox.com/TIME#preceding> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#preceding> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#Calendar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xrce.xerox.com/TIME#Calendar> <http://www.w3.org/2000/01/rdf-schema#comment> "used to characterize the civilian time" .
+<http://xrce.xerox.com/TIME#Calendar> <http://www.w3.org/2000/01/rdf-schema#comment> "to be developped further"@en .
+<http://xrce.xerox.com/TIME#Calendar> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dl.acm.org/citation.cfm?id=1060847> .
+<http://xrce.xerox.com/TIME#Calendar> <http://www.w3.org/2000/01/rdf-schema#comment> "\n        CaTTS: Calendar types and constraints for Web applications\n        Fran\u00E7ois Bry, Frank-Andr\u00E9 Ries, Stephanie Spranger\n        Proceedings of the 14th international conference on World Wide Web        \n        ACM, 2005\n        " .
+<http://xrce.xerox.com/TIME#julian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#Calendar> .
+<http://xrce.xerox.com/TIME#gregorian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#Calendar> .
+<http://xrce.xerox.com/TIME#hebrew> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#Calendar> .
+<http://xrce.xerox.com/TIME#chinese> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#Calendar> .
+<http://xrce.xerox.com/TIME#islamic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#Calendar> .
+<http://xrce.xerox.com/TIME#Reference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xrce.xerox.com/TIME#Reference> <http://www.w3.org/2000/01/rdf-schema#comment> "used to characterize the time reference associated with the time coordinates (typically a clock)"@en .
+<http://xrce.xerox.com/TIME#Reference> <http://www.w3.org/2000/01/rdf-schema#comment> "\nOur everyday life follows the alternation of day and night, and seasons of year, and then the initial conception of time was based on the motion of sun. Nevertheless, as science and technology evolved, more precise uniform and well-defined time scales were needed.\nSeveral time references are currently adopted, based on the different periodic processes associated, such as earth rotation, celestial mechanics or transitions between energetic levels in atomic oscillators.\n        "@en .
+<http://xrce.xerox.com/TIME#Reference> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.navipedia.net/index.php/Time_References> .
+<http://xrce.xerox.com/TIME#CosmicBased> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#AtomicBased> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#AtomicBased> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/TIME#CosmicBased> .
+<http://xrce.xerox.com/TIME#DiscontinuousAtomicBased> <http://www.w3.org/2000/01/rdf-schema#comment> "implements discrete time shifting operations (typically leap seconds)in order to keep the clock synchronized with cosmic parameters (typically earth rotation)"@en .
+<http://xrce.xerox.com/TIME#DiscontinuousAtomicBased> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#AtomicBased> .
+<http://xrce.xerox.com/TIME#ContinuousAtomicBased> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#AtomicBased> .
+<http://xrce.xerox.com/TIME#ContinuousAtomicBased> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/TIME#DiscontinuousAtomicBased> .
+<http://xrce.xerox.com/TIME#EarthRotation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#CosmicBased> .
+<http://xrce.xerox.com/TIME#SolarTime> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#CosmicBased> .
+<http://xrce.xerox.com/TIME#SolarTime> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.navipedia.net/index.php/Solar_Time> .
+<http://xrce.xerox.com/TIME#ET> <http://www.w3.org/2000/01/rdf-schema#label> "ET" .
+<http://xrce.xerox.com/TIME#ET> <http://www.w3.org/2000/01/rdf-schema#label> "Ephemeris Time"@en .
+<http://xrce.xerox.com/TIME#ET> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#SolarTime> .
+<http://xrce.xerox.com/TIME#ET> <http://www.w3.org/2000/01/rdf-schema#comment> "The Ephemeris Time (ET) was adopted in 1952 as the (conceptually uniform) time of Newtonian Mechanics. It was defined in terms of the earth's revolution orbit around the sun, and it was introduced to be free from the effects of irregularity in the unpredictable polar motion and the earth rotation rate."@en .
+<http://xrce.xerox.com/TIME#ET> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.navipedia.net/index.php/Earth_Revolution_Time> .
+<http://xrce.xerox.com/TIME#UT> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#EarthRotation> .
+<http://xrce.xerox.com/TIME#UT0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#UT> .
+<http://xrce.xerox.com/TIME#UT0> <http://www.w3.org/2000/01/rdf-schema#label> "UT0" .
+<http://xrce.xerox.com/TIME#UT1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#UT> .
+<http://xrce.xerox.com/TIME#UT1> <http://www.w3.org/2000/01/rdf-schema#label> "UT1" .
+<http://xrce.xerox.com/TIME#UT2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#UT> .
+<http://xrce.xerox.com/TIME#UT2> <http://www.w3.org/2000/01/rdf-schema#label> "UT2" .
+<http://www.w3.org/2000/01/rdf-schema#acronym> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#label> .
+<http://www.w3.org/2000/01/rdf-schema#standsFor> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#comment> .
+<http://xrce.xerox.com/TIME#UTC> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#DiscontinuousAtomicBased> .
+<http://xrce.xerox.com/TIME#UTC> <http://www.w3.org/2000/01/rdf-schema#acronym> "UTC"@en .
+<http://xrce.xerox.com/TIME#UTC> <http://www.w3.org/2000/01/rdf-schema#standsFor> "Universal Time Coordinated"@en .
+<http://xrce.xerox.com/TIME#UTC> <http://www.w3.org/2000/01/rdf-schema#comment> "\nUTC is the compromise between TAI and UT1. In fact UTC, as an atomic time, is as uniform as the TAI scale can be, but it is always kept closer than 0.9 seconds with respect to UT1, in order to follow earth's rotation variations. This is accomplished by adding (or subtracting) a certain number of Leap Seconds to TAI. This number, which is refreshed periodically, is provided by the IERS (International Earth Rotation Service).\nThis time is very important since all currently used time signals are synchronised with UTC.\nOfficial Time is the one used by all nations of the world. It usually differs by an integer number of hours or half an hours with regard to UTC. This difference is given by time zones and the proper adjustments in summer and winter.        \n\nAtomic Time - Navipedia [WWW Document], n.d. URL http://www.navipedia.net/index.php/Atomic_Time (accessed 6.25.15).\n    "@en .
+<http://xrce.xerox.com/TIME#UTC> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.navipedia.net/index.php/Atomic_Time> .
+<http://xrce.xerox.com/TIME#TAI> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#AtomicBased> .
+<http://xrce.xerox.com/TIME#TAI> <http://www.w3.org/2000/01/rdf-schema#label> "TAI" .
+<http://xrce.xerox.com/TIME#TAI> <http://www.w3.org/2000/01/rdf-schema#comment> "\nTAI stands for International Atomic Time and was established as a reference time by the Bureau International de l'Heure. Its initial epoch was matched to the 0h0m0s of UT2 scale of January 1st, 1958, so the difference between TAI and UT2 was 0 in this epoch.\nThe TAI second duration was defined in 1967 as the same as the ET second, according to the following sentence: The TAI second is the duration of 9 192 631 770 periods of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the Cesium 133 atom.\nIt is realized from several high-precision atomic clocks held at standards institutes in various countries, it is, therefore, a statistical time. There is an elaborate process of continuous intercomparison, leading to a weighted average of all the clocks involved.\n\nAtomic Time - Navipedia [WWW Document], n.d. URL http://www.navipedia.net/index.php/Atomic_Time (accessed 6.25.15).\n    "@en .
+<http://xrce.xerox.com/TIME#TAI> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.navipedia.net/index.php/Atomic_Time> .
+<http://xrce.xerox.com/TIME#SiderealTime> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xrce.xerox.com/TIME#EarthRotation> .
+<http://xrce.xerox.com/TIME#SiderealTime> <http://www.w3.org/2000/01/rdf-schema#comment> "The reference is the Vernal Equinox, or the Aries point, which is defined as the intersection between the equator and the ecliptic plane [footnotes 1]. Two types of Aries point can be considered depending on which equator plane is considered (i.e, the mean equator or the true equator): the Mean Aries point or the True Aries point."@en .
+<http://xrce.xerox.com/TIME#SiderealTime> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.navipedia.net/index.php/Sidereal_Time> .
+<http://xrce.xerox.com/TIME#LAST> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#SiderealTime> .
+<http://xrce.xerox.com/TIME#LAST> <http://www.w3.org/2000/01/rdf-schema#label> "LAST" .
+<http://xrce.xerox.com/TIME#LAST> <http://www.w3.org/2000/01/rdf-schema#comment> " the hour angle of true Aries point, from local meridian."@en .
+<http://xrce.xerox.com/TIME#LAST> <http://www.w3.org/2000/01/rdf-schema#label> "Local Apparent Sidereal Time"@en .
+<http://xrce.xerox.com/TIME#GAST> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#SiderealTime> .
+<http://xrce.xerox.com/TIME#GAST> <http://www.w3.org/2000/01/rdf-schema#comment> " the hour angle of true Aries point, from Greenwich meridian."@en .
+<http://xrce.xerox.com/TIME#GAST> <http://www.w3.org/2000/01/rdf-schema#label> "GAST" .
+<http://xrce.xerox.com/TIME#GAST> <http://www.w3.org/2000/01/rdf-schema#label> "Greenwich Apparent Sidereal Time"@en .
+<http://xrce.xerox.com/TIME#LMST> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#SiderealTime> .
+<http://xrce.xerox.com/TIME#LMST> <http://www.w3.org/2000/01/rdf-schema#comment> " the same that LAST with the mean equinox."@en .
+<http://xrce.xerox.com/TIME#LMST> <http://www.w3.org/2000/01/rdf-schema#label> "LMST" .
+<http://xrce.xerox.com/TIME#LMST> <http://www.w3.org/2000/01/rdf-schema#label> "Local Mean Sidereal Time"@en .
+<http://xrce.xerox.com/TIME#GMST> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xrce.xerox.com/TIME#SiderealTime> .
+<http://xrce.xerox.com/TIME#GMST> <http://www.w3.org/2000/01/rdf-schema#comment> " the same that GAST with the mean equinox."@en .
+<http://xrce.xerox.com/TIME#GMST> <http://www.w3.org/2000/01/rdf-schema#label> "GMST" .
+<http://xrce.xerox.com/TIME#GMST> <http://www.w3.org/2000/01/rdf-schema#label> "Greenwich Mean Sidereal Time"@en .
+<http://xrce.xerox.com/TIME#granularity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#granularity> <http://www.w3.org/2000/01/rdf-schema#comment> "assume a discrete time measure and defines the tick value of the clock (i.e the time delta between two consecutive clock increments)"@en .
+<http://xrce.xerox.com/TIME#granularity> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#granularity> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#precision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#precision> <http://www.w3.org/2000/01/rdf-schema#comment> "Precision is the closeness of agreement between independent measurements of a quantity under the same conditions. It is a measure of how well a measurement can be made without reference to a theoretical or true value. The number of divisions on the scale of the measuring device generally affects the consistency of repeated measurements and, therefore, the precision.  Since precision is not based on a true value there is no bias or systematic error in the value, but instead it depends only on the distribution of random errors.  The precision of a measurement is usually indicated by the uncertainty or fractional relative uncertainty of a value.\n    \n        [1] Uncertainty Terminology [WWW Document], n.d. URL https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm (accessed 7.10.15).\n    "@en .
+<http://xrce.xerox.com/TIME#precision> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm> .
+<http://xrce.xerox.com/TIME#precision> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#precision> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#uncertainty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#uncertainty> <http://www.w3.org/2000/01/rdf-schema#comment> "Uncertainty is the component of a reported value that characterizes the range of values within which the true value is asserted to lie.  An uncertainty estimate should address error from all possible effects (both systematic and random) and, therefore, usually is the most appropriate means of expressing the accuracy of results.  This is consistent with ISO guidelines.  However, in many measurement situations the systematic error is not address and only random error is included in the uncertainty measurement.  When only random error is included in the uncertainty estimate, it is a reflection of the precision of the measurement.     \n    \n        [1] Uncertainty Terminology [WWW Document], n.d. URL https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm (accessed 7.10.15).\n        "@en .
+<http://xrce.xerox.com/TIME#uncertainty> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm> .
+<http://xrce.xerox.com/TIME#uncertainty> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#uncertainty> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#zone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#zone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#zone> <http://www.w3.org/2000/01/rdf-schema#comment> "defines a geographical/political area where a particular shift time policy is applied (w.r.t. to universal time or GMT)"@en .
+<http://xrce.xerox.com/TIME#zone> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#zone> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2006/timezone#TimeZone> .
+<http://xrce.xerox.com/TIME#country> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#country> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#country> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#country> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2006/timezone#Country> .
+<http://xrce.xerox.com/TIME#state> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#state> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#state> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#state> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2006/timezone#State> .
+<http://xrce.xerox.com/TIME#region> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#region> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#region> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#region> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2006/timezone#Region> .
+<http://xrce.xerox.com/TIME#city> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#city> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#city> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Reference> .
+<http://xrce.xerox.com/TIME#city> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2006/timezone#City> .
+<http://xrce.xerox.com/TIME#Duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xrce.xerox.com/TIME#Duration> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/TIME#Instant> .
+<http://xrce.xerox.com/TIME#Duration> <http://www.w3.org/2002/07/owl#disjointWith> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/TIME#years> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#years> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#years> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#years> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#months> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#months> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#months> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#months> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#days> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#days> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#days> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#days> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#hours> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#hours> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#hours> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#hours> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#minutes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#minutes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#minutes> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#minutes> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#double> .
+<http://xrce.xerox.com/TIME#seconds> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#seconds> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#seconds> <http://www.w3.org/2000/01/rdf-schema#comment> "capture ellapsed time (duration value) in seconds"@en .
+<http://xrce.xerox.com/TIME#seconds> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#seconds> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2002/07/owl#real> .
+<http://xrce.xerox.com/TIME#ellapsed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://xrce.xerox.com/TIME#ellapsed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#ellapsed> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#ellapsed> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#duration> .
+<http://xrce.xerox.com/TIME#ellapsed> <http://www.w3.org/2000/01/rdf-schema#comment> "time extension using XSD duration datatype"@en .
+<http://xrce.xerox.com/TIME#min-duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#min-duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#min-duration> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#min-duration> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#min-duration> <http://www.w3.org/2000/01/rdf-schema#comment> "express uncertainty: minimal duration (the actual duration is strictly greater than this one)"@en .
+<http://xrce.xerox.com/TIME#max-duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/TIME#max-duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://xrce.xerox.com/TIME#max-duration> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#max-duration> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Duration> .
+<http://xrce.xerox.com/TIME#max-duration> <http://www.w3.org/2000/01/rdf-schema#comment> "express uncertainty: maximal duration (the actual duration is strictly lesser than this one)"@en .
+<http://xrce.xerox.com/ALLEN#algebra> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://en.wikipedia.org/wiki/Allen's_interval_algebra> .
+<http://xrce.xerox.com/ALLEN#algebra> <http://www.w3.org/2000/01/rdf-schema#comment> " Allen's interval algebra (Allen, 1983) is based on the notion of relations between pairs of\n    intervals. An interval x is represented as a tuple (x- , x+)of time instants (like reals) with x- < x+,\n    denoting the left and right endpoints of the interval, respectively, and relations between intervals \n    are composed as disjunctions of 13 basic interval relations.\n    "@en .
+<http://xrce.xerox.com/ALLEN#equals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/ALLEN#equals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/ALLEN#equals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#SymmetricProperty> .
+<http://xrce.xerox.com/ALLEN#equals> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#equals> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#equals> <http://www.w3.org/2000/01/rdf-schema#comment> " A equals B\n\tA:\t|----------|\n\tB:\t|----------|\n\t" .
+<http://xrce.xerox.com/ALLEN#meets> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/ALLEN#meets> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AsymmetricProperty> .
+<http://xrce.xerox.com/ALLEN#meets> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#IrreflexiveProperty> .
+<http://xrce.xerox.com/ALLEN#meets> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#meets> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#meets> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/ALLEN#met-by> .
+<http://xrce.xerox.com/ALLEN#meets> <http://www.w3.org/2000/01/rdf-schema#comment> "  A meets B\n\tA:\t|------|\n\tB:\t        |------|\n\t" .
+<http://xrce.xerox.com/ALLEN#before> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/ALLEN#before> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/ALLEN#before> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#before> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#before> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/ALLEN#after> .
+<http://xrce.xerox.com/ALLEN#before> <http://www.w3.org/2000/01/rdf-schema#comment> " A before B\n\tA:\t|------|\n\tB:\t               |------|\n\t" .
+<http://xrce.xerox.com/ALLEN#starts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/ALLEN#starts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#SymmetricProperty> .
+<http://xrce.xerox.com/ALLEN#starts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/ALLEN#starts> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#starts> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#starts> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/ALLEN#started-by> .
+<http://xrce.xerox.com/ALLEN#starts> <http://www.w3.org/2000/01/rdf-schema#comment> " A starts B\n\tA:\t|------|\n\tB:\t|-----------|\n\t" .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AsymmetricProperty> .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#IrreflexiveProperty> .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/2000/01/rdf-schema#label> "allen:overlaps" .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/ALLEN#overlapped-by> .
+<http://xrce.xerox.com/ALLEN#overlaps> <http://www.w3.org/2000/01/rdf-schema#comment> " A overlaps B\n\tA: \t|------|\n\tB:           |------|\n\t" .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#SymmetricProperty> .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/2000/01/rdf-schema#label> "allen:finishes" .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/ALLEN#finished-by> .
+<http://xrce.xerox.com/ALLEN#finishes> <http://www.w3.org/2000/01/rdf-schema#comment> " A finishes B\n\tA:\t    |------|\n\tB:\t|----------|\n\t" .
+<http://xrce.xerox.com/ALLEN#during> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://xrce.xerox.com/ALLEN#during> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+<http://xrce.xerox.com/ALLEN#during> <http://www.w3.org/2000/01/rdf-schema#label> "allen:during" .
+<http://xrce.xerox.com/ALLEN#during> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#during> <http://www.w3.org/2000/01/rdf-schema#range> <http://xrce.xerox.com/TIME#Interval> .
+<http://xrce.xerox.com/ALLEN#during> <http://www.w3.org/2002/07/owl#inverseOf> <http://xrce.xerox.com/ALLEN#includes> .
+<http://xrce.xerox.com/ALLEN#during> <http://www.w3.org/2000/01/rdf-schema#comment> " A during B\n         (B- < A-  and  A+ < B+)\n\tA:\t     |------|\n\tB:\t|--------------|\n\t" .
